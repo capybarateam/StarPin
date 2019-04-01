@@ -21,5 +21,6 @@ public class GameDirector : MonoBehaviour
         var cam = GameObject.Find("Main Camera");
         var star = GameObject.Find("StarObject");
         cam.GetComponent<CameraController>().SetTarget(star);
+        GameObject.Find("LetterBox").GetComponent<Animator>().SetBool("Enabled", true);
     }
 }

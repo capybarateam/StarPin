@@ -40,6 +40,8 @@ public class CameraController : MonoBehaviour
                 var pos = Vector2.Lerp(transform.position, target.currentJoint.transform.position, speedRatio);
                 transform.position = new Vector3(pos.x, pos.y, transform.position.z);
             }
+            else
+                GameObject.Find("LetterBox").GetComponent<Animator>().SetBool("Enabled", false);
         }
     }
 }
