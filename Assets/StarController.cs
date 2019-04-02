@@ -41,6 +41,7 @@ public class StarController : MonoBehaviour
     {
         if (((enablegrip && timer > 0.3f) || currentJoint == null) && currentJoint != point)
         {
+            GetComponent<AudioSource>().Play();
             DetachAll();
             grip.Attach(point);
             //enablegrip = false;

@@ -54,6 +54,7 @@ public class GoalController : MonoBehaviour
             star.enablegrip = false;
             star.DetachAll();
             star.GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<AudioSource>().Play();
             target = star;
         }
     }
