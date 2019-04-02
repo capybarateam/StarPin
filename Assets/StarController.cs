@@ -27,7 +27,7 @@ public class StarController : MonoBehaviour
             enablegrip = true;
         if (Input.GetKeyUp(KeyCode.Space))
             enablegrip = false;
-        rigid.angularVelocity = vel * Time.deltaTime * speed;
+        rigid.angularVelocity = vel * speed;
         timer += Time.deltaTime;
     }
 
