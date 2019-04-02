@@ -1,26 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameDirector : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        StartGame();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
     }
 
     public void StartGame()
     {
-        var cam = GameObject.Find("Main Camera");
-        var star = GameObject.Find("StarObject");
+        GameObject.Find("StageClear").GetComponent<Animator>().SetBool("Enabled", false);
+        Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        GameObject star = GameObject.Find("StarObject");
         cam.GetComponent<CameraController>().SetTarget(star);
-        GameObject.Find("LetterBox").GetComponent<Animator>().SetBool("Enabled", true);
+        GameObject letter = GameObject.Find("LetterBox");
+        if (letter != null)
+        {
+            letter.GetComponent<Animator>().SetBool("Enabled", true);
+        }
     }
 }

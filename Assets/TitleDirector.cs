@@ -21,7 +21,7 @@ public class TitleDirector : MonoBehaviour
 
     public void OnClick()
     {
+        SceneManager.LoadSceneAsync("GameScene", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync("TitleScene");
-        GameObject.Find("GameDirector").GetComponent<GameDirector>().StartGame();
     }
 }
