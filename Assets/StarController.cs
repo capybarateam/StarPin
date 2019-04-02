@@ -46,7 +46,7 @@ public class StarController : MonoBehaviour
             //enablegrip = false;
             timer = 0;
             grip.EmitParticle();
+            currentJoint = point;
         }
-        currentJoint = point;
     }
 }
