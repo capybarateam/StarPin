@@ -5,11 +5,20 @@ public class CameraController : MonoBehaviour
     public StarController target;
     public float speedRatio = 0.1f;
     public float range = 1f;
+    public bool mainCamera;
+    public static CameraController mainCameraObject;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (mainCamera)
+            mainCameraObject = this;
+    }
+
     private void Start()
     {
-
+        if (mainCameraObject != this)
+            Destroy(gameObject);
     }
 
     public void SetTarget(GameObject obj)
