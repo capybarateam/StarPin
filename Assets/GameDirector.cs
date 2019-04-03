@@ -25,5 +25,21 @@ public class GameDirector : MonoBehaviour
         {
             letter.GetComponent<Animator>().SetBool("Enabled", true);
         }
+        Invoke("OnStarted", 2);
+    }
+
+    void OnStarted()
+    {
+        GameObject letter = GameObject.Find("LetterBox");
+        if (letter != null)
+        {
+            letter.GetComponent<Animator>().SetBool("Enabled", false);
+        }
+
+        GameObject title = GameObject.Find("StageTitle");
+        if (title != null)
+        {
+            title.GetComponent<Animator>().SetBool("Enabled", false);
+        }
     }
 }

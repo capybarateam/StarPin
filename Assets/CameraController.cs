@@ -43,20 +43,6 @@ public class CameraController : MonoBehaviour
                 Vector2 pos = Vector2.Lerp(transform.position, target.currentJoint.transform.position, speedRatio);
                 transform.position = new Vector3(pos.x, pos.y, transform.position.z);
             }
-            else
-            {
-                GameObject letter = GameObject.Find("LetterBox");
-                if (letter != null)
-                {
-                    letter.GetComponent<Animator>().SetBool("Enabled", false);
-                }
-
-                GameObject title = GameObject.Find("StageTitle");
-                if (title != null)
-                {
-                    title.GetComponent<Animator>().SetBool("Enabled", false);
-                }
-            }
         }
     }
 }
