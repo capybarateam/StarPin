@@ -21,7 +21,10 @@ public class LinePoint : MonoBehaviour
 
     public void OnAttached()
     {
-        pointActive = true;
-        gameObject.AddComponent<LineRenderer>().SetPositions(new Vector3[] { transform.position, connection.transform.position });
+        if (connection)
+        {
+            pointActive = true;
+            gameObject.AddComponent<LineRenderer>().SetPositions(new Vector3[] { transform.position, connection.transform.position });
+        }
     }
 }
