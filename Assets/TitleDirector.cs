@@ -5,23 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class TitleDirector : MonoBehaviour
 {
+    public Stage firstStage;
+
     // Start is called before the first frame update
     void Start()
     {
-        var cam = GameObject.Find("Main Camera");
         var star = GameObject.Find("StarObjectTitle");
-        cam.GetComponent<CameraController>().SetTargetImmediately(star);
+        CameraController.Get().SetTargetImmediately(star);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+            OnClick();
     }
 
     public void OnClick()
     {
-        SceneManager.LoadSceneAsync("GameScene", LoadSceneMode.Additive);
+        StageSelector.Get().LoadStage(firstStage);
         SceneManager.UnloadSceneAsync("TitleScene");
     }
 }

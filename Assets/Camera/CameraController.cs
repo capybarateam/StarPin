@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        if (mainCameraObject != this)
+        if (mainCameraObject != null && mainCameraObject != this)
             Destroy(gameObject);
     }
 
@@ -53,5 +53,13 @@ public class CameraController : MonoBehaviour
                 transform.position = new Vector3(pos.x, pos.y, transform.position.z);
             }
         }
+    }
+
+    public static CameraController Get()
+    {
+        var cam = GameObject.Find("Main Camera");
+        if (!cam)
+            cam = GameObject.Find("DebugCamera");
+        return cam.GetComponent<CameraController>();
     }
 }

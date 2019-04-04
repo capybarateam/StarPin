@@ -30,11 +30,11 @@ public class GoalController : MonoBehaviour
             {
                 if (!emitted)
                 {
+                    emitted = true;
                     GetComponent<ParticleSystem>().Play();
                     GameObject.Find("StageClear").GetComponent<Animator>().SetBool("Enabled", true);
                     target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
                     Invoke("OnNextStage", 3);
-                    emitted = true;
                 }
             }
         }
@@ -42,8 +42,7 @@ public class GoalController : MonoBehaviour
 
     void OnNextStage()
     {
-        SceneManager.LoadSceneAsync(NextStage, LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("GameScene");
+        GameObject.Find("GameDirector").GetComponent<GameDirector>().EndGame();
     }
 
     void OnTriggerEnter2D(Collider2D collision)

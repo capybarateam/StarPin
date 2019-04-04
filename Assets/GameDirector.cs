@@ -16,36 +16,30 @@ public class GameDirector : MonoBehaviour
 
     public void StartGame()
     {
-        var cl = GameObject.Find("StageClear");
-        if (cl)
-            cl.GetComponent<Animator>().SetBool("Enabled", false);
-        var ca = GameObject.Find("Main Camera");
-        if (ca)
-        {
-            Camera cam = ca.GetComponent<Camera>();
-            GameObject star = GameObject.Find("StarObject");
-            cam.GetComponent<CameraController>().SetTarget(star);
-        }
-        GameObject letter = GameObject.Find("LetterBox");
-        if (letter != null)
-        {
-            letter.GetComponent<Animator>().SetBool("Enabled", true);
-        }
+        SetEnabled("StageClear", false);
+        SetEnabled("LetterBox", false);
+
+        var star = GameObject.Find("StarObject");
+        CameraController.Get().SetTarget(star);
+
         Invoke("OnStarted", 2);
+    }
+
+    public void EndGame()
+    {
+        StageSelector.Get().LoadNextStage();
     }
 
     void OnStarted()
     {
-        GameObject letter = GameObject.Find("LetterBox");
-        if (letter != null)
-        {
-            letter.GetComponent<Animator>().SetBool("Enabled", false);
-        }
+        SetEnabled("LetterBox", false);
+        SetEnabled("StageTitle", false);
+    }
 
-        GameObject title = GameObject.Find("StageTitle");
-        if (title != null)
-        {
-            title.GetComponent<Animator>().SetBool("Enabled", false);
-        }
+    void SetEnabled(string name, bool flag)
+    {
+        var obj = GameObject.Find(name);
+        if (obj != null)
+            obj.GetComponent<Animator>().SetBool("Enabled", flag);
     }
 }
