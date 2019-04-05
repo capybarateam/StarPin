@@ -26,7 +26,11 @@ public class StageSelector : MonoBehaviour
     public void LoadStage(Stage stage)
     {
         if (currentStage)
-            SceneManager.UnloadSceneAsync(currentStage.sceneName);
+        {
+            //this.Delay(10.0f, sceneName => {
+            //    SceneManager.UnloadSceneAsync(sceneName);
+            //}, currentStage.sceneName);
+        }
         currentStage = stage;
         SceneManager.LoadSceneAsync(stage.sceneName, LoadSceneMode.Additive);
     }

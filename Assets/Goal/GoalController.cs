@@ -33,10 +33,10 @@ public class GoalController : MonoBehaviour
                     GameUtils.SetEnabled("StageClear", true);
                     target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
 
-                    this.Delay(3.0f, (int id) => {
+                    this.Delay(3.0f, () => {
                         GameUtils.SetEnabled("StageClear", false);
                         GameObject.Find("GameDirector").GetComponent<GameDirector>().EndGame();
-                    }, 3);
+                    });
                 }
             }
         }

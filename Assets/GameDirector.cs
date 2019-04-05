@@ -28,17 +28,15 @@ public class GameDirector : MonoBehaviour
         var star = GameObject.Find("StarObject");
         CameraController.Get().SetTarget(star);
 
-        Invoke("OnStarted", 2);
+        this.Delay(2, () =>
+        {
+            GameUtils.SetEnabled("LetterBox", false);
+            GameUtils.SetEnabled("StageTitle", false);
+        });
     }
 
     public void EndGame()
     {
         StageSelector.Get().LoadNextStage();
-    }
-
-    void OnStarted()
-    {
-        GameUtils.SetEnabled("LetterBox", false);
-        GameUtils.SetEnabled("StageTitle", false);
     }
 }

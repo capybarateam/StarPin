@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, target.currentJoint.transform.position) > range)
             {
-                Vector2 pos = Vector2.Lerp(transform.position, target.currentJoint.transform.position, speedRatio);
+                Vector2 pos = Vector2.Lerp(transform.position, target.currentJoint.transform.position, speedRatio * 60 * Time.deltaTime);
                 transform.position = new Vector3(pos.x, pos.y, transform.position.z);
             }
         }
