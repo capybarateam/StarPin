@@ -32,16 +32,14 @@ public class GoalController : MonoBehaviour
                     GetComponentInChildren<ParticleSystem>().Play();
                     GameUtils.SetEnabled("StageClear", true);
                     target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
-                    Invoke("OnNextStage", 3);
+
+                    this.Delay(3.0f, (int id) => {
+                        GameUtils.SetEnabled("StageClear", false);
+                        GameObject.Find("GameDirector").GetComponent<GameDirector>().EndGame();
+                    }, 3);
                 }
             }
         }
-    }
-
-    void OnNextStage()
-    {
-        GameUtils.SetEnabled("StageClear", false);
-        GameObject.Find("GameDirector").GetComponent<GameDirector>().EndGame();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
