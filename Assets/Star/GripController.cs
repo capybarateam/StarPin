@@ -11,7 +11,7 @@ public class GripController : MonoBehaviour
     void Start()
     {
         star = GetComponentInParent<StarController>();
-        particle = GetComponent<ParticleSystem>();
+        particle = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame

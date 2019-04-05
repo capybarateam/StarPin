@@ -48,11 +48,7 @@ public class StarController : MonoBehaviour
             timer = 0;
             grip.EmitParticle();
             currentJoint = point;
-            var l = point.GetComponent<LinePoint>();
-            if (l != null)
-            {
-                l.OnAttached();
-            }
+            point.SendMessage("OnAttached", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

@@ -59,7 +59,7 @@ public class CameraController : MonoBehaviour
     {
         var cam = GameObject.Find("Main Camera");
         if (!cam)
-            cam = GameObject.Find("DebugCamera");
+            cam = GameObject.Find("Camera");
         return cam.GetComponent<CameraController>();
     }
 }

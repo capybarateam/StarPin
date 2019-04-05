@@ -19,7 +19,7 @@ public class LinePoint : MonoBehaviour
         
     }
 
-    public void OnAttached()
+    void OnAttached()
     {
         if (connection)
         {
