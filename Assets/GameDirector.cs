@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour
 {
@@ -16,8 +17,13 @@ public class GameDirector : MonoBehaviour
 
     public void StartGame()
     {
-        SetEnabled("StageClear", false);
-        SetEnabled("LetterBox", false);
+        var title = GameObject.Find("StageTitle");
+        var selector = StageSelector.Get();
+        if (title && selector && selector.current)
+            title.GetComponentInChildren<Text>().text = selector.current.stageName;
+
+        GameUtils.SetEnabled("LetterBox", true);
+        GameUtils.SetEnabled("StageTitle", true);
 
         var star = GameObject.Find("StarObject");
         CameraController.Get().SetTarget(star);
@@ -32,14 +38,7 @@ public class GameDirector : MonoBehaviour
 
     void OnStarted()
     {
-        SetEnabled("LetterBox", false);
-        SetEnabled("StageTitle", false);
-    }
-
-    void SetEnabled(string name, bool flag)
-    {
-        var obj = GameObject.Find(name);
-        if (obj != null)
-            obj.GetComponent<Animator>().SetBool("Enabled", flag);
+        GameUtils.SetEnabled("LetterBox", false);
+        GameUtils.SetEnabled("StageTitle", false);
     }
 }

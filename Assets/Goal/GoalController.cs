@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Linq;
 
 public class GoalController : MonoBehaviour
@@ -10,7 +9,6 @@ public class GoalController : MonoBehaviour
     public float range = 1f;
     StarController target;
     bool emitted = false;
-    public string NextStage;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +29,8 @@ public class GoalController : MonoBehaviour
                 if (!emitted)
                 {
                     emitted = true;
-                    GetComponent<ParticleSystem>().Play();
-                    GameObject.Find("StageClear").GetComponent<Animator>().SetBool("Enabled", true);
+                    GetComponentInChildren<ParticleSystem>().Play();
+                    GameUtils.SetEnabled("StageClear", true);
                     target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
                     Invoke("OnNextStage", 3);
                 }
@@ -42,6 +40,7 @@ public class GoalController : MonoBehaviour
 
     void OnNextStage()
     {
+        GameUtils.SetEnabled("StageClear", false);
         GameObject.Find("GameDirector").GetComponent<GameDirector>().EndGame();
     }
 
