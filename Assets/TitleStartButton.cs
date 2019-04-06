@@ -18,6 +18,6 @@ public class TitleStartButton : MonoBehaviour
 
     public void OnClick()
     {
-        GameObject.Find("TitleDirector").GetComponent<TitleDirector>().OnClick();
+        TitleDirector.Get().OnClick();
     }
 }
