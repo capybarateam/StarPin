@@ -19,25 +19,30 @@ public class BaseDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StageChangeEffect(bool starting)
     {
-        if (starting)
-        {
-            var title = stageTitle?.GetComponentInChildren<Text>();
-            if (title)
-                title.text = StageSelector.Get()?.Current?.stageName ?? "";
-        }
 
-        letterBox?.GetComponent<Animator>().SetBool("Enabled", starting);
-        stageTitle?.GetComponent<Animator>().SetBool("Enabled", starting);
+        if (letterBox)
+            letterBox.GetComponent<Animator>().SetBool("Enabled", starting);
+        if (stageTitle)
+        {
+            stageTitle.GetComponent<Animator>().SetBool("Enabled", starting);
+            if (starting)
+            {
+                var title = stageTitle.GetComponentInChildren<Text>();
+                if (title)
+                    title.text = StageSelector.Get()?.Current?.stageName ?? "";
+            }
+        }
     }
 
     public void StageClearEffect(bool starting)
     {
-        stageClear?.GetComponent<Animator>().SetBool("Enabled", starting);
+        if (stageClear)
+            stageClear.GetComponent<Animator>().SetBool("Enabled", starting);
     }
 
     public static BaseDirector Get()
