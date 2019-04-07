@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class StageSelector : MonoBehaviour
 {
     Stage currentStage;
+    bool locked;
+
     public Stage Current
     {
         get
@@ -25,15 +27,19 @@ public class StageSelector : MonoBehaviour
 
     public void LoadStage(Stage stage)
     {
-        if (currentStage)
+        if (currentStage != stage && !locked)
         {
-            this.Delay(3f, sceneName =>
+            SceneManager.LoadSceneAsync(stage.sceneName, LoadSceneMode.Additive);
+            if (currentStage)
             {
-                SceneManager.UnloadSceneAsync(sceneName);
-            }, currentStage.sceneName);
+                locked = true;
+                this.Delay(3f, sceneName =>
+                 {
+                     SceneManager.UnloadSceneAsync(sceneName).completed += e => locked = false;
+                 }, currentStage.sceneName);
+            }
+            currentStage = stage;
         }
-        currentStage = stage;
-        SceneManager.LoadSceneAsync(stage.sceneName, LoadSceneMode.Additive);
     }
 
     public void LoadNextStage()
