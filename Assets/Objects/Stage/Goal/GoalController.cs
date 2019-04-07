@@ -10,10 +10,13 @@ public class GoalController : MonoBehaviour
     StarController target;
     bool emitted = false;
 
+    AudioSource audioSource;
+    public float duration = 3;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +29,8 @@ public class GoalController : MonoBehaviour
 
             if (Vector2.Distance(target.transform.position, transform.position) < range)
             {
+                audioSource.volume = Mathf.Clamp(audioSource.volume - Time.deltaTime / duration, 0, 1);
+
                 if (!emitted)
                 {
                     emitted = true;
@@ -35,7 +40,8 @@ public class GoalController : MonoBehaviour
                     GetComponentInChildren<ParticleSystem>().Play();
                     target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
 
-                    this.Delay(3, () => {
+                    this.Delay(duration, () =>
+                    {
                         BaseDirector.Get()?.StageClearEffect(false);
                         GameDirector.Get(transform).EndGame();
                     });
@@ -52,8 +58,9 @@ public class GoalController : MonoBehaviour
             star.enablegrip = false;
             star.DetachAll();
             star.GetComponent<Rigidbody2D>().simulated = false;
+            star.currentJoint = gameObject;
             star.GetComponentInChildren<Animator>().SetBool("Enabled", true);
-            GetComponent<AudioSource>().Play();
+            audioSource.Play();
             target = star;
         }
     }
