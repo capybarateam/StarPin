@@ -15,6 +15,5 @@ public class StageDisplay : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        board.GetComponent<Renderer>().sharedMaterial = focusMaterial;
     }
 }
