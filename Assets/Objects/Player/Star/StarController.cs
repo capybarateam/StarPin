@@ -29,11 +29,9 @@ public class StarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-            vel *= -1;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Grip"))
             enablegrip = true;
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("Grip"))
             enablegrip = false;
         rigid.angularVelocity = vel * speed;
         timer += Time.deltaTime;
