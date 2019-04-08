@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SelectorController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.Delay(.1f, () =>
+        {
+            if (transform.childCount > 0)
+                transform.GetChild(0).GetComponent<Selectable>().Select();
+        });
     }
 
     // Update is called once per frame
@@ -20,7 +25,12 @@ public class SelectorController : MonoBehaviour
         {
             // the object identified by hit.transform was clicked
             // do whatever you want
-            hit.transform.gameObject.GetComponentInParent<StageDisplay>()?.gameObject.GetComponent<Selectable>().Select();
+            var disp = hit.transform.gameObject.GetComponentInParent<StageDisplay>();
+            var obj = disp?.gameObject;
+            obj?.GetComponent<Selectable>().Select();
+
+            if (Input.GetButtonDown("Click"))
+                disp.OnClick();
         }
     }
 }

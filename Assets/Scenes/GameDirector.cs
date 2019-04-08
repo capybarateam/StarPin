@@ -6,7 +6,7 @@ public class GameDirector : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        CameraController.Get().SetTarget(StarController.latestStar);
+        CameraController.Get().Targetter.SetTarget(StarController.latestStar);
         StartGame();
     }
 
@@ -18,12 +18,6 @@ public class GameDirector : MonoBehaviour
 
     public void StartGame()
     {
-        BaseDirector.Get()?.StageChangeEffect(true);
-
-        this.Delay(2, () =>
-        {
-            BaseDirector.Get()?.StageChangeEffect(false);
-        });
     }
 
     public void EndGame()

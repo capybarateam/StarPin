@@ -30,6 +30,14 @@ public class StageSelector : MonoBehaviour
         {
             SceneSelector.Get().LoadScene(stage.sceneName);
             currentStage = stage;
+
+            BaseDirector.Get()?.StageChangeEffect(true);
+
+            this.Delay(2, () =>
+            {
+                BaseDirector.Get()?.StageChangeEffect(false);
+            });
+
             return true;
         }
         return false;

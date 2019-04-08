@@ -16,4 +16,6 @@ public class Stage : ScriptableObject
     public string sceneName;
     public Stage[] rewardStages;
     public Texture thumbnail;
+    [TextArea(10, 30)]
+    public string description;
 }

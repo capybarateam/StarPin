@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using TMPro;
 
 [CustomEditor(typeof(SelectorGenerator))]
 public class SelectorGeneratorEditor : Editor
@@ -54,6 +55,7 @@ public class SelectorGeneratorEditor : Editor
 
         var ctrl = obj.GetComponent<StageDisplay>();
         ctrl.stage = stage;
+        ctrl.stageTitle.GetComponent<TMP_Text>().text = stage.stageName;
         var g = ctrl.stageDisplay.GetComponent<Renderer>();
         var material = new Material(g.sharedMaterial);
         if (stage.thumbnail != null)

@@ -1,29 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class TitleDirector : MonoBehaviour
 {
     public Stage firstStage;
-
-    public GameObject startButton;
-    public GameObject theTitle;
 
     // Start is called before the first frame update
     void Start()
     {
         TitleEffect(true);
 
-        CameraController.Get().SetTarget(StarController.latestStar);
-        CameraController.Get().MoveImmediately();
-
-        this.Delay(.1f, () =>
-        {
-            startButton.GetComponentInChildren<Selectable>().Select();
-        });
+        var targetter = CameraController.Get().Targetter;
+        targetter.SetTarget(StarController.latestStar);
+        targetter.MoveImmediately();
     }
 
     // Update is called once per frame
@@ -31,23 +22,23 @@ public class TitleDirector : MonoBehaviour
     {
     }
 
-    public void OnClick()
+    public void StartGame()
     {
         TitleEffect(false);
 
         StageSelector.Get().LoadStage(firstStage);
-        this.Delay(3, () =>
-        {
-            SceneManager.UnloadSceneAsync("TitleScene");
-        });
+    }
+
+    public void SelectStage()
+    {
+        TitleEffect(false);
+
+        SceneSelector.Get().LoadScene("SelectScene");
     }
 
     public void TitleEffect(bool starting)
     {
-        if (startButton)
-            startButton.GetComponent<Animator>().SetBool("Enabled", starting);
-        if (theTitle)
-            theTitle.GetComponent<Animator>().SetBool("Enabled", starting);
+        GetComponentInChildren<ButtonManager>().SetVisible(starting);
     }
 
     public static TitleDirector Get()
