@@ -5,13 +5,16 @@ using System.Linq;
 
 public class GoalController : MonoBehaviour
 {
+    public GameObject goalTarget;
+
     public float speedRatio = 0.1f;
     public float range = 1f;
     StarController target;
     bool emitted = false;
 
     AudioSource audioSource;
-    public float duration = 3;
+    public float durationA = 2;
+    public float durationB = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +32,7 @@ public class GoalController : MonoBehaviour
 
             if (Vector2.Distance(target.transform.position, transform.position) < range)
             {
-                audioSource.volume = Mathf.Clamp(audioSource.volume - Time.deltaTime / duration, 0, 1);
+                audioSource.volume = Mathf.Clamp(audioSource.volume - Time.deltaTime / (durationA + durationB), 0, 1);
 
                 if (!emitted)
                 {
@@ -40,11 +43,16 @@ public class GoalController : MonoBehaviour
                     GetComponentInChildren<ParticleSystem>().Play();
                     target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
 
-                    this.Delay(duration, () =>
+                    this.Delay(durationA, () =>
                     {
-                        BaseDirector.Get()?.StageClearEffect(false);
-                        GameDirector.Get(transform).EndGame();
+                        CameraController.Get().Targetter.SetTarget(goalTarget);
+                        this.Delay(durationB, () =>
+                        {
+                            BaseDirector.Get()?.StageClearEffect(false);
+                            GameDirector.Get(transform).EndGame();
+                        });
                     });
+
                 }
             }
         }

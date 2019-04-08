@@ -33,6 +33,7 @@ Transform:
   - {fileID: 179860111565270139}
   - {fileID: 7279515355569705165}
   - {fileID: 1002963548723719111}
+  - {fileID: 676997748735193890}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,8 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f151c0039ae424a90d016235d42af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalTarget: {fileID: 6356925753062335156}
   speedRatio: 0.1
   range: 1
+  durationA: 2
+  durationB: 3
 --- !u!82 &7315688899590211549
 AudioSource:
   m_ObjectHideFlags: 0
@@ -162,6 +166,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.79
+--- !u!1 &6356925753062335156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676997748735193890}
+  m_Layer: 12
+  m_Name: GoalTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &676997748735193890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356925753062335156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 761593582950223878}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8602658469768183525
 Animator:
   serializedVersion: 3
@@ -443,10 +477,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.558318
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
       propertyPath: m_Materials.Array.data[0]

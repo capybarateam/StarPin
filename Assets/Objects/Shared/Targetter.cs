@@ -6,6 +6,8 @@ public class Targetter : MonoBehaviour
 {
     public float speedRatio = 0.1f;
     public float range = 1f;
+    public bool zLock = false;
+    public float zOffset = -10;
 
     StarController target;
     public GameObject Target { get; private set; }
@@ -36,7 +38,11 @@ public class Targetter : MonoBehaviour
     {
         var pos = GetTargetPosition();
         if (pos.HasValue)
-            transform.position = new Vector3(pos.Value.x, pos.Value.y, transform.position.z);
+        {
+            var ppos = pos.Value + Vector3.forward * zOffset;
+            var tpos = ppos;
+            transform.position = new Vector3(tpos.x, tpos.y, zLock ? transform.position.z : tpos.z);
+        }
     }
 
     // Update is called once per frame
@@ -45,10 +51,11 @@ public class Targetter : MonoBehaviour
         var pos = GetTargetPosition();
         if (pos.HasValue)
         {
-            if (Vector2.Distance(transform.position, pos.Value) > range)
+            var ppos = pos.Value + Vector3.forward * zOffset;
+            if (Vector2.Distance(transform.position, ppos) > range)
             {
-                Vector2 tpos = Vector2.Lerp(transform.position, pos.Value, speedRatio * 60 * Time.deltaTime);
-                transform.position = new Vector3(tpos.x, tpos.y, transform.position.z);
+                var tpos = Vector3.Lerp(transform.position, ppos, speedRatio * 60 * Time.deltaTime);
+                transform.position = new Vector3(tpos.x, tpos.y, zLock ? transform.position.z : tpos.z);
             }
         }
     }
