@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class BaseDirector : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class BaseDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadSceneAsync("TitleScene", LoadSceneMode.Additive);
+        SceneSelector.Get().LoadScene("TitleScene");
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class BaseDirector : MonoBehaviour
             stageTitle.GetComponent<Animator>().SetBool("Enabled", starting);
             if (starting)
             {
-                var title = stageTitle.GetComponentInChildren<Text>();
+                var title = stageTitle.GetComponentInChildren<TMP_Text>();
                 if (title)
                     title.text = StageSelector.Get()?.Current?.stageName ?? "";
             }

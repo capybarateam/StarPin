@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class TitleDirector : MonoBehaviour
@@ -17,13 +19,16 @@ public class TitleDirector : MonoBehaviour
 
         CameraController.Get().SetTarget(StarController.latestStar);
         CameraController.Get().MoveImmediately();
+
+        this.Delay(.1f, () =>
+        {
+            startButton.GetComponentInChildren<Selectable>().Select();
+        });
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            OnClick();
     }
 
     public void OnClick()
