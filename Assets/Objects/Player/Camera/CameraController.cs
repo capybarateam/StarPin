@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
     public void SetTarget(GameObject obj)
     {
         targetObj = obj;
-        target = obj.GetComponent<StarController>();
+        target = obj?.GetComponent<StarController>() ?? null;
     }
 
     public Vector3? GetTargetPosition()
