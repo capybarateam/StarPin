@@ -7,23 +7,18 @@ public class Targetter : MonoBehaviour
     public float speedRatio = 0.1f;
     public float range = 1f;
 
-    GameObject targetObj;
     StarController target;
-
-    public GameObject Target
-    {
-        get
-        {
-            return targetObj;
-        }
-    }
+    public GameObject Target { get; private set; }
 
     public void SetTarget(GameObject obj)
     {
-        if (targetObj != obj)
+        if (Target != obj)
         {
-            targetObj = obj;
+            bool noTarget = Target == null;
+            Target = obj;
             target = obj?.GetComponent<StarController>() ?? null;
+            if (noTarget)
+                MoveImmediately();
         }
     }
 
@@ -31,8 +26,8 @@ public class Targetter : MonoBehaviour
     {
         if (target)
             return target.currentJoint != null ? target.currentJoint.transform.position : target.transform.position;
-        else if (targetObj)
-            return targetObj.transform.position;
+        else if (Target)
+            return Target.transform.position;
         else
             return null;
     }

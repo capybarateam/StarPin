@@ -12,9 +12,7 @@ public class TitleDirector : MonoBehaviour
     {
         TitleEffect(true);
 
-        var targetter = CameraController.Get().Targetter;
-        targetter.SetTarget(StarController.latestStar);
-        targetter.MoveImmediately();
+        CameraController.Get().Targetter.SetTarget(StarController.latestStar);
     }
 
     // Update is called once per frame
