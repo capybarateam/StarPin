@@ -6,6 +6,7 @@ using System.Linq;
 public class GoalController : MonoBehaviour
 {
     public GameObject goalTarget;
+    public GameObject goalSprite;
 
     public float speedRatio = 0.1f;
     public float range = 1f;
@@ -15,6 +16,7 @@ public class GoalController : MonoBehaviour
     AudioSource audioSource;
     public float durationA = 2;
     public float durationB = 3;
+    public float durationC = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +48,21 @@ public class GoalController : MonoBehaviour
                     this.Delay(durationA, () =>
                     {
                         CameraController.Get().Targetter.SetTarget(goalTarget);
-                        this.Delay(durationB, () =>
+
+                        var achieved = GameDirector.Get(transform)?.pointManager.IsGotAllImportantPoints() ?? false;
+                        if (achieved)
+                            this.Delay(durationB, () =>
+                            {
+                                if (goalSprite)
+                                {
+                                    BaseDirector.Get()?.StageAchieveEffect(true);
+                                    goalSprite.GetComponent<Animator>().SetBool("Enabled", true);
+                                }
+                            });
+                        this.Delay(durationB + (achieved ? durationC : 0), () =>
                         {
                             BaseDirector.Get()?.StageClearEffect(false);
+                            BaseDirector.Get()?.StageAchieveEffect(false);
                             GameDirector.Get(transform).EndGame();
                         });
                     });

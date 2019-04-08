@@ -3,9 +3,13 @@ using UnityEngine.UI;
 
 public class GameDirector : MonoBehaviour
 {
+    public PointManager pointManager;
+
     // Start is called before the first frame update
     private void Start()
     {
+        pointManager = GetComponent<PointManager>();
+
         CameraController.Get().Targetter.SetTarget(StarController.latestStar);
         StartGame();
     }

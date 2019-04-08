@@ -7,6 +7,8 @@ public class PointController : MonoBehaviour
     public Material normalMaterial;
     public Material vibrantMaterial;
 
+    public bool important;
+
     bool _touched;
     public bool touched {
         get
@@ -27,5 +29,10 @@ public class PointController : MonoBehaviour
     void OnAttached()
     {
         touched = true;
+    }
+
+    private void Start()
+    {
+        GameDirector.Get(transform)?.pointManager.RegisterPoint(this, important);
     }
 }

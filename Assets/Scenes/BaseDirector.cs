@@ -10,6 +10,7 @@ public class BaseDirector : MonoBehaviour
     public GameObject letterBox;
     public GameObject stageTitle;
     public GameObject stageClear;
+    public GameObject stageAchieve;
     public GameObject paper;
 
     // Start is called before the first frame update
@@ -39,6 +40,20 @@ public class BaseDirector : MonoBehaviour
     {
         if (stageClear)
             stageClear.GetComponent<Animator>().SetBool("Enabled", starting);
+    }
+
+    public void StageAchieveEffect(bool starting)
+    {
+        if (stageAchieve)
+        {
+            stageAchieve.GetComponent<Animator>().SetBool("Enabled", starting);
+            if (starting)
+            {
+                var title = stageTitle.GetComponentInChildren<TMP_Text>();
+                if (title)
+                    title.text = StageSelector.Get()?.Current?.description ?? "";
+            }
+        }
     }
 
     float lastSignal = -50;

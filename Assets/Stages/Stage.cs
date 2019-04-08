@@ -18,4 +18,5 @@ public class Stage : ScriptableObject
     public Texture thumbnail;
     [TextArea(10, 30)]
     public string description;
+    public string answer;
 }
