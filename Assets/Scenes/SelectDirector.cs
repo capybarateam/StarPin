@@ -23,9 +23,8 @@ public class SelectDirector : MonoBehaviour
 
     public void StartGame(Stage stage)
     {
-        SelectEffect(false);
-
-        StageSelector.Get().LoadStage(stage);
+        if (StageSelector.Get().LoadStage(stage))
+            SelectEffect(false);
     }
 
     public void StartGame()
@@ -36,9 +35,8 @@ public class SelectDirector : MonoBehaviour
 
     public void BackToTitle()
     {
-        SelectEffect(false);
-
-        SceneSelector.Get().LoadScene("TitleScene");
+        if (SceneSelector.Get().LoadScene("TitleScene"))
+            SelectEffect(false);
     }
 
     public void SelectEffect(bool starting)

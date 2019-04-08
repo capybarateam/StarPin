@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SelectLightController : MonoBehaviour
 {
+    public GameObject limitParent;
     Targetter lightTarget;
 
     // Start is called before the first frame update
@@ -15,6 +16,8 @@ public class SelectLightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lightTarget.SetTarget(CameraController.Get().Targetter.Target);
+        var target = CameraController.Get().Targetter.Target;
+        if (target?.transform.parent == limitParent.transform)
+            lightTarget.SetTarget(target);
     }
 }

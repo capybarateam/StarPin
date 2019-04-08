@@ -42,6 +42,8 @@ public class BaseDirector : MonoBehaviour
     }
 
     float lastSignal = -50;
+    float lastPaper = -50;
+    string lastMessage = "";
 
     public void ShowSignal()
     {
@@ -50,15 +52,23 @@ public class BaseDirector : MonoBehaviour
 
     public void SetPaper(string text = "")
     {
-        var papertext = paper.GetComponentInChildren<TMP_Text>();
-        papertext.text = text;
+        if (lastMessage != text)
+        {
+            this.Delay(.25f, () =>
+            {
+                var papertext = paper.GetComponentInChildren<TMP_Text>();
+                papertext.text = text;
+            });
+            lastPaper = Time.time;
+            lastMessage = text;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         var anim = paper.GetComponent<Animator>();
-        anim.SetBool("Enabled", Time.time - lastSignal < 2);
+        anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
     }
 
     public static BaseDirector Get()
