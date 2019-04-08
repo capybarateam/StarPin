@@ -10,17 +10,12 @@ public class BaseDirector : MonoBehaviour
     public GameObject letterBox;
     public GameObject stageTitle;
     public GameObject stageClear;
+    public GameObject paper;
 
     // Start is called before the first frame update
     void Start()
     {
         SceneSelector.Get().LoadScene("TitleScene");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void StageChangeEffect(bool starting)
@@ -44,6 +39,26 @@ public class BaseDirector : MonoBehaviour
     {
         if (stageClear)
             stageClear.GetComponent<Animator>().SetBool("Enabled", starting);
+    }
+
+    float lastSignal = -50;
+
+    public void ShowSignal()
+    {
+        lastSignal = Time.time;
+    }
+
+    public void SetPaper(string text = "")
+    {
+        var papertext = paper.GetComponentInChildren<TMP_Text>();
+        papertext.text = text;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        var anim = paper.GetComponent<Animator>();
+        anim.SetBool("Enabled", Time.time - lastSignal < 2);
     }
 
     public static BaseDirector Get()
