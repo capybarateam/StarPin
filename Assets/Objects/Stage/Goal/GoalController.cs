@@ -15,7 +15,7 @@ public class GoalController : MonoBehaviour
 
     AudioSource audioSource;
     public float durationA = 2;
-    public float durationB = 3;
+    public float durationB = 1;
     public float durationC = 3;
 
     // Start is called before the first frame update
@@ -53,13 +53,11 @@ public class GoalController : MonoBehaviour
                         if (achieved)
                             this.Delay(durationB, () =>
                             {
+                                BaseDirector.Get()?.StageAchieveEffect(true);
                                 if (goalSprite)
-                                {
-                                    BaseDirector.Get()?.StageAchieveEffect(true);
                                     goalSprite.GetComponent<Animator>().SetBool("Enabled", true);
-                                }
                             });
-                        this.Delay(durationB + (achieved ? durationC : 0), () =>
+                        this.Delay(durationC + (achieved ? durationB : 0), () =>
                         {
                             BaseDirector.Get()?.StageClearEffect(false);
                             BaseDirector.Get()?.StageAchieveEffect(false);

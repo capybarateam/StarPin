@@ -15,6 +15,8 @@ public class SelectorGeneratorEditor : Editor
         SelectorGenerator gen = (SelectorGenerator)target;
         if (GUILayout.Button("Generate"))
         {
+            Undo.RegisterCompleteObjectUndo(gen.gameObject, "Generate Stage List");
+
             gen.stages.Clear();
 
             {
@@ -26,6 +28,8 @@ public class SelectorGeneratorEditor : Editor
             }
 
             GenerateStageMap(gen, gen.rootStage);
+
+            Undo.FlushUndoRecordObjects();
         }
     }
 

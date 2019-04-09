@@ -46,12 +46,13 @@ public class BaseDirector : MonoBehaviour
     {
         if (stageAchieve)
         {
-            stageAchieve.GetComponent<Animator>().SetBool("Enabled", starting);
+            var text = StageSelector.Get()?.Current?.answer ?? "";
+            stageAchieve.GetComponent<Animator>().SetBool("Enabled", starting && text != "");
             if (starting)
             {
-                var title = stageTitle.GetComponentInChildren<TMP_Text>();
+                var title = stageAchieve.GetComponentInChildren<TMP_Text>();
                 if (title)
-                    title.text = StageSelector.Get()?.Current?.description ?? "";
+                    title.text = text;
             }
         }
     }
