@@ -8,19 +8,13 @@ branches:
 
 os: osx
 
-rvm:
-  - 2.2
-
-addons:
-  # Analytics
-  sonarcloud:
-    organization: "$SONAR_OWNER"
-
 env:
   global:
     # Android
     - ANDROID_SDK_ROOT=/usr/local/share/android-sdk
     - ANDROID_NDK_HOME=/usr/local/share/android-ndk
+    # Tag
+    - RELEASE_GIT_TAG=build/b${TRAVIS_BUILD_NUMBER}-${TRAVIS_BRANCH}
 
 cache:
   - directories:
@@ -31,6 +25,7 @@ cache:
     - $HOME/Library/Caches/com.unity3d.UnityEditor/GiCache
   - timeout: 1000
 
+# Install
 install:
   # Debug
   - brew install tree
@@ -39,25 +34,51 @@ install:
   # Unity
   - sh ./Travis/install.sh
 
-script:
-  # Analytics
-  - sonar-scanner
-  # Unity
-  - sh ./Travis/build.sh
-  # Debug
-  - tree -L 3
+jobs:
+  include:
+    # Build Unity Projects
+    - stage: build
+      name: Build Windows
+      script: sh ./Travis/build.sh windows
+    #- name: Build OSX
+    #  script: sh ./Travis/build.sh osx
+    #- name: Build Linux
+    #  script: sh ./Travis/build.sh linux
+    - name: Build WebGL
+      script: sh ./Travis/build.sh webgl
+      deploy:
+        # Pages
+        - provider: pages
+          skip-cleanup: true
+          github-token: $GITHUB_TOKEN
+          local-dir: ./Build/webgl/
+          keep-history: true
+          on:
+            branch: develop
+    - name: Build Android
+      script: sh ./Travis/build.sh android
+      # DeployGate
+      after_success:
+        - sh ./Travis/deploygate.sh $DEPLOYGATE_USER $DEPLOYGATE_API_TOKEN
+    #- name: Build iOS
+    #  script: sh ./Travis/build.sh ios
+    # Check
+    - stage: check
+      name: Check
+      install: skip
+      script:
+        # Debug
+        - tree -L 3
+      after_success:
+        # Notification
+        - bash ./Travis/send.sh success $WEBHOOK_URL
+      before_deploy: skip
+      deploy: skip
 
-after_failure:
-  # Notification
-  - bash ./Travis/send.sh failure $WEBHOOK_URL
-
-after_success:
+# Deploy
+before_deploy:
   # Tag
   - sh ./Travis/tag.sh
-  # DeployGate
-  - sh ./Travis/deploygate.sh $DEPLOYGATE_USER $DEPLOYGATE_API_TOKEN
-  # Notification
-  - bash ./Travis/send.sh success $WEBHOOK_URL
 
 deploy:
   # GitHub
@@ -65,22 +86,14 @@ deploy:
     api_key: $GITHUB_TOKEN
     file: 
       - ./Build/windows.zip
-      #- ./Build/linux.tar.gz
+      - ./Build/linux.tar.gz
       - ./Build/android.apk
-      #- ./Build/osx.dmg
-      #- ./Build/ios.zip
+      - ./Build/osx.dmg
+      - ./Build/ios.zip
     name: $TRAVIS_BRANCH $(date +'%Y.%m.%d %H:%M')
     skip_cleanup: true
     on:
       all_branches: true
-  # Pages
-  - provider: pages
-    skip-cleanup: true
-    github-token: $GITHUB_TOKEN
-    local-dir: ./Build/webgl/
-    keep-history: true
-    on:
-      branch: develop
 
 # Notification
 notifications:
