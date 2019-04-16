@@ -13,8 +13,9 @@ env:
     # Android
     - ANDROID_SDK_ROOT=/usr/local/share/android-sdk
     - ANDROID_NDK_HOME=/usr/local/share/android-ndk
-    # Tag
-    - RELEASE_GIT_TAG=build/b${TRAVIS_BUILD_NUMBER}-${TRAVIS_BRANCH}
+    # Release
+    - RELEASE_NAME="$TRAVIS_BRANCH $(date +'%Y.%m.%d %H:%M')"
+    - RELEASE_GIT_TAG="build/b${TRAVIS_BUILD_NUMBER}-${TRAVIS_BRANCH}"
 
 cache:
   - directories:
@@ -27,8 +28,6 @@ cache:
 
 # Install
 install:
-  # Debug
-  - brew install tree
   # Android
   - sh ./Travis/install_android.sh
   # Unity
@@ -40,12 +39,26 @@ jobs:
     - stage: build
       name: Build Windows
       script: sh ./Travis/build.sh windows
+      deploy:
+        # GitHub
+        - provider: releases
+          api_key: $GITHUB_TOKEN
+          file: 
+            - ./Build/windows.zip
+          name: $RELEASE_NAME
+          skip_cleanup: true
+          on:
+            all_branches: true
+
     #- name: Build OSX
     #  script: sh ./Travis/build.sh osx
+
     #- name: Build Linux
     #  script: sh ./Travis/build.sh linux
+
     - name: Build WebGL
       script: sh ./Travis/build.sh webgl
+      before_deploy: skip
       deploy:
         # Pages
         - provider: pages
@@ -55,45 +68,43 @@ jobs:
           keep-history: true
           on:
             branch: develop
+
     - name: Build Android
       script: sh ./Travis/build.sh android
-      # DeployGate
       after_success:
+        # DeployGate
         - sh ./Travis/deploygate.sh $DEPLOYGATE_USER $DEPLOYGATE_API_TOKEN
+      deploy:
+        # GitHub
+        - provider: releases
+          api_key: $GITHUB_TOKEN
+          file: 
+            - ./Build/android.apk
+          name: $RELEASE_NAME
+          skip_cleanup: true
+          on:
+            all_branches: true
+
     #- name: Build iOS
     #  script: sh ./Travis/build.sh ios
+
     # Check
     - stage: check
       name: Check
-      install: skip
+      install:
+        # Debug
+        - brew install tree
       script:
         # Debug
         - tree -L 3
       after_success:
         # Notification
         - bash ./Travis/send.sh success $WEBHOOK_URL
-      before_deploy: skip
-      deploy: skip
 
 # Deploy
 before_deploy:
   # Tag
   - sh ./Travis/tag.sh
-
-deploy:
-  # GitHub
-  - provider: releases
-    api_key: $GITHUB_TOKEN
-    file: 
-      - ./Build/windows.zip
-      - ./Build/linux.tar.gz
-      - ./Build/android.apk
-      - ./Build/osx.dmg
-      - ./Build/ios.zip
-    name: $TRAVIS_BRANCH $(date +'%Y.%m.%d %H:%M')
-    skip_cleanup: true
-    on:
-      all_branches: true
 
 # Notification
 notifications:

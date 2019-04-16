@@ -11,7 +11,7 @@ BUILD_TARGET=$1
 
 if [ "$BUILD_TARGET" = "windows" ]; then
   echo "Attempting to build $project for Windows"
-  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -26,7 +26,7 @@ fi
 
 if [ "$BUILD_TARGET" = "osx" ]; then
   echo "Attempting to build $project for OS X"
-  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -41,7 +41,7 @@ fi
 
 if [ "$BUILD_TARGET" = "linux" ]; then
   echo "Attempting to build $project for Linux"
-  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -56,7 +56,7 @@ fi
 
 if [ "$BUILD_TARGET" = "webgl" ]; then
   echo "Attempting to build $project for WebGL"
-  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -71,7 +71,7 @@ fi
 
 if [ "$BUILD_TARGET" = "android" ]; then
   echo "Attempting to build $project for Android"
-  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -86,7 +86,7 @@ fi
 
 if [ "$BUILD_TARGET" = "ios" ]; then
   echo "Attempting to build $project for iOS"
-  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
      -batchmode \
      -nographics \
      -silent-crashes \
