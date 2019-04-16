@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 git config --local user.name "traviscibot"
 git config --local user.email "traviscibot@travisci.org"

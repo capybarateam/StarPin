@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 DG_USER=$1
 DG_TOKEN=$2

@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # Example build script for Unity3D project. See the entire example: https://github.com/JonathanPorta/ci-build
 
@@ -11,7 +11,7 @@ BUILD_TARGET=$1
 
 if [ "$BUILD_TARGET" = "windows" ]; then
   echo "Attempting to build $project for Windows"
-  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -26,7 +26,7 @@ fi
 
 if [ "$BUILD_TARGET" = "osx" ]; then
   echo "Attempting to build $project for OS X"
-  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -41,7 +41,7 @@ fi
 
 if [ "$BUILD_TARGET" = "linux" ]; then
   echo "Attempting to build $project for Linux"
-  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -56,7 +56,7 @@ fi
 
 if [ "$BUILD_TARGET" = "webgl" ]; then
   echo "Attempting to build $project for WebGL"
-  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -71,7 +71,7 @@ fi
 
 if [ "$BUILD_TARGET" = "android" ]; then
   echo "Attempting to build $project for Android"
-  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
     -batchmode \
     -nographics \
     -silent-crashes \
@@ -86,7 +86,7 @@ fi
 
 if [ "$BUILD_TARGET" = "ios" ]; then
   echo "Attempting to build $project for iOS"
-  travis_wait 30 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  /Applications/Unity/Unity.app/Contents/MacOS/Unity \
      -batchmode \
      -nographics \
      -silent-crashes \

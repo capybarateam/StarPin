@@ -1,6 +1,8 @@
-#! /bin/sh
+#! /bin/bash
 
 set -e
+
+BUILD_TARGET=$1
 
 BASE_URL=https://download.unity3d.com/download_unity
 HASH=fc0fe30d6d91
@@ -34,8 +36,8 @@ if [ ! -d "Unity" ] ; then
 fi
 
 install "MacEditorInstaller/Unity.pkg"
-install "MacEditorTargetInstaller/UnitySetup-Windows-Mono-Support-for-Editor-$VERSION.pkg"
-#install "MacEditorTargetInstaller/UnitySetup-Linux-Support-for-Editor-$VERSION.pkg"
-install "MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-$VERSION.pkg"
-install "MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-$VERSION.pkg"
-#install "MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-$VERSION.pkg"
+if [ "$BUILD_TARGET" = "windows" ]; then install "MacEditorTargetInstaller/UnitySetup-Windows-Mono-Support-for-Editor-$VERSION.pkg" ;fi
+if [ "$BUILD_TARGET" = "linux" ];   then install "MacEditorTargetInstaller/UnitySetup-Linux-Support-for-Editor-$VERSION.pkg"        ;fi
+if [ "$BUILD_TARGET" = "webgl" ];   then install "MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-$VERSION.pkg"        ;fi
+if [ "$BUILD_TARGET" = "android" ]; then install "MacEditorTargetInstaller/UnitySetup-Android-Support-for-Editor-$VERSION.pkg"      ;fi
+if [ "$BUILD_TARGET" = "ios" ];     then install "MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-$VERSION.pkg"          ;fi

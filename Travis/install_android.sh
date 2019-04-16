@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 echo "Attempting to Install Android SDK and NDK"
 brew tap homebrew/cask
