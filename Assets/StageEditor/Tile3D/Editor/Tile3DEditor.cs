@@ -178,7 +178,7 @@ public class Tile3DEditor : Editor
         #endregion Building
 
         // active hover
-        //*
+        /*
         if ((e.type == EventType.MouseMove || e.type == EventType.MouseDrag) && interacting)
         {
             var next = GetSelectionAt(e.mousePosition);
@@ -244,6 +244,7 @@ public class Tile3DEditor : Editor
         Selection.activeGameObject = tiler.transform.gameObject;
     }
 
+    #region Face
     private bool SetBlockFace(Tile3D.Block block, Vector3 normal, Tile3D.Face brush)
     {
         Undo.RecordObject(target, "SetBlockFaces");
@@ -270,6 +271,7 @@ public class Tile3DEditor : Editor
 
         return false;
     }
+    #endregion
 
     private Tile3D.Face GetBlockFace(Tile3D.Block block, Vector3 face)
     {
