@@ -14,10 +14,10 @@ public class Tile3DEditor : Editor
     public enum ToolModes
     {
         Transform,
-        Building,
+        //Building,
         Painting
     }
-    private ToolModes toolMode = ToolModes.Building;
+    private ToolModes toolMode = ToolModes.Painting;
 
     // painting modes
     public enum PaintModes
@@ -74,14 +74,14 @@ public class Tile3DEditor : Editor
     {
         var e = Event.current;
         var invokeRepaint = false;
-        var draggingBlock = false;
+        //var draggingBlock = false;
         var interacting = (!e.control && !e.alt && e.button == 0);
         
         // overlay gui
         Handles.BeginGUI();
         {
             // mode toolbar
-            toolMode = (ToolModes)GUI.Toolbar(new Rect(10, 10, 200, 30), (int)toolMode, new[] { "Move", "Build", "Paint" });
+            toolMode = (ToolModes)GUI.Toolbar(new Rect(10, 10, 200, 30), (int)toolMode, new[] { "Move", "Paint" });
             if (toolMode == ToolModes.Painting)
                 selected = null;
 
@@ -103,6 +103,8 @@ public class Tile3DEditor : Editor
         Tools.current = Tool.None;
         HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
 
+        #region Building
+        /*
         // Selecting & Dragging Blocks
         if (toolMode == ToolModes.Building)
         {
@@ -172,18 +174,22 @@ public class Tile3DEditor : Editor
                 }
             }
         }
-        
+        */
+        #endregion Building
+
         // active hover
-        if ((e.type == EventType.MouseMove || e.type == EventType.MouseDrag) && interacting && !draggingBlock)
+        //*
+        if ((e.type == EventType.MouseMove || e.type == EventType.MouseDrag) && interacting)
         {
             var next = GetSelectionAt(e.mousePosition);
             if ((hover == null && next != null) || (hover != null && next == null) || (hover != null && next != null && (hover.Tile != next.Tile || hover.Face != next.Face)))
                 invokeRepaint = true;
             hover = next;
         }
+        /**/
         
         // painting
-        if (toolMode == ToolModes.Painting && (e.type == EventType.MouseDown || e.type == EventType.MouseDrag) && interacting && hover != null)
+        if (toolMode == ToolModes.Painting && (e.type == EventType.MouseDown/* || e.type == EventType.MouseDrag*/) && interacting && hover != null)
         {
             var block = tiler.At(hover.Tile);
             if (block != null)
@@ -202,9 +208,12 @@ public class Tile3DEditor : Editor
                         tiler.Rebuild();
                 }
             }
+            var obj = new GameObject("New Object");
+            obj.transform.parent = tiler.transform;
         }
 
         // right-click to rotate face
+        /*
         if (toolMode == ToolModes.Painting && (e.type == EventType.MouseDown || e.type == EventType.MouseDrag) && e.button == 1 && !e.control && !e.alt && hover != null)
         {
             brush.Rotation = (brush.Rotation + 1) % 4;
@@ -213,14 +222,17 @@ public class Tile3DEditor : Editor
             if (cell != null && SetBlockFace(cell, hover.Face, brush))
                 tiler.Rebuild();
         }
+        */
 
         // Drawing
         {
             // draw hovers / selected outlines
+            /*
             if (hover != null)
                 DrawSelection(hover, Color.magenta);
             if (selected != null)
                 DrawSelection(selected, Color.blue);
+            */
 
             // force repaint
             if (invokeRepaint)
