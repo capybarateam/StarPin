@@ -30,10 +30,6 @@ public class PrefabPaletteWindow : EditorWindow
     bool optionsToggle = true;
 
     Transform parentTo;
-    bool onlyUpwards;
-
-    bool snap;
-    float snapValue = 1f;
 
     void OnEnable()
     {
@@ -170,7 +166,6 @@ public class PrefabPaletteWindow : EditorWindow
             {
                 EditorGUI.DrawRect(bgRect, new Color32(0x42, 0x80, 0xe4, 0xff));
             }
-            else
             {
                 EditorGUIUtility.AddCursorRect(bgRect, MouseCursor.Link);
 
@@ -181,7 +176,10 @@ public class PrefabPaletteWindow : EditorWindow
                     {
                         EditorApplication.delayCall += () =>
                         {
-                            selected = prefab;
+                            if (selected != prefab)
+                                selected = prefab;
+                            else
+                                selected = null;
                             SceneView.RepaintAll();
                         };
                     }
@@ -305,7 +303,10 @@ public class PrefabPaletteWindow : EditorWindow
             return;
 
         var ray = HandleUtility.GUIPointToWorldRay(mousePos);
-        var plane = new Plane(Vector3.forward, Vector3.zero);
+        float z = 0;
+        if (parentTo != null)
+            z = parentTo.position.z;
+        var plane = new Plane(Vector3.forward, -z);
         float enter;
         if (plane.Raycast(ray, out enter))
         {
