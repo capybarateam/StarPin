@@ -45,6 +45,11 @@ public class DrawLineEditor : Editor
                 Undo.SetTransformParent(connect.transform, selectionPrev.transform, "Point Connection");
                 Undo.RecordObject(connect.transform, "Point Connection");
                 connect.transform.localPosition = Vector3.zero;
+                var p1 = selectionPrev.GetComponent<PointController>();
+                var p2 = selectionNext.GetComponent<PointController>();
+                Undo.RecordObjects(new Object[] { p1, p2 }, "Point Connection");
+                p1.important = true;
+                p2.important = true;
                 Undo.RecordObject(connect, "Point Connection");
                 connect.connectionA = selectionPrev;
                 connect.connectionB = selectionNext;
