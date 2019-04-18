@@ -1,0 +1,118 @@
+language: objective-c
+
+branches:
+  only:
+    - release
+    - master
+    - develop
+
+os: osx
+
+env:
+  global:
+    # Android
+    - ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+    - ANDROID_NDK_HOME=/usr/local/share/android-ndk
+    # Release
+    - RELEASE_NAME="$TRAVIS_BRANCH $(date +'%Y.%m.%d %H:%M')"
+    - RELEASE_GIT_TAG="build/b${TRAVIS_BUILD_NUMBER}-${TRAVIS_BRANCH}"
+
+cache:
+  - directories:
+    # Homebrew
+    - $HOME/Library/Caches/Homebrew
+    # Unity
+    - ./Unity
+    - $HOME/Library/Caches/com.unity3d.UnityEditor/GiCache
+  - timeout: 1000
+
+jobs:
+  include:
+    # Build Unity Projects
+    - stage: build
+      name: Build Windows
+      install:
+        # Unity
+        - bash ./Travis/install.sh windows
+      script:
+        - travis_wait 60 bash ./Travis/build.sh windows
+      deploy:
+        # GitHub
+        - provider: releases
+          api_key: $GITHUB_TOKEN
+          file: 
+            - ./Build/windows.zip
+          name: $RELEASE_NAME
+          skip_cleanup: true
+          on:
+            all_branches: true
+
+    #- name: Build OSX
+    #  script: bash ./Travis/build.sh osx
+
+    #- name: Build Linux
+    #  script: bash ./Travis/build.sh linux
+
+    - name: Build WebGL
+      install:
+        # Unity
+        - bash ./Travis/install.sh webgl
+      script:
+        - travis_wait 60 bash ./Travis/build.sh webgl
+      before_deploy: skip
+      deploy:
+        # Pages
+        - provider: pages
+          skip-cleanup: true
+          github-token: $GITHUB_TOKEN
+          local-dir: ./Build/webgl/
+          keep-history: true
+          on:
+            branch: develop
+
+    - name: Build Android
+      install:
+        # Android
+        - bash ./Travis/install_android.sh
+        # Unity
+        - bash ./Travis/install.sh android
+      script:
+        - travis_wait 60 bash ./Travis/build.sh android
+      after_success:
+        # DeployGate
+        - bash ./Travis/deploygate.sh $DEPLOYGATE_USER $DEPLOYGATE_API_TOKEN
+      deploy:
+        # GitHub
+        - provider: releases
+          api_key: $GITHUB_TOKEN
+          file: 
+            - ./Build/android.apk
+          name: $RELEASE_NAME
+          skip_cleanup: true
+          on:
+            all_branches: true
+
+    #- name: Build iOS
+    #  script: bash ./Travis/build.sh ios
+
+    # Check
+    - stage: check
+      name: Check
+      install:
+        # Debug
+        - brew install tree
+      script:
+        # Debug
+        - tree -L 3
+      after_success:
+        # Notification
+        - bash ./Travis/send.sh success $WEBHOOK_URL
+
+# Deploy
+before_deploy:
+  # Tag
+  - bash ./Travis/tag.sh
+
+# Notification
+notifications:
+  email: false

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3974481468795882318}
-  - component: {fileID: 8531232693552659021}
   - component: {fileID: 4987626046809690469}
+  - component: {fileID: 8531232693552659021}
   m_Layer: 12
   m_Name: Connector
   m_TagString: Untagged
@@ -32,6 +32,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4987626046809690469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820593494341664011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9a7a6af3e131b47881623a3ac71fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectionA: {fileID: 0}
+  connectionB: {fileID: 0}
+  depth: -0.4
 --- !u!120 &8531232693552659021
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -127,18 +142,3 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
---- !u!114 &4987626046809690469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5820593494341664011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd9a7a6af3e131b47881623a3ac71fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectionA: {fileID: 0}
-  connectionB: {fileID: 0}
-  depth: -0.4
