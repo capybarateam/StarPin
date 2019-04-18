@@ -5,7 +5,7 @@ using UnityEditor;
 
 public static class Build
 {
-    [MenuItem("Build/Prefab Palette")]
+    [MenuItem("ステージ作成/ステージをエクスポート")]
 	public static void BuildPackage()
     {
         var guids = AssetDatabase.FindAssets("", new string[]{

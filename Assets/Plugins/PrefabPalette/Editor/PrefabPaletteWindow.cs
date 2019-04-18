@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PrefabPaletteWindow : EditorWindow
 {
-    [MenuItem("Window/Prefab Palette", priority = 10001)]
+    [MenuItem("ステージ作成/パーツパレット", priority = 10001)]
     static void CreateWindow()
     {
         var win = GetWindow<PrefabPaletteWindow>("Prefab Palette");
-        var icon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Gizmos/PrefabPalette Icon.png");
-        win.titleContent = new GUIContent("Prefab Palette", icon);
+        win.titleContent = new GUIContent("パーツパレット");
         win.Show();
     }
 
@@ -52,6 +51,25 @@ public class PrefabPaletteWindow : EditorWindow
 
     void OnSelectionChange()
     {
+        var selection = Selection.activeGameObject;
+        if (selection != null)
+        {
+            var sheet = selection.GetComponentInParent<PrefabSheet>();
+            if (sheet != null)
+            {
+                EditorApplication.delayCall += () => {
+                    palette = sheet.palette;
+                    parentTo = sheet.transform;
+                    selected = null;
+                    Repaint();
+                };
+            }
+            else
+            {
+                Deselect();
+            }
+        }
+            
         LoadPalettes();
     }
 
@@ -203,7 +221,6 @@ public class PrefabPaletteWindow : EditorWindow
             GUI.Label(labelRect, prefab.name, labelStyle);
         }
 
-        EditorGUILayout.Space();
         EditorGUILayout.EndScrollView();
 
         if (AssetPreview.IsLoadingAssetPreviews())
