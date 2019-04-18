@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 public class ExportStage : ScriptableWizard
 {
@@ -32,5 +33,12 @@ public class ExportStage : ScriptableWizard
     void OnWizardUpdate()
     {
         helpString = "エクスポートしたいステージ名を入れてエクスポートボタンを押してください。";
+
+        var scene = EditorSceneManager.GetActiveScene();
+        if (scene.path.StartsWith("Assets/Stages/"))
+        {
+            stageName = scene.name;
+            Repaint();
+        }
     }
 }

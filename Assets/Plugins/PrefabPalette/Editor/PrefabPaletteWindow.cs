@@ -15,6 +15,7 @@ public class PrefabPaletteWindow : EditorWindow
     }
 
     PrefabPalette palette;
+    PrefabPalette prevPalette;
     GameObject selected;
     Vector2 prefabScroll;
 
@@ -118,6 +119,21 @@ public class PrefabPaletteWindow : EditorWindow
 
         if (palette == null)
             return;
+
+        if (palette != prevPalette)
+        {
+            foreach (GameObject obj in FindObjectsOfType(typeof(GameObject)))
+            {
+                if (obj.activeInHierarchy)
+                {
+                    var sheet = obj.GetComponent<PrefabSheet>();
+                    if (sheet != null)
+                        if (sheet.palette == palette)
+                            parentTo = sheet.transform;
+                }
+            }
+        }
+        prevPalette = palette;
             
         if (ev.isMouse)
         {
