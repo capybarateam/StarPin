@@ -58,10 +58,11 @@ public class PrefabPaletteWindow : EditorWindow
             var sheet = selection.GetComponentInParent<PrefabSheet>();
             if (sheet != null)
             {
-                EditorApplication.delayCall += () => {
+                EditorApplication.delayCall += () =>
+                {
                     palette = sheet.palette;
                     parentTo = sheet.transform;
-                    selected = null;
+                    selected = sheet?.palette?.prefabs[0];
                     Repaint();
                 };
             }
@@ -70,7 +71,7 @@ public class PrefabPaletteWindow : EditorWindow
                 Deselect();
             }
         }
-            
+
         LoadPalettes();
     }
 
@@ -93,7 +94,7 @@ public class PrefabPaletteWindow : EditorWindow
         paletteNames = new string[palettes.Count];
         for (int i = 0; i < palettes.Count; ++i)
             paletteNames[i] = palettes[i].name;
-        
+
         if (palette != null && !palettes.Contains(palette))
             palette = null;
 
@@ -103,7 +104,8 @@ public class PrefabPaletteWindow : EditorWindow
 
     void Deselect()
     {
-        EditorApplication.delayCall += () => {
+        EditorApplication.delayCall += () =>
+        {
             selected = null;
             Repaint();
         };
@@ -134,7 +136,7 @@ public class PrefabPaletteWindow : EditorWindow
             }
         }
         prevPalette = palette;
-            
+
         if (ev.isMouse)
         {
             mousePos = ev.mousePosition;
@@ -168,12 +170,12 @@ public class PrefabPaletteWindow : EditorWindow
         GUILayout.Space(2f);
 
         GUI.enabled = selected != null;
-        if (GUILayout.Button("Stop Placement (ESC)", EditorStyles.miniButton))
+        if (GUILayout.Button("設置を終了", EditorStyles.miniButton))
             Deselect();
         GUI.enabled = true;
         if (ev.type == EventType.KeyDown && ev.keyCode == KeyCode.Escape)
             Deselect();
-            
+
         var buttonHeight = EditorGUIUtility.singleLineHeight * 2f;
         var heightStyle = GUILayout.Height(buttonHeight);
 
@@ -184,57 +186,66 @@ public class PrefabPaletteWindow : EditorWindow
 
         prefabScroll = EditorGUILayout.BeginScrollView(prefabScroll);
 
-        foreach (var prefab in palette.prefabs)
+        if (palette.prefabs != null)
         {
-            if (prefab == null)
-                continue;
-
-            var rect = EditorGUILayout.GetControlRect(heightStyle);
-
-            var bgRect = rect;
-            bgRect.x -= 1f;
-            bgRect.y -= 1f;
-            bgRect.width += 2f;
-            bgRect.height += 2f;
-            if (prefab == selected)
+            foreach (var prefab in palette.prefabs)
             {
-                EditorGUI.DrawRect(bgRect, new Color32(0x42, 0x80, 0xe4, 0xff));
-            }
-            {
-                EditorGUIUtility.AddCursorRect(bgRect, MouseCursor.Link);
+                if (prefab == null)
+                    continue;
 
-                if (bgRect.Contains(scrollMouse))
+                var rect = EditorGUILayout.GetControlRect(heightStyle);
+
+                var bgRect = rect;
+                bgRect.x -= 1f;
+                bgRect.y -= 1f;
+                bgRect.width += 2f;
+                bgRect.height += 2f;
+                if (prefab == selected)
                 {
-                    EditorGUI.DrawRect(bgRect, new Color32(0x42, 0x80, 0xe4, 0x40));
-                    if (ev.type == EventType.MouseDown)
+                    EditorGUI.DrawRect(bgRect, new Color32(0x42, 0x80, 0xe4, 0xff));
+                }
+                {
+                    EditorGUIUtility.AddCursorRect(bgRect, MouseCursor.Link);
+
+                    if (bgRect.Contains(scrollMouse))
                     {
-                        EditorApplication.delayCall += () =>
+                        EditorGUI.DrawRect(bgRect, new Color32(0x42, 0x80, 0xe4, 0x40));
+                        if (ev.type == EventType.MouseDown)
                         {
-                            if (selected != prefab)
-                                selected = prefab;
-                            else
-                                selected = null;
-                            SceneView.RepaintAll();
-                        };
+                            EditorApplication.delayCall += () =>
+                            {
+                                if (selected != prefab)
+                                {
+                                    Tools.current = Tool.None;
+                                    selected = prefab;
+                                    Selection.activeGameObject = parentTo == null ? null : parentTo.gameObject;
+                                }
+                                else
+                                {
+                                    selected = null;
+                                }
+                                SceneView.RepaintAll();
+                            };
+                        }
                     }
                 }
+
+                var iconRect = new Rect(rect.x, rect.y, rect.height, rect.height);
+
+                var icon = AssetPreview.GetAssetPreview(prefab);
+                if (icon != null)
+                    GUI.DrawTexture(iconRect, icon, ScaleMode.ScaleToFit, true, 1f, Color.white, Vector4.zero, Vector4.one * 4f);
+                else
+                    EditorGUI.DrawRect(iconRect, EditorStyles.label.normal.textColor * 0.25f);
+
+                var labelRect = rect;
+                labelRect.x += iconRect.width + 4f;
+                labelRect.width -= iconRect.width + 4f;
+                labelRect.height = EditorGUIUtility.singleLineHeight;
+                labelRect.y += (buttonHeight - labelRect.height) * 0.5f;
+                var labelStyle = prefab == selected ? EditorStyles.whiteBoldLabel : EditorStyles.label;
+                GUI.Label(labelRect, prefab.name, labelStyle);
             }
-
-            var iconRect = new Rect(rect.x, rect.y, rect.height, rect.height);
-
-            var icon = AssetPreview.GetAssetPreview(prefab);
-            if (icon != null)
-                GUI.DrawTexture(iconRect, icon, ScaleMode.ScaleToFit, true, 1f, Color.white, Vector4.zero, Vector4.one * 4f);
-            else
-                EditorGUI.DrawRect(iconRect, EditorStyles.label.normal.textColor * 0.25f);
-
-            var labelRect = rect;
-            labelRect.x += iconRect.width + 4f;
-            labelRect.width -= iconRect.width + 4f;
-            labelRect.height = EditorGUIUtility.singleLineHeight;
-            labelRect.y += (buttonHeight - labelRect.height) * 0.5f;
-            var labelStyle = prefab == selected ? EditorStyles.whiteBoldLabel : EditorStyles.label;
-            GUI.Label(labelRect, prefab.name, labelStyle);
         }
 
         EditorGUILayout.EndScrollView();
@@ -263,7 +274,7 @@ public class PrefabPaletteWindow : EditorWindow
 
         if (ev.isMouse)
             mousePos = ev.mousePosition;
-            
+
         if (ev.type == EventType.MouseLeaveWindow)
             ClearPlacingObj();
         else if (ev.isMouse || ev.type == EventType.MouseEnterWindow)

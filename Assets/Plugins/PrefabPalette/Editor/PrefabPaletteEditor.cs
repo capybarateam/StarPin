@@ -20,7 +20,9 @@ public class PrefabPaletteEditor : Editor
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
 
-        var prefabs = new List<GameObject>(palette.prefabs);
+        var prefabs = new List<GameObject>();
+        if (palette != null && palette.prefabs != null)
+            prefabs.AddRange(palette.prefabs);
         for (int i = 0; i < prefabs.Count - 1; ++i)
         {
             if (prefabs[i] != null)
