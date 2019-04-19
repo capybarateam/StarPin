@@ -93,7 +93,7 @@ public class PrefabPaletteWindow : EditorWindow
 
         paletteNames = new string[palettes.Count];
         for (int i = 0; i < palettes.Count; ++i)
-            paletteNames[i] = palettes[i].name;
+            paletteNames[i] = palettes[i].title ?? palettes[i].name;
 
         if (palette != null && !palettes.Contains(palette))
             palette = null;
