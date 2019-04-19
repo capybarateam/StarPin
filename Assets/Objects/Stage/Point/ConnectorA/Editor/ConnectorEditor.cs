@@ -50,9 +50,12 @@ public class DrawLineEditor : Editor
                 Undo.RecordObjects(new Object[] { p1, p2 }, "Point Connection");
                 p1.important = true;
                 p2.important = true;
+                EditorUtility.SetDirty(p1);
+                EditorUtility.SetDirty(p2);
                 Undo.RecordObject(connect, "Point Connection");
                 connect.connectionA = selectionPrev;
                 connect.connectionB = selectionNext;
+                EditorUtility.SetDirty(connect);
             }
             else
             {
