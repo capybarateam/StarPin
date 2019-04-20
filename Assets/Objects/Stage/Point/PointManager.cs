@@ -8,6 +8,14 @@ public class PointManager : MonoBehaviour
     public List<PointController> allPoints;
     public List<PointController> allImportantPoints;
 
+    public int maxHealth = 8;
+    public int health;
+
+    private void Start()
+    {
+        health = maxHealth;
+    }
+
     public bool IsGotAllPoints()
     {
         return allPoints.All(e => e.touched);
