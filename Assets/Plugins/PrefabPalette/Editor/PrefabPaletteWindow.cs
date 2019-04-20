@@ -52,6 +52,16 @@ public class PrefabPaletteWindow : EditorWindow
 
     void OnSelectionChange()
     {
+        LoadPalettes();
+    }
+
+    void OnFocus()
+    {
+        LoadPalettes();
+    }
+
+    void LoadPalettes()
+    {
         var selection = Selection.activeGameObject;
         if (selection != null)
         {
@@ -72,16 +82,6 @@ public class PrefabPaletteWindow : EditorWindow
             }
         }
 
-        LoadPalettes();
-    }
-
-    void OnFocus()
-    {
-        LoadPalettes();
-    }
-
-    void LoadPalettes()
-    {
         palettes.Clear();
         foreach (var guid in AssetDatabase.FindAssets("t:PrefabPalette"))
         {
@@ -93,7 +93,10 @@ public class PrefabPaletteWindow : EditorWindow
 
         paletteNames = new string[palettes.Count];
         for (int i = 0; i < palettes.Count; ++i)
-            paletteNames[i] = palettes[i].title ?? palettes[i].name;
+            if (palettes[i].title != null && palettes[i].title != "")
+                paletteNames[i] = palettes[i].title;
+            else
+                paletteNames[i] = palettes[i].name;
 
         if (palette != null && !palettes.Contains(palette))
             palette = null;
@@ -131,7 +134,10 @@ public class PrefabPaletteWindow : EditorWindow
                     var sheet = obj.GetComponent<PrefabSheet>();
                     if (sheet != null)
                         if (sheet.palette == palette)
+                        {
                             parentTo = sheet.transform;
+                            Selection.activeGameObject = parentTo == null ? null : parentTo.gameObject;
+                        }
                 }
             }
         }
