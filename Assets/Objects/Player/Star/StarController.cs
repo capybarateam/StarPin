@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Linq;
 
 public class StarController : MonoBehaviour
@@ -58,14 +59,28 @@ public class StarController : MonoBehaviour
     {
         if (((enablegrip && timer > 0.3f) || currentJoint == null) && currentJoint != point)
         {
-            GetComponent<AudioSource>().Play();
-            DetachAll();
-            grip.Attach(point);
-            //enablegrip = false;
-            timer = 0;
-            grip.EmitParticle();
-            currentJoint = point;
-            point.SendMessage("OnAttached", SendMessageOptions.DontRequireReceiver);
+            bool canceled = false;
+            ExecuteEvents.Execute<IAttachable>(
+                target: point,
+                eventData: null,
+                functor: (reciever, eventData) => reciever.CheckAttachable(this, ref canceled)
+            );
+            if (!canceled)
+            {
+                GetComponent<AudioSource>().Play();
+                DetachAll();
+                grip.Attach(point);
+                //enablegrip = false;
+                timer = 0;
+                grip.EmitParticle();
+                currentJoint = point;
+
+                ExecuteEvents.Execute<IAttachable>(
+                    target: point,
+                    eventData: null,
+                    functor: (reciever, eventData) => reciever.OnAttached(this)
+                );
+            }
         }
     }
 }
