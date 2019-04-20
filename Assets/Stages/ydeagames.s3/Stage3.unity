@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.062469326, g: 0.19519052, b: 0.3044434, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -644,7 +644,7 @@ PrefabInstance:
     - target: {fileID: 466277642989107781, guid: 86d13a2b4a88b7045b443c65e4bc8ccc,
         type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d13a2b4a88b7045b443c65e4bc8ccc, type: 3}
@@ -667,16 +667,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 613779144}
     m_Modifications:
-    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
-        type: 3}
-      propertyPath: m_Name
-      value: Point Light (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4521435289637527812, guid: 3ca23baaba36b594b9c23c323c61cf82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -731,6 +721,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
+        type: 3}
+      propertyPath: m_Name
+      value: Point Light (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca23baaba36b594b9c23c323c61cf82, type: 3}
@@ -908,16 +908,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 613779144}
     m_Modifications:
-    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
-        type: 3}
-      propertyPath: m_Name
-      value: Point Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4521435289637527812, guid: 3ca23baaba36b594b9c23c323c61cf82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -972,6 +962,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
+        type: 3}
+      propertyPath: m_Name
+      value: Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca23baaba36b594b9c23c323c61cf82, type: 3}
@@ -1762,7 +1762,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051657476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.72, y: 6.14, z: 0}
+  m_LocalPosition: {x: 22.4, y: 39.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 355974164}
@@ -1784,6 +1784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPoints: []
   allImportantPoints: []
+  maxHealth: 8
+  health: 0
 --- !u!1001 &1141028290
 PrefabInstance:
   m_ObjectHideFlags: 0

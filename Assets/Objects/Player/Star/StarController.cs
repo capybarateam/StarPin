@@ -41,8 +41,11 @@ public class StarController : MonoBehaviour
         rigid.angularVelocity = vel * speed;
         timer += Time.deltaTime;
 
-        var manager = GameDirector.Get(transform).pointManager;
-        hp = Mathf.Clamp((float) manager.health / manager.maxHealth, 0, 1);
+        var manager = GameDirector.Get(transform)?.pointManager;
+        if (manager != null)
+            hp = Mathf.Clamp((float)manager.health / manager.maxHealth, 0, 1);
+        else
+            hp = 1;
     }
 
     public void DetachAll()
