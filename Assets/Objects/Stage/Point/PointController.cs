@@ -10,7 +10,8 @@ public class PointController : MonoBehaviour
     public bool important;
 
     bool _touched;
-    public bool touched {
+    public bool touched
+    {
         get
         {
             return _touched;
@@ -28,7 +29,19 @@ public class PointController : MonoBehaviour
 
     void OnAttached()
     {
-        touched = true;
+        if (!touched)
+        {
+            var manager = GameDirector.Get(transform)?.pointManager;
+            if (manager != null && manager.health > 0)
+            {
+                manager.health--;
+                touched = true;
+            }
+            else if (manager == null)
+            {
+                touched = true;
+            }
+        }
     }
 
     private void Start()

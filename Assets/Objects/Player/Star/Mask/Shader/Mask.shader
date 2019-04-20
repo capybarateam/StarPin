@@ -25,7 +25,7 @@
 
 			CGPROGRAM
 
-			#include "Assets/Mask/Utility/Mask.cginc"
+			#include "../Utility/Mask.cginc"
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma target 3.0
