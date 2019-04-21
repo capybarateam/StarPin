@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PrefabPalette", menuName = "Prefab Palette", order = 201)]
+[CreateAssetMenu(fileName = "PartsPalette", menuName = "ステージ作成/パーツパレット", order = 201)]
 public class PrefabPalette : ScriptableObject
 {
     public string title;
