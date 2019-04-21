@@ -11,6 +11,8 @@ public class PointManager : MonoBehaviour
     public int maxHealth = 8;
     public int health;
 
+    public int colorIndex;
+
     private void Start()
     {
         health = maxHealth;

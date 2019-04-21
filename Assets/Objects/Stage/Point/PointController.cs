@@ -41,6 +41,24 @@ public class PointController : MonoBehaviour, IAttachable
     public int currentPoint = 0;
     public bool isSendMode = true;
 
+    public enum ColorTransferType
+    {
+        None,
+        SendColor,
+        RecieveColor,
+    }
+    public ColorTransferType colorTransferType = ColorTransferType.None;
+
+    public enum ColorCondition
+    {
+        Free,
+        SameColor,
+        NonSameColor,
+    }
+    public ColorCondition colorCondition = ColorCondition.Free;
+
+    public int colorIndex;
+
     bool _touched;
     public bool touched
     {
@@ -72,6 +90,11 @@ public class PointController : MonoBehaviour, IAttachable
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
         {
+            if (colorCondition == ColorCondition.SameColor && colorIndex != manager.colorIndex)
+                return false;
+            if (colorCondition == ColorCondition.NonSameColor && colorIndex == manager.colorIndex)
+                return false;
+
             if (transferType == TransferType.SendOnly ||
                 (transferType == TransferType.ToggleSendRecieve && isSendMode) ||
                 (transferType == TransferType.SendIfEmpty && currentPoint <= 0) ||
@@ -174,6 +197,11 @@ public class PointController : MonoBehaviour, IAttachable
                 manager.health += transfer;
                 touched = currentPoint > 0;
                 isSendMode = !isSendMode;
+
+                if (colorTransferType == ColorTransferType.SendColor)
+                    colorIndex = manager.colorIndex;
+                if (colorTransferType == ColorTransferType.RecieveColor)
+                    manager.colorIndex = colorIndex;
             }
         }
     }
