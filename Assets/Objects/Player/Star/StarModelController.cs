@@ -43,11 +43,14 @@ public class StarModelController : MonoBehaviour
         foreach (var meshMaterial in colorMeshMaterials)
         {
             var mesh = meshMaterial.Key;
-            var mat = mesh.material;
-            var smat = meshMaterial.Value;
+            var mats = mesh.materials;
+            foreach (var mat in mats)
+            {
+                var smat = meshMaterial.Value;
 
-            if (star.colorIndex < colorPalette.colors.Count && colorPalette.colors[star.colorIndex] != null)
-                mat.color = colorPalette.colors[star.colorIndex];
+                if (star.colorIndex < colorPalette.colors.Count && colorPalette.colors[star.colorIndex] != null)
+                    mat.color = colorPalette.colors[star.colorIndex];
+            }
         }
     }
 }

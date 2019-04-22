@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 940667089965583945}
+  - component: {fileID: 5081151519620144277}
   - component: {fileID: 7277889638415776310}
   - component: {fileID: 708288842731212823}
   - component: {fileID: 1274177080}
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 9119735561602839254}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5081151519620144277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649451029543335066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5af8de5ddd3bf344b58c53153d87619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: 75d59eb46e48a4b4aad90cc2377726f5, type: 2}
+  vibrantMaterial: {fileID: 2100000, guid: 881d7b8bfad1dcc4a8b2f6f5f4aa88e1, type: 2}
+  colorPalette: {fileID: 11400000, guid: 6cab2438108dd764eaafe1bde83fed4f, type: 2}
 --- !u!33 &7277889638415776310
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -178,5 +194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432e0943017f8b34699cca95cddcc02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMaterial: {fileID: 2100000, guid: 75d59eb46e48a4b4aad90cc2377726f5, type: 2}
-  vibrantMaterial: {fileID: 2100000, guid: 881d7b8bfad1dcc4a8b2f6f5f4aa88e1, type: 2}
+  important: 0
+  grabbable: 1
+  transferType: 0
+  transferVolume: 0
+  grabbableCondition: 0
+  maxPoint: 1
+  currentPoint: 0
+  isSendMode: 1
+  colorTransferType: 0
+  colorCondition: 0
+  colorIndex: 0

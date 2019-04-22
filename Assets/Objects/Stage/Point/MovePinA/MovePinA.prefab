@@ -116,8 +116,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432e0943017f8b34699cca95cddcc02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMaterial: {fileID: 2100000, guid: 75d59eb46e48a4b4aad90cc2377726f5, type: 2}
-  vibrantMaterial: {fileID: 2100000, guid: 881d7b8bfad1dcc4a8b2f6f5f4aa88e1, type: 2}
+  important: 0
+  grabbable: 1
+  transferType: 0
+  transferVolume: 0
+  grabbableCondition: 0
+  maxPoint: 1
+  currentPoint: 0
+  isSendMode: 1
+  colorTransferType: 0
+  colorCondition: 0
+  colorIndex: 0
 --- !u!114 &2551309872548558670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4973637978182908925}
+  - component: {fileID: 6710842771045970330}
   - component: {fileID: 3244914790194466690}
   - component: {fileID: 4745767256173749667}
   - component: {fileID: 5190401729698796428}
@@ -257,6 +267,21 @@ Transform:
   m_Father: {fileID: 3929335643555153762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6710842771045970330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839846500254761262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5af8de5ddd3bf344b58c53153d87619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: 75d59eb46e48a4b4aad90cc2377726f5, type: 2}
+  vibrantMaterial: {fileID: 2100000, guid: 881d7b8bfad1dcc4a8b2f6f5f4aa88e1, type: 2}
+  colorPalette: {fileID: 11400000, guid: 6cab2438108dd764eaafe1bde83fed4f, type: 2}
 --- !u!33 &3244914790194466690
 MeshFilter:
   m_ObjectHideFlags: 0

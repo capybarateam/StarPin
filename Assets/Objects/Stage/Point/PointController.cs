@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PointController : MonoBehaviour, IAttachable
 {
-    public Material normalMaterial;
-    public Material vibrantMaterial;
-
     public bool important = false;
     public bool grabbable = true;
 
@@ -59,24 +56,19 @@ public class PointController : MonoBehaviour, IAttachable
 
     public int colorIndex;
 
-    bool _touched;
     public bool touched
     {
         get
         {
-            return _touched;
+            return currentPoint > 0;
         }
 
         set
         {
-            if (_touched != value)
-            {
-                var render = GetComponentInChildren<Renderer>();
-                render.material = value ? vibrantMaterial : normalMaterial;
-                render.UpdateGIMaterials();
-                //DynamicGI.SetEmissive(render, (value ? vibrantMaterial : normalMaterial).GetColor("_EmissionColor"));
-                _touched = value;
-            }
+            if (!value)
+                currentPoint = 0;
+            else
+                currentPoint = Mathf.Max(1, currentPoint);
         }
     }
 
@@ -209,10 +201,5 @@ public class PointController : MonoBehaviour, IAttachable
     void Start()
     {
         GameDirector.Get(transform)?.pointManager.RegisterPoint(this, important);
-    }
-
-    void Update()
-    {
-        touched = currentPoint > 0;
     }
 }
