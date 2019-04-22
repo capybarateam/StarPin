@@ -47,12 +47,16 @@ public class DrawLineEditor : Editor
                 connect.transform.localPosition = Vector3.zero;
                 var p1 = selectionPrev.GetComponent<PointController>();
                 var p2 = selectionNext.GetComponent<PointController>();
-                Undo.RecordObjects(new Object[] { p1, p2 }, "Point Connection");
+                Undo.RecordObject(p1, "Point Connection");
+                Undo.RecordObject(p2, "Point Connection");
                 p1.important = true;
                 p2.important = true;
+                EditorUtility.SetDirty(p1);
+                EditorUtility.SetDirty(p2);
                 Undo.RecordObject(connect, "Point Connection");
                 connect.connectionA = selectionPrev;
                 connect.connectionB = selectionNext;
+                EditorUtility.SetDirty(connect);
             }
             else
             {
