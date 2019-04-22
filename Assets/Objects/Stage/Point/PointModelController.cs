@@ -20,6 +20,13 @@ public class PointModelController : MonoBehaviour
         point = GetComponentInParent<PointController>();
     }
 
+    Color MixColor(Color hColor, Color svColor)
+    {
+        Color.RGBToHSV(hColor, out float h, out _, out _);
+        Color.RGBToHSV(svColor, out _, out float s, out float v);
+        return Color.HSVToRGB(h, s, v);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +39,7 @@ public class PointModelController : MonoBehaviour
             if (point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
             {
                 render.material.color = colorPalette.colors[point.colorIndex];
+                render.material.SetColor("_EmissionColor", colorPalette.colors[point.colorIndex] * 4f);
             }
 
             render.UpdateGIMaterials();

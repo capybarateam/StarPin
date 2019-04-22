@@ -34,7 +34,7 @@ public class StarModelController : MonoBehaviour
             var smat = meshMaterial.Value;
 
             var color = smat.color;
-            color.a *= easeOutCubic(star.hp);
+            //color.a *= easeOutCubic(star.hp);
             mat.color = color;
 
             mat.SetColor("_EmissionColor", smat.GetColor("_EmissionColor") * star.hp);
@@ -49,7 +49,10 @@ public class StarModelController : MonoBehaviour
                 var smat = meshMaterial.Value;
 
                 if (star.colorIndex < colorPalette.colors.Count && colorPalette.colors[star.colorIndex] != null)
+                {
                     mat.color = colorPalette.colors[star.colorIndex];
+                    mat.SetColor("_EmissionColor", colorPalette.colors[star.colorIndex] * 4f);
+                }
             }
         }
     }

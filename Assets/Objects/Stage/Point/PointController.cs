@@ -82,11 +82,6 @@ public class PointController : MonoBehaviour, IAttachable
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
         {
-            if (colorCondition == ColorCondition.SameColor && colorIndex != manager.colorIndex)
-                return false;
-            if (colorCondition == ColorCondition.NonSameColor && colorIndex == manager.colorIndex)
-                return false;
-
             if (transferType == TransferType.SendOnly ||
                 (transferType == TransferType.ToggleSendRecieve && isSendMode) ||
                 (transferType == TransferType.SendIfEmpty && currentPoint <= 0) ||
@@ -120,7 +115,18 @@ public class PointController : MonoBehaviour, IAttachable
             return;
         }
 
-        if (grabbableCondition != GrabbableCondition.AlwaysGrabbable)
+        var manager = GameDirector.Get(transform)?.pointManager;
+        if (manager != null)
+        {
+            if ((colorCondition == ColorCondition.SameColor && colorIndex != manager.colorIndex) ||
+                (colorCondition == ColorCondition.NonSameColor && colorIndex == manager.colorIndex))
+            {
+                cancel = true;
+                return;
+            }
+        }
+
+            if (grabbableCondition != GrabbableCondition.AlwaysGrabbable)
         {
             bool isSend;
             bool condition = CheckCondition(out isSend);
@@ -151,6 +157,11 @@ public class PointController : MonoBehaviour, IAttachable
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
         {
+            if (colorTransferType == ColorTransferType.SendColor)
+                colorIndex = manager.colorIndex;
+            if (colorTransferType == ColorTransferType.RecieveColor)
+                manager.colorIndex = colorIndex;
+
             bool isSend;
             if (CheckCondition(out isSend))
             {
@@ -189,11 +200,6 @@ public class PointController : MonoBehaviour, IAttachable
                 manager.health += transfer;
                 touched = currentPoint > 0;
                 isSendMode = !isSendMode;
-
-                if (colorTransferType == ColorTransferType.SendColor)
-                    colorIndex = manager.colorIndex;
-                if (colorTransferType == ColorTransferType.RecieveColor)
-                    manager.colorIndex = colorIndex;
             }
         }
     }
