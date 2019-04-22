@@ -22,11 +22,13 @@ public class StarModelController : MonoBehaviour
         colorMeshMaterials = colorMeshes.Select(e => new KeyValuePair<MeshRenderer, Material>(e, e.sharedMaterial)).ToList();
     }
 
-    float easeOutCubic(float t) { return (--t) * t * t + 1; }
+    //float easeOutCubic(float t) { return (--t) * t * t + 1; }
 
     // Update is called once per frame
     void Update()
     {
+        // 星がうすくなる処理 (廃止)
+        /*
         foreach (var meshMaterial in meshMaterials)
         {
             var mesh = meshMaterial.Key;
@@ -34,12 +36,14 @@ public class StarModelController : MonoBehaviour
             var smat = meshMaterial.Value;
 
             var color = smat.color;
-            //color.a *= easeOutCubic(star.hp);
+            color.a *= easeOutCubic(star.hp);
             mat.color = color;
 
             mat.SetColor("_EmissionColor", smat.GetColor("_EmissionColor") * star.hp);
         }
+        */
 
+        // 星の色が変わる処理
         foreach (var meshMaterial in colorMeshMaterials)
         {
             var mesh = meshMaterial.Key;

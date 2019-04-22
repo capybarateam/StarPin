@@ -25,14 +25,14 @@ public class PointController : MonoBehaviour, IAttachable
     }
     public TransferVolume transferVolume = TransferVolume.DontTransferUntilPossible;
 
-    public enum GrabbableCondition
+    public enum Condition
     {
-        AlwaysGrabbable,
-        GrabbableWhenTransfer,
-        GrabbableIfSendOrFull,
-        GrabbableIfRecieveOrEmpty,
+        Always,
+        WhenTransfer,
+        IfSendOrFull,
+        IfRecieveOrEmpty,
     }
-    public GrabbableCondition grabbableCondition = GrabbableCondition.AlwaysGrabbable;
+    public Condition grabbableCondition = Condition.Always;
 
     public int maxPoint = 1;
     public int currentPoint = 0;
@@ -53,6 +53,8 @@ public class PointController : MonoBehaviour, IAttachable
         NonSameColor,
     }
     public ColorCondition colorCondition = ColorCondition.Free;
+
+    public Condition colorTransferCondition = Condition.Always;
 
     public int colorIndex;
 
@@ -126,22 +128,21 @@ public class PointController : MonoBehaviour, IAttachable
             }
         }
 
-            if (grabbableCondition != GrabbableCondition.AlwaysGrabbable)
+        if (grabbableCondition != Condition.Always)
         {
-            bool isSend;
-            bool condition = CheckCondition(out isSend);
+            bool condition = CheckCondition(out bool isSend);
 
             switch (grabbableCondition)
             {
-                case GrabbableCondition.GrabbableWhenTransfer:
+                case Condition.WhenTransfer:
                     if (!condition)
                         cancel = true;
                     break;
-                case GrabbableCondition.GrabbableIfSendOrFull:
+                case Condition.IfSendOrFull:
                     if (!((condition && isSend) || currentPoint >= maxPoint))
                         cancel = true;
                     break;
-                case GrabbableCondition.GrabbableIfRecieveOrEmpty:
+                case Condition.IfRecieveOrEmpty:
                     if (!((condition && !isSend) || currentPoint <= 0))
                         cancel = true;
                     break;
@@ -157,13 +158,8 @@ public class PointController : MonoBehaviour, IAttachable
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
         {
-            if (colorTransferType == ColorTransferType.SendColor)
-                colorIndex = manager.colorIndex;
-            if (colorTransferType == ColorTransferType.RecieveColor)
-                manager.colorIndex = colorIndex;
-
-            bool isSend;
-            if (CheckCondition(out isSend))
+            bool condition = CheckCondition(out bool isSend);
+            if (condition)
             {
                 int transfer = 0;
                 if (isSend)
@@ -200,6 +196,17 @@ public class PointController : MonoBehaviour, IAttachable
                 manager.health += transfer;
                 touched = currentPoint > 0;
                 isSendMode = !isSendMode;
+            }
+
+            if (colorTransferCondition == Condition.Always ||
+                (colorTransferCondition == Condition.WhenTransfer && condition) ||
+                (colorTransferCondition == Condition.IfSendOrFull && ((condition && isSend) || currentPoint >= maxPoint)) ||
+                (colorTransferCondition == Condition.IfRecieveOrEmpty && ((condition && !isSend) || currentPoint <= 0)))
+            {
+                if (colorTransferType == ColorTransferType.SendColor)
+                    colorIndex = manager.colorIndex;
+                if (colorTransferType == ColorTransferType.RecieveColor)
+                    manager.colorIndex = colorIndex;
             }
         }
     }

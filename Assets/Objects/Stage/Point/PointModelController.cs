@@ -12,7 +12,7 @@ public class PointModelController : MonoBehaviour
     PointController point;
 
     bool _lightenabled;
-    int _colorIndex;
+    int _colorIndex = -1;
 
     // Start is called before the first frame update
     void Start()
