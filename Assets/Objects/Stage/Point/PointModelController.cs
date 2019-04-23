@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PointModelController : MonoBehaviour
 {
@@ -70,4 +73,20 @@ public class PointModelController : MonoBehaviour
         render.UpdateGIMaterials();
     }
     */
+
+#if UNITY_EDITOR
+    void OnDrawGizmos()
+    {
+        if (colorPalette == null)
+            return;
+
+        var point = GetComponentInParent<PointController>();
+        if (0 < point.colorIndex && point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
+        {
+            int control = GUIUtility.GetControlID(FocusType.Passive);
+            Handles.color = colorPalette.colors[point.colorIndex];
+            Handles.CircleHandleCap(control, point.transform.position, Quaternion.FromToRotation(Vector3.down, Vector3.up), 0.25f, EventType.Repaint);
+        }
+    }
+#endif
 }

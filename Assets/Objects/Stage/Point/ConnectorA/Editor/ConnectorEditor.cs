@@ -2,7 +2,7 @@
 using UnityEditor;
 
 [CustomEditor(typeof(ConnectorController))]
-public class DrawLineEditor : Editor
+public class ConnectorEditor : Editor
 {
     GameObject selectionPrev;
     GameObject selectionNext;
@@ -65,10 +65,10 @@ public class DrawLineEditor : Editor
             }
         }
 
-        Tools.current = Tool.None;
-
         if (selectionPrev != null && selectionNext != null)
             Handles.DrawLine(selectionPrev.transform.position, selectionNext.transform.position);
+
+        Tools.current = Tool.None;
 
         Selection.activeGameObject = connect.gameObject;
     }

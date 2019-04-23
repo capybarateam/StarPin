@@ -72,7 +72,8 @@ public class PrefabPaletteWindow : EditorWindow
                 {
                     palette = sheet.palette;
                     parentTo = sheet.transform;
-                    selected = sheet?.palette?.prefabs[0];
+                    if (selected != null)
+                        selected = sheet?.palette?.prefabs[0];
                     Repaint();
                 };
             }

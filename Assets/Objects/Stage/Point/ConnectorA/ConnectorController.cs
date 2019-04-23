@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ConnectorController : MonoBehaviour
 {
@@ -51,4 +54,12 @@ public class ConnectorController : MonoBehaviour
             lineRenderer.SetPosition(1, transform.position);
         }
     }
+
+#if UNITY_EDITOR
+    void OnDrawGizmos()
+    {
+        if (connectionA != null && connectionB != null)
+            Handles.DrawLine(connectionA.transform.position, connectionB.transform.position);
+    }
+#endif
 }
