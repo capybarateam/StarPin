@@ -4,22 +4,22 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
-public class PrefabPaletteWindow : EditorWindow
+public class PartsPaletteWindow : EditorWindow
 {
     [MenuItem("ステージ作成/パーツパレット", priority = 10001)]
     static void CreateWindow()
     {
-        var win = GetWindow<PrefabPaletteWindow>("Prefab Palette");
+        var win = GetWindow<PartsPaletteWindow>("Prefab Palette");
         win.titleContent = new GUIContent("パーツパレット");
         win.Show();
     }
 
-    PrefabPalette palette;
-    PrefabPalette prevPalette;
+    PartsPalette palette;
+    PartsPalette prevPalette;
     GameObject selected;
     Vector2 prefabScroll;
 
-    List<PrefabPalette> palettes = new List<PrefabPalette>();
+    List<PartsPalette> palettes = new List<PartsPalette>();
     string[] paletteNames;
 
     Vector2 mousePos;
@@ -28,6 +28,12 @@ public class PrefabPaletteWindow : EditorWindow
     Vector3 placeNor;
 
     bool optionsToggle = true;
+
+    bool dragMode = false;
+    bool scaleMode = false;
+    Vector2 lastMousePos;
+    float currentScale;
+    Vector3 lastScale;
 
     Transform parentTo;
 
@@ -65,7 +71,7 @@ public class PrefabPaletteWindow : EditorWindow
         var selection = Selection.activeGameObject;
         if (selection != null)
         {
-            var sheet = selection.GetComponentInParent<PrefabSheet>();
+            var sheet = selection.GetComponentInParent<PartsSheet>();
             if (sheet != null)
             {
                 EditorApplication.delayCall += () =>
@@ -83,10 +89,10 @@ public class PrefabPaletteWindow : EditorWindow
         }
 
         palettes.Clear();
-        foreach (var guid in AssetDatabase.FindAssets("t:PrefabPalette"))
+        foreach (var guid in AssetDatabase.FindAssets("t:PartsPalette"))
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
-            var pal = AssetDatabase.LoadAssetAtPath<PrefabPalette>(path);
+            var pal = AssetDatabase.LoadAssetAtPath<PartsPalette>(path);
             if (pal != null)
                 palettes.Add(pal);
         }
@@ -131,7 +137,7 @@ public class PrefabPaletteWindow : EditorWindow
             {
                 if (obj.activeInHierarchy)
                 {
-                    var sheet = obj.GetComponent<PrefabSheet>();
+                    var sheet = obj.GetComponent<PartsSheet>();
                     if (sheet != null)
                         if (sheet.palette == palette)
                         {
@@ -296,7 +302,25 @@ public class PrefabPaletteWindow : EditorWindow
                 {
                     Tools.current = Tool.None;
                     ev.Use();
-                    PlaceObj();
+
+                    lastMousePos = mousePos;
+                    currentScale = 1f;
+                    scaleMode = false;
+                    dragMode = true;
+
+                    lastScale = placingObj.transform.localScale;
+                }
+                break;
+            case EventType.MouseDrag:
+                if (ev.button == 0)
+                {
+                    if ((mousePos - lastMousePos).magnitude > .2f)
+                        scaleMode = true;
+                    if (scaleMode)
+                    {
+                        currentScale = Mathf.Pow(2f, -(mousePos - lastMousePos).y / 40f);
+                        placingObj.transform.localScale = lastScale * currentScale;
+                    }
                 }
                 break;
             case EventType.MouseUp:
@@ -304,12 +328,16 @@ public class PrefabPaletteWindow : EditorWindow
                 {
                     Tools.current = Tool.None;
                     ev.Use();
+                    PlaceObj();
+
+                    currentScale = 1f;
+                    dragMode = false;
                 }
                 break;
         }
 
         if (placingObj != null)
-            Handles.RectangleHandleCap(control, placePos, Quaternion.FromToRotation(Vector3.down, placeNor), 0.45f, EventType.Repaint);
+            Handles.RectangleHandleCap(control, placePos, Quaternion.FromToRotation(Vector3.down, placeNor), 0.45f * currentScale, EventType.Repaint);
 
         Handles.BeginGUI();
         GUILayout.BeginArea(new Rect(4f, 4f, 300f, EditorGUIUtility.singleLineHeight * 3f));
@@ -360,7 +388,8 @@ public class PrefabPaletteWindow : EditorWindow
         float enter;
         if (plane.Raycast(ray, out enter))
         {
-            placePos = ray.GetPoint(enter);
+            if (!dragMode)
+                placePos = ray.GetPoint(enter);
             placeNor = Vector3.up;
         }
 
