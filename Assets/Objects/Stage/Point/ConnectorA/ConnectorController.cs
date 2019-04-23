@@ -6,11 +6,8 @@ using System.Linq;
 using UnityEditor;
 #endif
 
-public class ConnectorController : MonoBehaviour
+public class ConnectorController : ConnectorBase
 {
-    public GameObject connectionA;
-    public GameObject connectionB;
-
     public float depth;
 
     // Start is called before the first frame update
@@ -54,12 +51,4 @@ public class ConnectorController : MonoBehaviour
             lineRenderer.SetPosition(1, transform.position);
         }
     }
-
-#if UNITY_EDITOR
-    void OnDrawGizmos()
-    {
-        if (connectionA != null && connectionB != null)
-            Handles.DrawLine(connectionA.transform.position, connectionB.transform.position);
-    }
-#endif
 }

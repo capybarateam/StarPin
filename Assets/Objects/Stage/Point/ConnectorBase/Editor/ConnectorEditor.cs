@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ConnectorController))]
+[CustomEditor(typeof(ConnectorBase), true)]
 public class ConnectorEditor : Editor
 {
     GameObject selectionPrev;
@@ -11,7 +11,7 @@ public class ConnectorEditor : Editor
     {
         var e = Event.current;
 
-        ConnectorController connect = target as ConnectorController;
+        ConnectorBase connect = target as ConnectorBase;
 
         // override default control
         Tools.current = Tool.None;
