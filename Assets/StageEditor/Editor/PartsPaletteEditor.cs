@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.IO;
 
-[CustomEditor(typeof(PartsPalette))]
+[CustomEditor(typeof(PrefabPalette))]
 public class PartsPaletteEditor : Editor
 {
     static string prevFolder = "Assets";
@@ -97,8 +97,8 @@ public class PartsPaletteEditor : Editor
         }
     }
 
-    PartsPalette palette
+    PrefabPalette palette
     {
-        get { return (PartsPalette)target; }
+        get { return (PrefabPalette)target; }
     }
 }

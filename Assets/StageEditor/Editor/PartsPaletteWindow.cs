@@ -14,12 +14,12 @@ public class PartsPaletteWindow : EditorWindow
         win.Show();
     }
 
-    PartsPalette palette;
-    PartsPalette prevPalette;
+    PrefabPalette palette;
+    PrefabPalette prevPalette;
     GameObject selected;
     Vector2 prefabScroll;
 
-    List<PartsPalette> palettes = new List<PartsPalette>();
+    List<PrefabPalette> palettes = new List<PrefabPalette>();
     string[] paletteNames;
 
     Vector2 mousePos;
@@ -90,10 +90,10 @@ public class PartsPaletteWindow : EditorWindow
         }
 
         palettes.Clear();
-        foreach (var guid in AssetDatabase.FindAssets("t:PartsPalette"))
+        foreach (var guid in AssetDatabase.FindAssets("t:" + typeof(PrefabPalette).Name))
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
-            var pal = AssetDatabase.LoadAssetAtPath<PartsPalette>(path);
+            var pal = AssetDatabase.LoadAssetAtPath<PrefabPalette>(path);
             if (pal != null)
                 palettes.Add(pal);
         }

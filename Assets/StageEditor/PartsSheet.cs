@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PartsSheet : MonoBehaviour
 {
-    public PartsPalette palette;
+    public PrefabPalette palette;
 }
