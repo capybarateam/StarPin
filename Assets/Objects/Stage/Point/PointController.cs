@@ -4,58 +4,91 @@ using UnityEngine;
 
 public class PointController : MonoBehaviour, IAttachable
 {
+    [Header("ピン設定")]
+    [LabelOverride("星座の要素である")]
     public bool important = false;
+    [LabelOverride("つかむことができる")]
     public bool grabbable = true;
 
     public enum TransferType
     {
+        [EnumElement("吸収専用")]
         SendOnly,
+        [EnumElement("放出専用")]
         RecieveOnly,
+        [EnumElement("吸収・放出をトグル")]
         ToggleSendRecieve,
+        [EnumElement("ピンが空の場合のみ吸収")]
         SendIfEmpty,
+        [EnumElement("ピンが満杯の場合のみ放出")]
         RecieveIfFull,
     }
+    [Header("エネルギー設定")]
+    [EnumElementUsage(typeof(TransferType), "タイプ")]
     public TransferType transferType = TransferType.SendOnly;
 
     public enum TransferVolume
     {
+        [EnumElement("すべて送れるようになるまで送らない")]
         DontTransferUntilPossible,
+        [EnumElement("できる限り送る")]
         TransferAsMuchAsPossible,
+        [EnumElement("一個ずつ送る")]
         TransferOne,
     }
+    [EnumElementUsage(typeof(TransferVolume), "まとめて送る量")]
     public TransferVolume transferVolume = TransferVolume.DontTransferUntilPossible;
 
     public enum Condition
     {
+        [EnumElement("常時")]
         Always,
+        [EnumElement("送れるときのみ")]
         WhenTransfer,
+        [EnumElement("吸収又はピンが満杯のとき")]
         IfSendOrFull,
+        [EnumElement("放出又はピンが空のとき")]
         IfRecieveOrEmpty,
     }
+    [EnumElementUsage(typeof(Condition), "つかめる条件")]
     public Condition grabbableCondition = Condition.Always;
 
+    [LabelOverride("最大エネルギー保有量")]
     public int maxPoint = 1;
+    [LabelOverride("エネルギー保有量")]
     public int currentPoint = 0;
+    [LabelOverride("次エネルギーを送るか (トグルのときのみ使用)")]
     public bool isSendMode = true;
 
     public enum ColorTransferType
     {
+        [EnumElement("何もしない")]
         None,
+        [EnumElement("色をピンへ")]
         SendColor,
+        [EnumElement("ピンから色を")]
         RecieveColor,
     }
+    [Header("カラー設定")]
+    [EnumElementUsage(typeof(ColorTransferType), "タイプ")]
     public ColorTransferType colorTransferType = ColorTransferType.None;
 
     public enum ColorCondition
     {
+        [EnumElement("フリー")]
         Free,
+        [EnumElement("同じ色のみ")]
         SameColor,
+        [EnumElement("違う色のみ")]
         NonSameColor,
     }
+    [EnumElementUsage(typeof(ColorCondition), "つかめる条件")]
     public ColorCondition colorCondition = ColorCondition.Free;
 
+    [EnumElementUsage(typeof(Condition), "エネルギー関連の条件")]
     public Condition colorTransferCondition = Condition.Always;
 
+    [OptionsListAttribute(new[] { "デフォルトカラー", "カラーA (赤)", "カラーB (緑)", "カラーC (青)" }, "色")]
     public int colorIndex;
 
     public bool touched
