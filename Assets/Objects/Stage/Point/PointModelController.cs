@@ -49,4 +49,25 @@ public class PointModelController : MonoBehaviour
             _colorIndex = point.colorIndex;
         }
     }
+
+    /*
+    [ExecuteInEditMode]
+    private void Awake()
+    {
+        var render = GetComponentInChildren<Renderer>();
+
+        var mat = new Material(render.sharedMaterial);
+        mat = point.touched ? vibrantMaterial : normalMaterial;
+
+        if (point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
+        {
+            mat.color = colorPalette.colors[point.colorIndex];
+            mat.SetColor("_EmissionColor", colorPalette.colors[point.colorIndex] * 4f);
+        }
+
+        render.sharedMaterial = mat;
+
+        render.UpdateGIMaterials();
+    }
+    */
 }
