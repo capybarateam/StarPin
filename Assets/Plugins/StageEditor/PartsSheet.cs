@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrefabSheet : MonoBehaviour
+public class PartsSheet : MonoBehaviour
 {
-    public PrefabPalette palette;
+    public PartsPalette palette;
 }

@@ -5,8 +5,8 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.IO;
 
-[CustomEditor(typeof(PrefabPalette))]
-public class PrefabPaletteEditor : Editor
+[CustomEditor(typeof(PartsPalette))]
+public class PartsPaletteEditor : Editor
 {
     static string prevFolder = "Assets";
 
@@ -69,7 +69,7 @@ public class PrefabPaletteEditor : Editor
 
     void RefreshWindow()
     {
-        var wins = Resources.FindObjectsOfTypeAll<PrefabPaletteWindow>();
+        var wins = Resources.FindObjectsOfTypeAll<PartsPaletteWindow>();
         foreach (var win in wins)
             win.Repaint();
     }
@@ -97,8 +97,8 @@ public class PrefabPaletteEditor : Editor
         }
     }
 
-    PrefabPalette palette
+    PartsPalette palette
     {
-        get { return (PrefabPalette)target; }
+        get { return (PartsPalette)target; }
     }
 }
