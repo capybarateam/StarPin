@@ -2,7 +2,7 @@
 
 Shader "Custom/MaskRender" {
 	Properties {
-		_Color ("Color", Color) = (1,1,1,1)
+		_BaseColor ("Color", Color) = (1,1,1,1)
 		_MaskColor ("Mask color", Color) = (0.0, 0.9, 1.0, 1.0)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 	}
@@ -38,7 +38,7 @@ Shader "Custom/MaskRender" {
 			float depth : SV_Depth;
 		};
 
-		fixed4 _Color;
+		fixed4 _BaseColor;
 		fixed4 _MaskColor;
 
 		v2f vert(appdata i)
