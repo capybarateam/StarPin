@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "Stage",
-  menuName = "ScriptableObject/Stage",
+  menuName = "ステージ作成/ステージマニフェスト",
   order = 100)
 ]
 [Serializable]
