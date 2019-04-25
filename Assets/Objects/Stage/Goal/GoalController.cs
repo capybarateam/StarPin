@@ -80,6 +80,9 @@ public class GoalController : MonoBehaviour
             star.GetComponent<Rigidbody2D>().simulated = false;
             star.currentJoint = gameObject;
             star.GetComponentInChildren<Animator>().SetBool("Enabled", true);
+            var manager = GameDirector.Get(transform)?.pointManager;
+            if (manager != null)
+                manager.health = manager.maxHealth;
             audioSource.Play();
             target = star;
         }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-public class ConnectorController : MonoBehaviour
+public class ConnectorController : ConnectorBase
 {
-    public GameObject connectionA;
-    public GameObject connectionB;
-
     public float depth;
 
     // Start is called before the first frame update
