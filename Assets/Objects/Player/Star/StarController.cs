@@ -13,7 +13,6 @@ public class StarController : MonoBehaviour
     public float speed = 1;
     int vel = 1;
     public bool enablegrip;
-    [HideInInspector]
     public GameObject currentJoint = null;
     float timer;
 
@@ -58,32 +57,42 @@ public class StarController : MonoBehaviour
             grip.Detatch();
     }
 
-    public void SetCurrentJoint(GripController grip, GameObject point)
+    public void SetCurrentJoint(GripController grip, GameObject point, bool force = false)
     {
         if (((enablegrip && timer > 0.3f) || currentJoint == null) && currentJoint != point)
         {
-            bool canceled = false;
+            AttachToJoint(grip, point, force);
+        }
+    }
+
+    public void AttachToJoint(GripController grip, GameObject point, bool force = false)
+    {
+        bool canceled = false;
+        ExecuteEvents.Execute<IAttachable>(
+            target: point,
+            eventData: null,
+            functor: (reciever, eventData) => reciever.CheckAttachable(this, ref canceled)
+        );
+        if (force || !canceled)
+        {
+            GetComponent<AudioSource>().Play();
+            DetachAll();
+            grip.Attach(point);
+            //enablegrip = false;
+            timer = 0;
+            grip.EmitParticle();
+            currentJoint = point;
+
             ExecuteEvents.Execute<IAttachable>(
                 target: point,
                 eventData: null,
-                functor: (reciever, eventData) => reciever.CheckAttachable(this, ref canceled)
+                functor: (reciever, eventData) => reciever.OnAttached(this)
             );
-            if (!canceled)
-            {
-                GetComponent<AudioSource>().Play();
-                DetachAll();
-                grip.Attach(point);
-                //enablegrip = false;
-                timer = 0;
-                grip.EmitParticle();
-                currentJoint = point;
-
-                ExecuteEvents.Execute<IAttachable>(
-                    target: point,
-                    eventData: null,
-                    functor: (reciever, eventData) => reciever.OnAttached(this)
-                );
-            }
         }
+    }
+
+    public void AttachToJoint(GameObject point, bool force = false)
+    {
+        AttachToJoint(grips[0], point, force);
     }
 }
