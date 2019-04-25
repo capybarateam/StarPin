@@ -4,11 +4,11 @@ Shader "Custom/MaskRender" {
 	Properties {
 		_BaseColor ("Color", Color) = (1,1,1,1)
 		_MaskColor ("Mask color", Color) = (0.0, 0.9, 1.0, 1.0)
-		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_BaseColorMap ("Albedo (RGB)", 2D) = "white" {}
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent+12" }
+		Tags { "RenderType"="Transparent" "Queue"="Transparent+12" "RenderPipeline"="HDRenderPipeline" }
 
 		LOD 200
 
@@ -16,7 +16,7 @@ Shader "Custom/MaskRender" {
 		// --------------------------
 		CGINCLUDE
 
-		sampler2D _MainTex;
+		sampler2D _BaseColorMap;
 		sampler2D _MaskGrabTexture;
 
 		struct appdata
