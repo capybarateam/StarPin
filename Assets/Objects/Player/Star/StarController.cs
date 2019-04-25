@@ -18,6 +18,7 @@ public class StarController : MonoBehaviour
     float timer;
 
     public float hp;
+    public int colorIndex;
 
     void Awake()
     {
@@ -47,6 +48,8 @@ public class StarController : MonoBehaviour
             hp = Mathf.Clamp((float)manager.health / manager.maxHealth, 0, 1);
         else
             hp = 1;
+
+        colorIndex = manager.colorIndex;
     }
 
     public void DetachAll()
