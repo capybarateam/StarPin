@@ -9,13 +9,13 @@
 	}
 	SubShader {
 
-		Tags { "RenderType"="Transparent" "Queue"="Transparent+13" }
+		Tags { "RenderType"="Transparent" "Queue"="Transparent+13" "RenderPipeline"="HDRenderPipeline" }
 
 		LOD 200
 
 		CGPROGRAM
 
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf HDRP/Lit fullforwardshadows
 		#pragma target 3.0
 
 		sampler2D _BaseColorMap;
