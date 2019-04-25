@@ -64,10 +64,17 @@ public class SelectorGeneratorEditor : Editor
         var material = new Material(g.sharedMaterial);
         if (stage.thumbnail != null)
         {
+            material.SetTexture("_BaseColorMap", stage.thumbnail);
+            material.SetTexture("_EmissiveColorMap", stage.thumbnail);
             material.SetTexture("_MainTex", stage.thumbnail);
             material.SetTexture("_EmissionMap", stage.thumbnail);
         }
-        g.material = material;
+        g.sharedMaterial = material;
+        g.UpdateGIMaterials();
+        g.sharedMaterial.SetColor("_BaseColor", Color.white);
+        g.sharedMaterial.SetColor("_EmissiveColor", Color.gray);
+        g.sharedMaterial.SetColor("_Color", Color.white);
+        g.sharedMaterial.SetColor("_EmissionColor", Color.gray);
 
         gen.stages.Add(stage);
     }

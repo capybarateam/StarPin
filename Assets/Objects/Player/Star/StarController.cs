@@ -18,6 +18,7 @@ public class StarController : MonoBehaviour
     float timer;
 
     public float hp;
+    public int colorIndex;
 
     void Awake()
     {
@@ -44,9 +45,15 @@ public class StarController : MonoBehaviour
 
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
+        {
             hp = Mathf.Clamp((float)manager.health / manager.maxHealth, 0, 1);
+            colorIndex = manager.colorIndex;
+        }
         else
+        {
             hp = 1;
+            colorIndex = 0;
+        }
     }
 
     public void DetachAll()

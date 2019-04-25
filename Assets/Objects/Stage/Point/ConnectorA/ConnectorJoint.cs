@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectorJoint : MonoBehaviour
+public class ConnectorJoint : MonoBehaviour, IAttachable
 {
     public ConnectorController controller;
 
-    void OnAttached()
+    public void CheckAttachable(StarController star, ref bool cancel)
+    {
+    }
+
+    public void OnAttached(StarController star)
     {
         controller.HandleAttached();
     }
