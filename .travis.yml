@@ -70,27 +70,27 @@ jobs:
           on:
             branch: develop
 
-    - name: Build Android
-      install:
-        # Android
-        - bash ./Travis/install_android.sh
-        # Unity
-        - bash ./Travis/install.sh android
-      script:
-        - travis_wait 60 bash ./Travis/build.sh android
-      after_success:
-        # DeployGate
-        - bash ./Travis/deploygate.sh $DEPLOYGATE_USER $DEPLOYGATE_API_TOKEN
-      deploy:
-        # GitHub
-        - provider: releases
-          api_key: $GITHUB_TOKEN
-          file: 
-            - ./Build/android.apk
-          name: $RELEASE_NAME
-          skip_cleanup: true
-          on:
-            all_branches: true
+    #- name: Build Android
+    #  install:
+    #    # Android
+    #    - bash ./Travis/install_android.sh
+    #    # Unity
+    #    - bash ./Travis/install.sh android
+    #  script:
+    #    - travis_wait 60 bash ./Travis/build.sh android
+    #  after_success:
+    #    # DeployGate
+    #    - bash ./Travis/deploygate.sh $DEPLOYGATE_USER $DEPLOYGATE_API_TOKEN
+    #  deploy:
+    #    # GitHub
+    #    - provider: releases
+    #      api_key: $GITHUB_TOKEN
+    #      file: 
+    #        - ./Build/android.apk
+    #      name: $RELEASE_NAME
+    #      skip_cleanup: true
+    #      on:
+    #        all_branches: true
 
     #- name: Build iOS
     #  script: bash ./Travis/build.sh ios
