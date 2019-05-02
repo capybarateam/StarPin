@@ -4,11 +4,8 @@ using UnityEditor.SceneManagement;
 
 public class CreateStage : ScriptableWizard
 {
-    [Header("<名前>.<s番号>")]
-    public string stageName = "<名前>.<s番号>";
-
-    [Header("ステージ名")]
-    public string stageTitle = "無名のステージ";
+    [Header("名前.s番号")]
+    public string stageName = "名前.s番号";
 
     [MenuItem("ステージ作成/ステージを新規作成")]
     static void CreateWizard()
@@ -27,7 +24,6 @@ public class CreateStage : ScriptableWizard
             AssetDatabase.CopyAsset(@"Assets/StageEditor/Template/Template.asset", stage);
             Stage stageobj = AssetDatabase.LoadAssetAtPath(stage, typeof(ScriptableObject)) as Stage;
             stageobj.sceneName = stageName;
-            stageobj.stageName = stageTitle;
             EditorUtility.SetDirty(stageobj);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
