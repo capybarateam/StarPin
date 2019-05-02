@@ -58,7 +58,21 @@ public class StarController : MonoBehaviour
     public void DetachAll()
     {
         foreach (var grip in grips)
-            grip.Detatch();
+            DetachFromJoint(grip);
+    }
+
+    public void DetachFromJoint(GripController grip)
+    {
+        var hinge = grip.GetComponent<HingeJoint2D>();
+        if (hinge != null)
+        {
+            ExecuteEvents.Execute<IDetachable>(
+                target: hinge.connectedBody.gameObject,
+                eventData: null,
+                functor: (reciever, eventData) => reciever.OnDetached(this)
+            );
+        }
+        grip.Detatch();
     }
 
     public void SetCurrentJoint(GripController grip, GameObject point, bool force = false)
