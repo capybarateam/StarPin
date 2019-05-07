@@ -22,7 +22,7 @@ public class P_SwitchPinController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        starController = GameObject.Find("StarObject").GetComponent<StarController>();
+        starController = GameObject.Find("Player").GetComponentInChildren<StarController>();
     }
 
     // Update is called once per frame
@@ -34,9 +34,12 @@ public class P_SwitchPinController : MonoBehaviour
             {
                 // 透明化をなくす
                 GameObject pin = obj.transform.GetChild(0).gameObject;
-                AnTransparent(pin.GetComponent<Renderer>().materials);
+                foreach (Renderer render in pin.GetComponentsInChildren<Renderer>())
+                {
+                    AnTransparent(render.materials);
+                }
                 // 当たり判定を戻す
-                obj.GetComponent<CircleCollider2D>().enabled = true;
+                obj.GetComponentInChildren<CircleCollider2D>().enabled = true;
             }
         }
         else
@@ -44,13 +47,17 @@ public class P_SwitchPinController : MonoBehaviour
             foreach (GameObject obj in PinList)
             {
                 // 触れていたら何もしない
-                if (obj.GetComponent<PointController>().touched) continue;
+                if (obj.GetComponentInChildren<PointController>().touched) continue;
 
                 // 透明にする
                 GameObject pin = obj.transform.GetChild(0).gameObject;
-                Transparent(pin.GetComponent<Renderer>().materials);
+
+                foreach (Renderer render in pin.GetComponentsInChildren<Renderer>())
+                {
+                    Transparent(render.materials);
+                }
                 // 当たり判定をなくす
-                obj.GetComponent<CircleCollider2D>().enabled = false;
+                obj.GetComponentInChildren<CircleCollider2D>().enabled = false;
             }
         }
 
