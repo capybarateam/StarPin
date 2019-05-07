@@ -75,7 +75,7 @@ public class GoalController : MonoBehaviour
         var star = collision.GetComponentInParent<StarController>();
         if (star)
         {
-            star.enablegrip = false;
+            //star.enablegrip = false;
             star.GetComponent<Rigidbody2D>().simulated = false;
             star.AttachToJoint(gameObject);
             star.DetachAll();
