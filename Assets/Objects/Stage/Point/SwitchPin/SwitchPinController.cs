@@ -13,14 +13,14 @@ public class SwitchPinController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        starController = GameObject.Find("StarObject").GetComponent<StarController>();
+        starController = GameObject.Find("Player").GetComponentInChildren<StarController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // トリガーの更新
-        if (this.GetComponent<PointController>().touched && this.gameObject != starController.currentJoint)
+        if (this.GetComponentInChildren<PointController>().touched && this.gameObject != starController.currentJoint)
         {
             isOffFlag = true;
         }
@@ -29,7 +29,7 @@ public class SwitchPinController : MonoBehaviour
         if (isOffFlag && (this.gameObject == starController.currentJoint))
         {
             isOffFlag = false;
-            this.GetComponent<PointController>().touched = false;
+            this.GetComponentInChildren<PointController>().touched = false;
         }
     }
 }
