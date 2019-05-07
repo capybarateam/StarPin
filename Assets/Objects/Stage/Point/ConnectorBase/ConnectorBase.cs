@@ -10,6 +10,20 @@ public abstract class ConnectorBase : MonoBehaviour
     public GameObject connectionA;
     public GameObject connectionB;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (connectionA && connectionB)
+        {
+            connectionA.AddComponent<ConnectorJoint>().controller = this;
+            connectionB.AddComponent<ConnectorJoint>().controller = this;
+        }
+    }
+
+    public virtual void HandleAttached(StarController star, GameObject from)
+    {
+    }
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
