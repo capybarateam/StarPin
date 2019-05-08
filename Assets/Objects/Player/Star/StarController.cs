@@ -13,6 +13,7 @@ public class StarController : MonoBehaviour
     public float speed = 1;
     int vel = 1;
     //public bool enablegrip;
+    public GameObject prevJoint = null;
     public GameObject currentJoint = null;
     float timer;
 
@@ -106,6 +107,7 @@ public class StarController : MonoBehaviour
             //enablegrip = false;
             timer = 0;
             grip.EmitParticle();
+            prevJoint = currentJoint;
             currentJoint = point;
 
             ExecuteEvents.Execute<IAttachable>(
