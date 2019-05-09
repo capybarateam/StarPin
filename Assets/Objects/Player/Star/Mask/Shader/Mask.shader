@@ -4,7 +4,7 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent+10" "RenderPipeline"="HDRenderPipeline" }
+		Tags { "RenderType"="Transparent" "Queue"="Transparent+10" }
 
 		LOD 200
 

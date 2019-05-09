@@ -12,7 +12,8 @@ public class StarController : MonoBehaviour
     Rigidbody2D rigid;
     public float speed = 1;
     int vel = 1;
-    public bool enablegrip;
+    //public bool enablegrip;
+    public GameObject prevJoint = null;
     public GameObject currentJoint = null;
     float timer;
 
@@ -35,10 +36,9 @@ public class StarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Grip"))
-            enablegrip = true;
-        if (Input.GetButtonUp("Grip"))
-            enablegrip = false;
+        if (Input.GetButtonDown("Grip") || currentJoint == null)
+            AttachToNearestJoint();
+
         rigid.angularVelocity = vel * speed;
         timer += Time.deltaTime;
 
@@ -66,21 +66,29 @@ public class StarController : MonoBehaviour
         var hinge = grip.GetComponent<HingeJoint2D>();
         if (hinge != null)
         {
-            ExecuteEvents.Execute<IDetachable>(
-                target: hinge.connectedBody.gameObject,
-                eventData: null,
-                functor: (reciever, eventData) => reciever.OnDetached(this)
-            );
+            if (hinge.connectedBody != null)
+                ExecuteEvents.Execute<IDetachable>(
+                    target: hinge.connectedBody.gameObject,
+                    eventData: null,
+                    functor: (reciever, eventData) => reciever.OnDetached(this)
+                );
         }
         grip.Detatch();
     }
 
-    public void SetCurrentJoint(GripController grip, GameObject point, bool force = false)
+    public void AttachToNearestJoint(bool force = false)
     {
-        if (((enablegrip && timer > 0.3f) || currentJoint == null) && currentJoint != point)
+        (GameObject, float, GripController)? nearest = null;
+        foreach (var grip in grips)
         {
-            AttachToJoint(grip, point, force);
+            var gripNearest = grip.GetNearestObject();
+            if (gripNearest.HasValue)
+                if (!nearest.HasValue || nearest.Value.Item2 > gripNearest.Value.Item2)
+                    nearest = (gripNearest.Value.Item1, gripNearest.Value.Item2, grip);
         }
+
+        if (nearest.HasValue)
+            AttachToJoint(nearest.Value.Item3, nearest.Value.Item1, force);
     }
 
     public void AttachToJoint(GripController grip, GameObject point, bool force = false)
@@ -99,6 +107,7 @@ public class StarController : MonoBehaviour
             //enablegrip = false;
             timer = 0;
             grip.EmitParticle();
+            prevJoint = currentJoint;
             currentJoint = point;
 
             ExecuteEvents.Execute<IAttachable>(

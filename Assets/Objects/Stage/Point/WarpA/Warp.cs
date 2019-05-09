@@ -9,6 +9,7 @@ public class Warp : ConnectorBase
     public override void HandleAttached(StarController star, GameObject from)
     {
         if (from == connectionA)
-            star.AttachToJoint(connectionB);
+            if (star.prevJoint != connectionA && star.prevJoint != connectionB)
+                star.AttachToJoint(connectionB);
     }
 }
