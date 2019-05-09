@@ -30,6 +30,7 @@ public class OneTouchPinController : MonoBehaviour
         // 触れていてスターが離れた場合
         if (this.gameObject != starController.currentJoint && this.GetComponentInChildren<PointController>().touched)
         {
+            this.GetComponentInChildren<CircleCollider2D>().enabled = false;
             foreach (Rigidbody2D rigid in renderObjectRigidbodys)
             {
                 rigid.gravityScale = 1.0f;

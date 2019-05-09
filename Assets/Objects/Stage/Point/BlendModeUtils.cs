@@ -38,16 +38,15 @@ public class BlendModeUtils : MonoBehaviour
                 material.renderQueue = 2450;
                 break;
             case Mode.Fade:
-
-                //material.SetOverrideTag("__surfacetype", "_SURFACE_TYPE_TRANSPARENT");
-                //material.SetOverrideTag("RenderType", "Transparent");
-                //material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                //material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                //material.SetInt("_ZWrite", 0);
-                //material.DisableKeyword("_ALPHATEST_ON");
-                //material.EnableKeyword("_ALPHABLEND_ON");
-                //material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                //material.renderQueue = 3000;
+                
+                material.SetOverrideTag("RenderType", "Transparent");
+                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                material.SetInt("_ZWrite", 0);
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.EnableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                material.renderQueue = 3000;
                 break;
             case Mode.Transparent:
                 material.SetOverrideTag("RenderType", "Transparent");
