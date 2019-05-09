@@ -38,6 +38,7 @@ public class BlendModeUtils : MonoBehaviour
                 material.renderQueue = 2450;
                 break;
             case Mode.Fade:
+                
                 material.SetOverrideTag("RenderType", "Transparent");
                 material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                 material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);

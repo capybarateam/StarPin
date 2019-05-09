@@ -87,7 +87,7 @@ public class P_SwitchPinController : MonoBehaviour
             BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
             float alpha = material.color.a;
             alpha -= 0.05f;
-            if (alpha < 0.2f) alpha = 0.3f;
+            if (alpha < 0.2f) alpha = 0.2f;
             material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
         }
     }
