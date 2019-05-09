@@ -84,11 +84,14 @@ public class P_SwitchPinController : MonoBehaviour
     {
         foreach (Material material in materials)
         {
-            BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
-            float alpha = material.color.a;
+            //BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
+            float alpha = material.GetColor("BaseColor").a;
+            Debug.Log(alpha);
             alpha -= 0.05f;
             if (alpha < 0.2f) alpha = 0.3f;
-            material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
+            material.SetColor("BaseColor", new Color(material.GetColor("BaseColor").r, material.GetColor("BaseColor").g, material.GetColor("BaseColor").b, alpha));
+            //material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
+            //material.SetColor("BaseColor", Color.red);
         }
     }
 
