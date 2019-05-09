@@ -10,23 +10,7 @@ public class ConnectorController : ConnectorBase
 {
     public float depth;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (connectionA && connectionB)
-        {
-            connectionA.AddComponent<ConnectorJoint>().controller = this;
-            connectionB.AddComponent<ConnectorJoint>().controller = this;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void HandleAttached()
+    public override void HandleAttached(StarController star, GameObject from)
     {
         if (connectionA && connectionB)
             ConnectTo(connectionA, connectionB);
