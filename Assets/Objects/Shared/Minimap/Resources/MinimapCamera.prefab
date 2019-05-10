@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6048410531721820557}
   - component: {fileID: 4336448541263061240}
   m_Layer: 0
-  m_Name: MiniCamera
+  m_Name: MinimapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,13 +50,13 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.85
+    x: 0
     y: 0
-    width: 0.25
-    height: 0.35
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 95
+  field of view: 26.991467
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -64,7 +64,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 4e2161820a4b5794facc05b28dde826d, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
