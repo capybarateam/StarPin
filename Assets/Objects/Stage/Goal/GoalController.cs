@@ -77,7 +77,7 @@ public class GoalController : MonoBehaviour
         {
             //star.enablegrip = false;
             star.GetComponent<Rigidbody2D>().simulated = false;
-            star.AttachToJoint(gameObject);
+            //star.AttachToJoint(gameObject);
             star.DetachAll();
             star.GetComponentInChildren<Animator>().SetBool("Enabled", true);
             var manager = GameDirector.Get(transform)?.pointManager;
