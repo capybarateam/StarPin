@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8364558429550506535}
   - component: {fileID: 3780388005202620140}
   m_Layer: 13
-  m_Name: StarEffect
+  m_Name: GoalStarEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,18 +225,18 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.93311155, g: 0.9622642, b: 0.6543397, a: 1}
-        key1: {r: 0.6494749, g: 0.9390342, b: 0.990566, a: 1}
-        key2: {r: 0.9076676, g: 0.51023495, b: 0.9245283, a: 0}
-        key3: {r: 0.8881709, g: 0.23921567, b: 0.9137255, a: 0}
+        key0: {r: 0.87110615, g: 0.9339623, b: 0.2687344, a: 1}
+        key1: {r: 0.26365912, g: 0.79776466, b: 0.8883172, a: 1}
+        key2: {r: 0.8881709, g: 0.23921567, b: 0.9137255, a: 0}
+        key3: {r: 0, g: 1, b: 1, a: 0}
         key4: {r: 0, g: 0, b: 1, a: 0}
         key5: {r: 1, g: 0, b: 1, a: 0}
         key6: {r: 1, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 31418
+        ctime1: 30262
         ctime2: 65150
-        ctime3: 65150
+        ctime3: 32768
         ctime4: 43646
         ctime5: 54591
         ctime6: 65535
@@ -4712,7 +4712,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fbecf29d08b115248868f86d090d7245, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

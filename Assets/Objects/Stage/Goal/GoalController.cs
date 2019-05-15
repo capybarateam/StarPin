@@ -42,8 +42,9 @@ public class GoalController : MonoBehaviour
 
                     BaseDirector.Get()?.StageClearEffect(true);
 
+                    // エフェクトを出す
                     GetComponentInChildren<ParticleSystem>().Play();
-                    target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
+                    //target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
 
                     this.Delay(durationA, () =>
                     {
@@ -77,7 +78,7 @@ public class GoalController : MonoBehaviour
         {
             //star.enablegrip = false;
             star.GetComponent<Rigidbody2D>().simulated = false;
-            star.AttachToJoint(gameObject);
+            //star.AttachToJoint(gameObject);
             star.DetachAll();
             star.GetComponentInChildren<Animator>().SetBool("Enabled", true);
             var manager = GameDirector.Get(transform)?.pointManager;
