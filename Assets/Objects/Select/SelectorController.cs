@@ -25,7 +25,7 @@ public class SelectorController : MonoBehaviour
         {
             // the object identified by hit.transform was clicked
             // do whatever you want
-            var disp = hit.transform.gameObject.GetComponentInParent<StageDisplay>();
+            var disp = hit.transform.gameObject.GetComponentInParent<StageSelectable>();
             var obj = disp?.gameObject;
             obj?.GetComponent<Selectable>().Select();
 
