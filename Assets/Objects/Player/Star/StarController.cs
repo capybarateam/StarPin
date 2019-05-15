@@ -53,6 +53,8 @@ public class StarController : MonoBehaviour
             hp = 1;
             colorIndex = 0;
         }
+
+        BaseDirector.Get()?.SetHp(hp);
     }
 
     public void DetachAll()

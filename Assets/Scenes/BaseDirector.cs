@@ -12,6 +12,7 @@ public class BaseDirector : MonoBehaviour
     public GameObject stageClear;
     public GameObject stageAchieve;
     public GameObject paper;
+    public GameObject gauge;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +79,11 @@ public class BaseDirector : MonoBehaviour
             lastPaper = Time.time;
             lastMessage = text;
         }
+    }
+
+    public void SetHp(float hp)
+    {
+        gauge.transform.Find("Gauge").GetComponent<Image>().fillAmount = hp;
     }
 
     // Update is called once per frame
