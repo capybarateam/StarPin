@@ -164,7 +164,7 @@ public class PointController : MonoBehaviour, IAttachable
         if (grabbableCondition != Condition.Always)
         {
             bool condition = CheckCondition(out bool isSend);
-
+            Debug.Log(gameObject.name + " : Num1 : " + condition);
             switch (grabbableCondition)
             {
                 case Condition.WhenTransfer:
@@ -192,6 +192,7 @@ public class PointController : MonoBehaviour, IAttachable
         if (manager != null)
         {
             bool condition = CheckCondition(out bool isSend);
+            Debug.Log(gameObject.name + " : Num2 : " + condition);
             if (condition)
             {
                 int transfer = 0;
