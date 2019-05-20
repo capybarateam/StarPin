@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler
+public class WorldSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler
 {
     public Stage stage;
 
