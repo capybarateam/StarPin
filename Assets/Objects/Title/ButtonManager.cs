@@ -18,7 +18,9 @@ public class ButtonManager : MonoBehaviour
     {
         foreach (Transform obj in transform)
         {
-            obj.GetComponent<Animator>()?.SetBool("Enabled", starting);
+            var anim = obj.GetComponent<Animator>();
+            if (anim != null)
+                anim.SetBool("Enabled", starting);
         }
     }
 }
