@@ -42,8 +42,9 @@ public class GoalController : MonoBehaviour
 
                     BaseDirector.Get()?.StageClearEffect(true);
 
+                    // エフェクトを出す
                     GetComponentInChildren<ParticleSystem>().Play();
-                    target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
+                    //target.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(e => e.Play());
 
                     this.Delay(durationA, () =>
                     {
