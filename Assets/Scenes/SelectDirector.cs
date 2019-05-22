@@ -7,6 +7,7 @@ using System.Linq;
 public class SelectDirector : MonoBehaviour, ISelectDirector
 {
     public Stage selected;
+    public GameObject selectedObj;
 
     public GameObject paper;
 
@@ -55,10 +56,18 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
         //CameraController.Get().Targetter.SetTarget(gameObject);
         foreach (var obj in GetComponentsInChildren<Targetter>())
             obj.SetTarget(stage);
+        selectedObj = stage;
+    }
+
+    public bool IsSelected(GameObject stage)
+    {
+        return selectedObj == stage;
     }
 
     void ShowPaper(string text)
     {
+        if (!paper)
+            return;
         var papertext = paper.GetComponentInChildren<TMP_Text>();
         var b = papertext.text != "" && text != papertext.text;
         if (b)
