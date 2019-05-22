@@ -30,6 +30,8 @@ public class SwitchPinController : MonoBehaviour
         {
             isOffFlag = false;
             this.GetComponentInChildren<PointController>().touched = false;
+
+            this.GetComponent<ParticleSystem>().Play();
         }
     }
 }
