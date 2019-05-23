@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 
 public class SelectCurrent : MonoBehaviour
 {
-    [SerializeField]
-    StageSelectable current;
+    public StageSelectable current;
     GameObject lastSelectable;
 
     // Start is called before the first frame update

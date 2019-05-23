@@ -8,7 +8,8 @@ public class StagePointController : MonoBehaviour
     public int defaultClearLevel;
     int? _clearLevel;
 
-    public GameObject backgroundStarCleared;
+    public GameObject[] visibleWhenCleared;
+    public GameObject[] invisibleWhenCleared;
 
     public int clearLevel
     {
@@ -33,7 +34,10 @@ public class StagePointController : MonoBehaviour
         SetLineCleared(selectable, clearLevel);
         foreach (var star in GetComponentsInChildren<LevelStar>())
             star.SetLevel(clearLevel);
-        backgroundStarCleared.SetActive(clearLevel > 0);
+        foreach (var obj in visibleWhenCleared)
+            obj.SetActive(clearLevel > 0);
+        foreach (var obj in invisibleWhenCleared)
+            obj.SetActive(clearLevel <= 0);
     }
 
     void SetLineCleared(StageSelectable selectable, int clearLevel)
@@ -58,8 +62,13 @@ public class StagePointController : MonoBehaviour
     void Start()
     {
         var stageSelectable = GetComponentInChildren<StageSelectable>();
-        if (stageSelectable != null && stageSelectable.stage != null)
-            clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevel);
+        if (stageSelectable != null)
+        {
+            if (stageSelectable.stage != null)
+                clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevel);
+            else if (stageSelectable.GetComponentInParent<StagePointController>()?.defaultClearLevel > 0)
+                SetLineCleared(stageSelectable, 3);
+        }
     }
 
     // Update is called once per frame
