@@ -25,6 +25,7 @@ public class ChargeEffectController : MonoBehaviour
         if (nowPoint != lastPoint && (this.gameObject == starController.currentJoint))
         {
             this.GetComponent<ParticleSystem>().Play();
+            this.GetComponent<AudioSource>().Play();
             this.GetComponent<TargetParticle>().Target = starController.gameObject.transform;
         }
 
