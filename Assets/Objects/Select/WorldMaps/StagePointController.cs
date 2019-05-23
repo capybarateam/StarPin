@@ -5,34 +5,53 @@ using UnityEngine.UI;
 
 public class StagePointController : MonoBehaviour
 {
-    public bool defaultCleared;
-    bool _cleared;
+    public int defaultClearLevel;
+    int? _clearLevel;
 
     public GameObject backgroundStarCleared;
 
-    public bool cleared {
+    public int clearLevel
+    {
         get
         {
-            return _cleared;
+            return _clearLevel.GetValueOrDefault(3);
         }
         set
         {
-            bool changed = _cleared != value;
-            _cleared = value;
+            bool changed = !_clearLevel.HasValue || _clearLevel.Value != value;
+            _clearLevel = value;
             if (changed)
                 SetCleared(value);
         }
     }
 
-    void SetCleared(bool cleared)
+    void SetCleared(int clearLevel)
     {
-        var lines = GetComponentsInChildren<ConnectorBase>();
-        foreach (var line in lines)
-            line.GetComponent<LineRenderer>().enabled = cleared;
-        var selectables = GetComponentsInChildren<Selectable>();
-        foreach (var selectable in selectables)
-            selectable.interactable = cleared;
-        backgroundStarCleared.SetActive(cleared);
+        var selectable = GetComponentInChildren<StageSelectable>();
+        if (clearLevel > 0)
+            selectable.interactable = true;
+        SetLineCleared(selectable, clearLevel);
+        foreach (var star in GetComponentsInChildren<LevelStar>())
+            star.SetLevel(clearLevel);
+        backgroundStarCleared.SetActive(clearLevel > 0);
+    }
+
+    void SetLineCleared(StageSelectable selectable, int clearLevel)
+    {
+        foreach (var line in selectable.GetComponentsInChildren<ConnectorBase>())
+        {
+            line.GetComponent<LineRenderer>().enabled = clearLevel > 0;
+            if (line.connectionB != null && clearLevel > 0)
+            {
+                var linesel = line.connectionB.GetComponentInParent<StageSelectable>();
+                if (linesel != null)
+                {
+                    linesel.interactable = true;
+                    if (linesel.stage == null)
+                        SetLineCleared(linesel, clearLevel);
+                }
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -40,14 +59,14 @@ public class StagePointController : MonoBehaviour
     {
         var stageSelectable = GetComponentInChildren<StageSelectable>();
         if (stageSelectable != null && stageSelectable.stage != null)
-            cleared = StageAchievement.GetCleared(stageSelectable.stage, defaultCleared);
+            clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevel);
         else
-            cleared = true;
+            clearLevel = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

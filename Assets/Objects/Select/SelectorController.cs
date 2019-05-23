@@ -51,19 +51,23 @@ public class SelectorController : MonoBehaviour
             {
                 // the object identified by hit.transform was clicked
                 // do whatever you want
-                var disp = hit.transform.gameObject.GetComponentInParent<StageSelectable>();
-                var obj = disp?.gameObject;
-                var selectable = obj?.GetComponent<Selectable>();
-                var nav = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<Selectable>();
-                if (EventSystem.current.currentSelectedGameObject == null ||
-                    nav != null && (nav.FindSelectableOnLeft() == selectable ||
-                    nav.FindSelectableOnRight() == selectable ||
-                    nav.FindSelectableOnUp() == selectable ||
-                    nav.FindSelectableOnDown() == selectable))
-                    selectable?.Select();
+                var stageSelector = hit.transform.gameObject.GetComponentInParent<StageSelectable>();
+                if (stageSelector != null && stageSelector.interactable)
+                {
+                    var selectable = stageSelector?.GetComponent<Selectable>();
+                    var nav = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<Selectable>();
+                    if (nav == null ||
+                        (nav.FindSelectableOnLeft() == selectable ||
+                        nav.FindSelectableOnRight() == selectable ||
+                        nav.FindSelectableOnUp() == selectable ||
+                        nav.FindSelectableOnDown() == selectable))
+                    {
+                        selectable?.Select();
+                    }
 
-                if (Input.GetButtonDown("Click"))
-                    disp.OnClick();
+                    if (Input.GetButtonDown("Click"))
+                        stageSelector.OnClick();
+                }
             }
         }
     }

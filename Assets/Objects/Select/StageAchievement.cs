@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class StageAchievement
 {
-    public static void SetCleared(Stage stage, bool cleared)
+    public static void SetCleared(Stage stage, int clearLevel)
     {
-        PlayerPrefs.SetInt($"stage.cleared.{stage.stageName}", cleared ? 1 : 0);
+        PlayerPrefs.SetInt($"stage.cleared.{stage.stageName}", clearLevel);
     }
 
-    public static bool GetCleared(Stage stage, bool defaultCleared)
+    public static bool IsCleared(Stage stage, int defaultClearLeve)
     {
-        return PlayerPrefs.GetInt($"stage.cleared.{stage.stageName}", defaultCleared ? 1 : 0) != 0;
+        return GetCleared(stage, defaultClearLeve) != 0;
+    }
+
+    public static int GetCleared(Stage stage, int defaultClearLevel)
+    {
+        return PlayerPrefs.GetInt($"stage.cleared.{stage.stageName}", defaultClearLevel);
     }
 }

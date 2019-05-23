@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IConnectorPoint
 {
     public Stage stage;
+    public bool interactable;
 
     public void OnSelect(BaseEventData eventData)
     {
