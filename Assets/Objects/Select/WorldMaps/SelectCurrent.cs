@@ -6,13 +6,28 @@ using UnityEngine.EventSystems;
 
 public class SelectCurrent : MonoBehaviour
 {
+    [SerializeField]
     StageSelectable current;
     GameObject lastSelectable;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        var laststage = StageAchievement.GetLastStageSceneName();
+        foreach (Transform worldstage in transform)
+        {
+            var stageSelectable = worldstage.GetComponentInChildren<StageSelectable>();
+            var stage = stageSelectable?.stage;
+            if (stage != null)
+            {
+                if (laststage == null || laststage == stage.sceneName)
+                {
+                    current = stageSelectable;
+                    current?.GetComponent<Selectable>()?.Select();
+                    break;
+                }
+            }
+        }
     }
 
     // Update is called once per frame

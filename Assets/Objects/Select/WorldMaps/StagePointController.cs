@@ -60,8 +60,6 @@ public class StagePointController : MonoBehaviour
         var stageSelectable = GetComponentInChildren<StageSelectable>();
         if (stageSelectable != null && stageSelectable.stage != null)
             clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevel);
-        else
-            clearLevel = 0;
     }
 
     // Update is called once per frame

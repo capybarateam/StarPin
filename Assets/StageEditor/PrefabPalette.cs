@@ -15,8 +15,8 @@ public class PrefabPalette : ScriptableObject
         WORLD_MAP,
     }
 
-    [OptionsList("")]
-    public StageType stageType;
+    [EnumElementUsage(typeof(StageType), "ステージの種類")]
+    public StageType stageType = StageType.NORMAL_STAGE;
 
     public GameObject[] prefabs;
 
