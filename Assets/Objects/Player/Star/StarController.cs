@@ -46,6 +46,12 @@ public class StarController : MonoBehaviour
         if (manager != null)
         {
             hp = Mathf.Clamp((float)manager.health / manager.maxHealth, 0, 1);
+
+            if(colorIndex != manager.colorIndex)
+            {
+                GetComponents<AudioSource>()[1].Play();
+            }
+
             colorIndex = manager.colorIndex;
         }
         else
@@ -103,7 +109,7 @@ public class StarController : MonoBehaviour
         );
         if (force || !canceled)
         {
-            GetComponent<AudioSource>().Play();
+            GetComponents<AudioSource>()[0].Play();
             DetachAll();
             grip.Attach(point);
             //enablegrip = false;
