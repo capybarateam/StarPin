@@ -7,9 +7,12 @@ public class WarpSelectable : MonoBehaviour, ISelectHandler
 {
     public void OnSelect(BaseEventData eventData)
     {
-        if (GetComponentInParent<SelectCurrent>()?.current == GetComponent<StageSelectable>())
+        this.Delay(.5f, () =>
         {
-            GetComponent<StageSelectable>()?.OnClick();
-        }
+            if (GetComponentInParent<SelectCurrent>()?.current == GetComponent<StageSelectable>())
+            {
+                GetComponent<StageSelectable>()?.OnClick();
+            }
+        });
     }
 }
