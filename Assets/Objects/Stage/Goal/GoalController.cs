@@ -5,6 +5,8 @@ using System.Linq;
 
 public class GoalController : MonoBehaviour
 {
+    public static GameObject latestGoal;
+
     public GameObject goalTarget;
     public GameObject goalSprite;
 
@@ -21,6 +23,8 @@ public class GoalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        latestGoal = gameObject;
+
         audioSource = GetComponent<AudioSource>();
     }
 
