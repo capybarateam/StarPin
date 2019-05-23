@@ -7,6 +7,17 @@ public class PrefabPalette : ScriptableObject
 {
     public string title;
 
+    public enum StageType
+    {
+        [EnumElement("通常のステージ")]
+        NORMAL_STAGE,
+        [EnumElement("ワールドマップ")]
+        WORLD_MAP,
+    }
+
+    [OptionsList("")]
+    public StageType stageType;
+
     public GameObject[] prefabs;
 
     [HideInInspector]
