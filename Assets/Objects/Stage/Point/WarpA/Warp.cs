@@ -10,6 +10,9 @@ public class Warp : ConnectorBase
     {
         if (from == connectionA)
             if (star.prevJoint != connectionA && star.prevJoint != connectionB)
+            {
                 star.AttachToJoint(connectionB);
+                GetComponent<AudioSource>().Play();
+            }
     }
 }
