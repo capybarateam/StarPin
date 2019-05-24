@@ -6,7 +6,7 @@ public class GameDirector : MonoBehaviour
     public PointManager pointManager;
 
     [SerializeField]
-    private GameObject showTarget;
+    private GameObject showTarget = null;
 
     [SerializeField]
     private float showTime = 0.0f;

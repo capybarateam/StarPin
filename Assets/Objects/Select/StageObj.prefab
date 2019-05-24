@@ -326,6 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5291432883774670557}
+  - component: {fileID: 2678891106501619231}
   - component: {fileID: 4784204663894211769}
   - component: {fileID: 5374847244582367322}
   - component: {fileID: 2870647467601035176}
@@ -354,6 +355,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2678891106501619231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291432883774670556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3e70b2de17bbc4f93263cf7f4f72d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: {fileID: 0}
+  interactable: 1
 --- !u!114 &4784204663894211769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +384,6 @@ MonoBehaviour:
   stageDisplay: {fileID: 2599668123902200005}
   stageTitle: {fileID: 2852852457631566563}
   board: {fileID: 5058491339853588081}
-  stage: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 84b5ad3ed286d2c48a4a8323f308040d, type: 2}
   focusMaterial: {fileID: 2100000, guid: dce4f816ebf788f4f8c1d9145cf9917b, type: 2}
 --- !u!114 &5374847244582367322

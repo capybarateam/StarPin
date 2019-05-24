@@ -9,6 +9,8 @@ public class OneTouchPinController : MonoBehaviour
 
     List<Rigidbody2D> renderObjectRigidbodys = new List<Rigidbody2D>();
 
+    private bool flag = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,12 @@ public class OneTouchPinController : MonoBehaviour
         // 触れていてスターが離れた場合
         if (this.gameObject != starController.currentJoint && this.GetComponentInChildren<PointController>().touched)
         {
+            if (flag)
+            {
+                GetComponent<AudioSource>().Play();
+                flag = false;
+            }
+
             this.GetComponentInChildren<CircleCollider2D>().enabled = false;
             foreach (Rigidbody2D rigid in renderObjectRigidbodys)
             {
