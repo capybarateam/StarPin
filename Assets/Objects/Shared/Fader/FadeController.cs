@@ -7,22 +7,19 @@ using UnityEngine.SceneManagement;
 public class FadeController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 0.01f;
+    private float duration = 1.5f;
     
     private float alfa;
-    private float red;
-    private float green;
-    private float blue;
 
     private string changeSceneName = null;
     private bool changeState = false;
+
+    CanvasGroup alphaimage;
+
     // Start is called before the first frame update
     void Start()
     {
-        Image image = GetComponent<Image>();
-        red = image.color.r;
-        green = image.color.g;
-        blue = image.color.b;
+        alphaimage = GetComponent<CanvasGroup>();
         alfa = 1.0f;
     }
 
@@ -31,19 +28,18 @@ public class FadeController : MonoBehaviour
     {
         if (!changeState && alfa >= 0.0f )
         {
-            alfa -= 1.0f / speed * Time.deltaTime;
-            GetComponent<Image>().color = new Color(red, green, blue, alfa);
+            alfa -= 1.0f / duration * Time.deltaTime;
 
             changeState = alfa <= 0.0f ? true : false;
         }
         else if(changeSceneName != null)
         {
-            alfa += 1.0f / speed * Time.deltaTime;
-            GetComponent<Image>().color = new Color(red, green, blue, alfa);
+            alfa += 1.0f / duration * Time.deltaTime;
 
             if (alfa >= 1.0f)
                 SceneManager.LoadScene(changeSceneName);
         }
+        alphaimage.alpha = alfa;
     }
 
     public void ChangeScene(string nextSceneName)
