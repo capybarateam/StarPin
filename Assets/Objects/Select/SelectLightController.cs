@@ -17,7 +17,7 @@ public class SelectLightController : MonoBehaviour
     void Update()
     {
         var target = CameraController.Get().Targetter.Target;
-        if (target?.transform.parent == limitParent.transform)
+        if (target && target?.transform.parent == limitParent?.transform)
             lightTarget.SetTarget(target);
     }
 }

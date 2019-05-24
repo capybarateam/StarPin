@@ -45,14 +45,16 @@ public class ConnectorEditor : Editor
                 Undo.SetTransformParent(connect.transform, selectionPrev.transform, "Point Connection");
                 Undo.RecordObject(connect.transform, "Point Connection");
                 connect.transform.localPosition = Vector3.zero;
-                var p1 = selectionPrev.GetComponent<PointController>();
-                var p2 = selectionNext.GetComponent<PointController>();
-                Undo.RecordObject(p1, "Point Connection");
-                Undo.RecordObject(p2, "Point Connection");
-                p1.important = true;
-                p2.important = true;
-                EditorUtility.SetDirty(p1);
-                EditorUtility.SetDirty(p2);
+                var p1 = selectionPrev.GetComponent<IConnectorPoint>();
+                var p2 = selectionNext.GetComponent<IConnectorPoint>();
+                Undo.RecordObject((MonoBehaviour)p1, "Point Connection");
+                Undo.RecordObject((MonoBehaviour)p2, "Point Connection");
+                if (p1 is PointController)
+                    ((PointController)p1).important = true;
+                if (p2 is PointController)
+                    ((PointController)p2).important = true;
+                EditorUtility.SetDirty((MonoBehaviour)p1);
+                EditorUtility.SetDirty((MonoBehaviour)p2);
                 Undo.RecordObject(connect, "Point Connection");
                 connect.connectionA = selectionPrev;
                 connect.connectionB = selectionNext;
@@ -76,7 +78,7 @@ public class ConnectorEditor : Editor
     private GameObject GetSelectionAt(Vector2 mousePosition)
     {
         var hit = HandleUtility.PickGameObject(mousePosition, true);
-        var other = hit?.GetComponentInParent<PointController>();
+        var other = hit?.GetComponentInParent<IConnectorPoint>();
         if (other != null)
         {
             return other.gameObject;

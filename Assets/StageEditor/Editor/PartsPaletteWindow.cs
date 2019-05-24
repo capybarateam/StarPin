@@ -19,6 +19,10 @@ public class PartsPaletteWindow : EditorWindow
     GameObject selected;
     Vector2 prefabScroll;
 
+    [SerializeField]
+    [EnumElementUsage(typeof(PrefabPalette.StageType), "ステージの種類")]
+    PrefabPalette.StageType stageType;
+
     List<PrefabPalette> palettes = new List<PrefabPalette>();
     string[] paletteNames;
 
@@ -147,6 +151,7 @@ public class PartsPaletteWindow : EditorWindow
                         }
                 }
             }
+            stageType = palette.stageType;
         }
         prevPalette = palette;
 
@@ -167,6 +172,10 @@ public class PartsPaletteWindow : EditorWindow
             if (par != parentTo)
                 if (par == null || (PrefabUtility.GetCorrespondingObjectFromSource(par) == null && PrefabUtility.GetPrefabInstanceHandle(par) == null))
                     parentTo = par;
+
+            var serializedObject = new SerializedObject(this);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("stageType"));
+            serializedObject.ApplyModifiedProperties();
 
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
@@ -382,16 +391,27 @@ public class PartsPaletteWindow : EditorWindow
             return;
 
         var ray = HandleUtility.GUIPointToWorldRay(mousePos);
+
+        float myZ = (parentTo?.position.z).GetValueOrDefault(0);
+        Vector3 myForward = Vector3.forward;
+        Vector3 myUp = Vector3.up;
+        if (stageType == PrefabPalette.StageType.WORLD_MAP)
+        {
+            myZ = (-parentTo?.position.y).GetValueOrDefault(0);
+            myForward = Vector3.down;
+            myUp = Vector3.forward;
+        }
+
         float z = 0;
         if (parentTo != null)
-            z = parentTo.position.z;
-        var plane = new Plane(Vector3.forward, -z);
+            z = myZ;
+        var plane = new Plane(myForward, -z);
         float enter;
         if (plane.Raycast(ray, out enter))
         {
             if (!dragMode)
                 placePos = ray.GetPoint(enter);
-            placeNor = Vector3.up;
+            placeNor = myUp;
         }
 
         placingObj.transform.localPosition = placePos;
