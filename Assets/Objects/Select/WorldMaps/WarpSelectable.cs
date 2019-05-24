@@ -5,14 +5,18 @@ using UnityEngine.EventSystems;
 
 public class WarpSelectable : MonoBehaviour, ISelectHandler
 {
+    public Stage destinationStage;
+
     public void OnSelect(BaseEventData eventData)
     {
-        this.Delay(.5f, () =>
+        if (GetComponentInParent<SelectCurrent>()?.current == GetComponent<StageSelectable>())
         {
-            if (GetComponentInParent<SelectCurrent>()?.current == GetComponent<StageSelectable>())
+            var stageSelectable = GetComponent<StageSelectable>();
+            this.Delay(.5f, () =>
             {
-                GetComponent<StageSelectable>()?.OnClick();
-            }
-        });
+                StageAchievement.SetLastStage(stageSelectable.stage.sceneName, destinationStage);
+                stageSelectable?.OnClick();
+            });
+        }
     }
 }

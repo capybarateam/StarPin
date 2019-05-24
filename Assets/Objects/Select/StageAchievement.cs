@@ -19,15 +19,15 @@ public class StageAchievement
         return PlayerPrefs.GetInt($"stage.cleared.{stage.sceneName}", defaultClearLevel);
     }
 
-    public static void SetLastStage(Stage lastStage)
+    public static void SetLastStage(string world, Stage lastStage)
     {
-        PlayerPrefs.SetString("stage.laststage", lastStage.sceneName);
+        PlayerPrefs.SetString($"stage.laststage.{world}", lastStage.sceneName);
     }
 
-    public static string GetLastStageSceneName()
+    public static string GetLastStageSceneName(string world)
     {
         if (!PlayerPrefs.HasKey("stage.laststage"))
             return null;
-        return PlayerPrefs.GetString("stage.laststage");
+        return PlayerPrefs.GetString($"stage.laststage.{world}");
     }
 }

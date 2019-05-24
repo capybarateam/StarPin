@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class SelectCurrent : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class SelectCurrent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var laststage = StageAchievement.GetLastStageSceneName();
+        var laststage = StageAchievement.GetLastStageSceneName(SceneManager.GetActiveScene().name);
         foreach (Transform worldstage in transform)
         {
             var stageSelectable = worldstage.GetComponentInChildren<StageSelectable>();
