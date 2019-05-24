@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointController : MonoBehaviour, IAttachable
+public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
 {
     [Header("ピン設定")]
     [LabelOverride("星座の要素である")]
