@@ -40,10 +40,11 @@ public class SelectCurrent : MonoBehaviour
         if (changed)
         {
             var stageSelectable = selectedObject.GetComponentInChildren<StageSelectable>();
-            if (stageSelectable.interactable)
-                current = stageSelectable;
-            else
-                current?.GetComponent<Selectable>()?.Select();
+            if (stageSelectable != null)
+                if (stageSelectable.interactable)
+                    current = stageSelectable;
+                else
+                    current?.GetComponent<Selectable>()?.Select();
         }
     }
 }
