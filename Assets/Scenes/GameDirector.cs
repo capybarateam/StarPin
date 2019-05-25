@@ -9,7 +9,9 @@ public class GameDirector : MonoBehaviour
     private GameObject showTarget = null;
 
     [SerializeField]
-    private float showTime = 0.0f;
+    private float showWorldTime = 1.0f;
+    [SerializeField]
+    private float showGoalTime = 1.0f;
 
     private enum CameraType
     {
@@ -28,7 +30,7 @@ public class GameDirector : MonoBehaviour
         pointManager = GetComponent<PointManager>();
         camType = CameraType.ShowWorld;
 
-        CameraController.Get().Targetter.SetTarget(showTarget);
+        CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
         StartGame();
     }
 
@@ -38,7 +40,7 @@ public class GameDirector : MonoBehaviour
         if(camType.Equals(CameraType.ShowWorld))
         {
             countTime += Time.deltaTime;
-            if (countTime >= showTime)
+            if (countTime >= showWorldTime)
             {
                 CameraController.Get().Targetter.SetTarget(GoalController.latestGoal);
                 camType = CameraType.ShowGoal;
@@ -48,7 +50,7 @@ public class GameDirector : MonoBehaviour
         else if(camType.Equals(CameraType.ShowGoal))
         {
             countTime += Time.deltaTime;
-            if (countTime >= showTime)
+            if (countTime >= showGoalTime)
             {
                 CameraController.Get().Targetter.SetTarget(StarController.latestStar);
                 camType = CameraType.ShowPlay;
