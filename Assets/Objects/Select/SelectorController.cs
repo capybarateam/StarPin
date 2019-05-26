@@ -21,7 +21,17 @@ public class SelectorController : MonoBehaviour
     {
         this.Delay(.1f, () =>
         {
-            if (transform.childCount > 0)
+            var name = StageAchievement.GetLastStageSceneName(SceneSelector.Get().CurrentScene.SceneName);
+            if (name != null)
+            {
+                foreach (Transform t in transform)
+                {
+                    var c = t.GetComponentInChildren<StageSelectable>();
+                    if (c != null && c.stage != null)
+                        c.GetComponent<Selectable>().Select();
+                }
+            }
+            else if (transform.childCount > 0)
                 transform.GetChild(0).GetComponentInChildren<Selectable>().Select();
         });
     }

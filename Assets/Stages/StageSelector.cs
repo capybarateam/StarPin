@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StageSelector : MonoBehaviour
 {
+    public IStage lastWorldMap;
+
     public Stage selectScene;
 
     Stage currentStage;
@@ -28,10 +30,10 @@ public class StageSelector : MonoBehaviour
 
     public void LoadNextStage()
     {
-        if (currentStage && currentStage.nextStage)
-            LoadStage(currentStage.nextStage);
-        else
-            SceneSelector.Get().LoadScene(selectScene);
+        //if (currentStage && currentStage.nextStage)
+        //    LoadStage(currentStage.nextStage);
+        //else
+        SceneSelector.Get().LoadScene(lastWorldMap != null ? lastWorldMap : selectScene);
     }
 
     public static StageSelector Get()

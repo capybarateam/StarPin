@@ -14,6 +14,7 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     // Start is called before the first frame update
     void Start()
     {
+        StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
         SelectEffect(true);
     }
 

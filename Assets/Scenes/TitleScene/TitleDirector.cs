@@ -11,6 +11,8 @@ public class TitleDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
+
         TitleEffect(true);
 
         CameraController.Get().Targetter.SetTarget(StarController.latestStar);
