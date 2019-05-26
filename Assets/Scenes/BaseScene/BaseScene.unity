@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e808afa496432d49ba99ee486973c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectScene: {fileID: 11400000, guid: ecb052076da37184a9e42eb2c3ca0d7c, type: 2}
 --- !u!114 &156563587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1294,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 156563585}
     m_Modifications:
+    - target: {fileID: 599237299101124702, guid: c3dec3db680a32842baba2be5725fa8a,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
     - target: {fileID: 599237299101124698, guid: c3dec3db680a32842baba2be5725fa8a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1347,11 +1353,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 599237299101124702, guid: c3dec3db680a32842baba2be5725fa8a,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 599237299101124699, guid: c3dec3db680a32842baba2be5725fa8a,
         type: 3}

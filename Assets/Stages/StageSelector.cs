@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StageSelector : MonoBehaviour
 {
+    public Stage selectScene;
+
     Stage currentStage;
 
     public Stage Current
@@ -14,28 +16,13 @@ public class StageSelector : MonoBehaviour
             return currentStage;
         }
     }
-    public Stage Next
-    {
-        get
-        {
-            if (!currentStage)
-                return null;
-            return currentStage.nextStage;
-        }
-    }
 
     public bool LoadStage(Stage stage)
     {
         if (currentStage != stage)
         {
-            SceneSelector.Get().LoadScene(stage.sceneName);
+            SceneSelector.Get().LoadScene(stage);
             currentStage = stage;
-
-            BaseDirector.Get()?.StageChangeEffect(true);
-            this.Delay(2, () =>
-            {
-                BaseDirector.Get()?.StageChangeEffect(false);
-            });
 
             return true;
         }
@@ -47,7 +34,7 @@ public class StageSelector : MonoBehaviour
         if (currentStage && currentStage.nextStage)
             LoadStage(currentStage.nextStage);
         else
-            SceneSelector.Get().LoadScene("SelectScene");
+            SceneSelector.Get().LoadScene(selectScene);
     }
 
     public static StageSelector Get()

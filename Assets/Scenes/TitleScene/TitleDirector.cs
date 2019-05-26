@@ -6,6 +6,7 @@ using UnityEngine;
 public class TitleDirector : MonoBehaviour
 {
     public Stage firstStage;
+    public Stage selectScene;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class TitleDirector : MonoBehaviour
 
     public void SelectStage()
     {
-        if (SceneSelector.Get().LoadScene("SelectScene"))
+        if (SceneSelector.Get().LoadScene(selectScene))
             TitleEffect(false);
     }
 

@@ -36,7 +36,7 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
 
     public void BackToTitle()
     {
-        if (SceneSelector.Get().LoadScene("TitleScene"))
+        if (SceneSelector.Get().LoadScene(new SceneStage("TitleScene")))
             SelectEffect(false);
     }
 

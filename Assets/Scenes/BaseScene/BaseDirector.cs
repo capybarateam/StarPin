@@ -17,7 +17,7 @@ public class BaseDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneSelector.Get().LoadScene("TitleScene");
+        SceneSelector.Get().LoadScene(new SceneStage("TitleScene"));
     }
 
     public void StageChangeEffect(bool starting)
