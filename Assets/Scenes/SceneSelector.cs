@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -28,19 +29,7 @@ public class SceneSelector : MonoBehaviour
         currentScene.Push(new SceneStage(SceneManager.GetActiveScene().name));
     }
 
-    class LoadSceneTask
-    {
-        public readonly IStage scene;
-        public readonly SceneChangeType changeType;
-
-        public LoadSceneTask(IStage scene, SceneChangeType changeType)
-        {
-            this.scene = scene;
-            this.changeType = changeType;
-        }
-    }
-
-    Queue<LoadSceneTask> loadSceneTasks = new Queue<LoadSceneTask>();
+    readonly Queue<Func<bool>> queue = new Queue<Func<bool>>();
 
     bool locked;
 
@@ -50,44 +39,42 @@ public class SceneSelector : MonoBehaviour
 
     void Update()
     {
-        if (!locked && loadSceneTasks.Count > 0)
+        if (!locked && queue.Count > 0)
         {
-            var task = loadSceneTasks.Peek();
-            if (task != null && LoadSceneImpl(task.scene, task.changeType))
-                loadSceneTasks.Dequeue();
+            var task = queue.Peek();
+            if (task != null && task())
+                queue.Dequeue();
         }
     }
 
     public void LoadScene(IStage scene, SceneChangeType changeType = SceneChangeType.CHANGE_MOVE)
     {
-        loadSceneTasks.Enqueue(new LoadSceneTask(scene, changeType));
-    }
-
-    bool LoadSceneImpl(IStage scene, SceneChangeType changeType)
-    {
-        switch (changeType)
+        queue.Enqueue(() =>
         {
-            case SceneChangeType.CHANGE_MOVE:
-                {
-                    if (currentScene.Peek() != scene && !locked)
+            switch (changeType)
+            {
+                case SceneChangeType.CHANGE_MOVE:
                     {
-                        MoveUpdate(scene);
-                        return true;
+                        if (currentScene.Peek() != scene && !locked)
+                        {
+                            MoveUpdate(scene);
+                            return true;
+                        }
                     }
-                }
-                break;
+                    break;
 
-            case SceneChangeType.CHANGE_FADE:
-                {
-                    if (currentScene.Peek() != scene && !locked)
+                case SceneChangeType.CHANGE_FADE:
                     {
-                        StartCoroutine(FadeUpdate(scene));
-                        return true;
+                        if (currentScene.Peek() != scene && !locked)
+                        {
+                            StartCoroutine(FadeUpdate(scene));
+                            return true;
+                        }
                     }
-                }
-                break;
-        }
-        return false;
+                    break;
+            }
+            return false;
+        });
     }
 
     void MoveUpdate(IStage scene)
@@ -135,14 +122,22 @@ public class SceneSelector : MonoBehaviour
 
     public void PushScene()
     {
-        currentScene.Push(null);
+        queue.Enqueue(() =>
+        {
+            currentScene.Push(null);
+            return true;
+        });
     }
 
     public void PopScene()
     {
-        var del = currentScene.Pop();
-        if (del != null)
-            SceneManager.UnloadSceneAsync(del.SceneName);
+        queue.Enqueue(() =>
+        {
+            var del = currentScene.Pop();
+            if (del != null)
+                SceneManager.UnloadSceneAsync(del.SceneName);
+            return true;
+        });
     }
 
     public static SceneSelector Get()

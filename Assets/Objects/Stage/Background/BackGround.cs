@@ -43,7 +43,7 @@ public class BackGround : MonoBehaviour
         var position = new Vector3((int)(campos.x / cellSize.x) * cellSize.x, (int)(campos.y / cellSize.y) * cellSize.y, bg.transform.position.z);
 
         // 背景の移動
-        addPos += new Vector2(speed.x, speed.y);
+        addPos += new Vector2(speed.x, speed.y) * 60 * Time.deltaTime;
 
         // 位置を決める
         bg.transform.position = position + new Vector3(addPos.x % cellSize.x, addPos.y % cellSize.y);
