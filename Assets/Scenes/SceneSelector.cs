@@ -15,6 +15,14 @@ public class SceneSelector : MonoBehaviour
     public float duration = 3;
 
     string currentScene;
+    public string CurrentScene
+    {
+        get
+        {
+            return currentScene;
+        }
+    }
+
     bool locked;
 
     public CanvasGroup fadeimage;
@@ -85,6 +93,6 @@ public class SceneSelector : MonoBehaviour
 
     public static SceneSelector Get()
     {
-        return BaseDirector.Get().GetComponent<SceneSelector>();
+        return BaseDirector.Get()?.GetComponent<SceneSelector>();
     }
 }
