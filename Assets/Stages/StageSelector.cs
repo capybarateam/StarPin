@@ -17,16 +17,13 @@ public class StageSelector : MonoBehaviour
         }
     }
 
-    public bool LoadStage(Stage stage)
+    public void LoadStage(Stage stage)
     {
         if (currentStage != stage)
         {
             SceneSelector.Get().LoadScene(stage);
             currentStage = stage;
-
-            return true;
         }
-        return false;
     }
 
     public void LoadNextStage()

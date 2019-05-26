@@ -23,14 +23,14 @@ public class TitleDirector : MonoBehaviour
 
     public void StartGame()
     {
-        if (StageSelector.Get().LoadStage(firstStage))
-            TitleEffect(false);
+        StageSelector.Get().LoadStage(firstStage);
+        TitleEffect(false);
     }
 
     public void SelectStage()
     {
-        if (SceneSelector.Get().LoadScene(selectScene))
-            TitleEffect(false);
+        SceneSelector.Get().LoadScene(selectScene);
+        TitleEffect(false);
     }
 
     public void TitleEffect(bool starting)

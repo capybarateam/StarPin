@@ -26,8 +26,21 @@ public class SceneSelector : MonoBehaviour
     void Awake()
     {
         currentScene.Push(new SceneStage(SceneManager.GetActiveScene().name));
-        PushScene();
     }
+
+    class LoadSceneTask
+    {
+        public readonly IStage scene;
+        public readonly SceneChangeType changeType;
+
+        public LoadSceneTask(IStage scene, SceneChangeType changeType)
+        {
+            this.scene = scene;
+            this.changeType = changeType;
+        }
+    }
+
+    Queue<LoadSceneTask> loadSceneTasks = new Queue<LoadSceneTask>();
 
     bool locked;
 
@@ -35,7 +48,22 @@ public class SceneSelector : MonoBehaviour
 
     IEnumerator enumerator;
 
-    public bool LoadScene(IStage scene, SceneChangeType changeType = SceneChangeType.CHANGE_MOVE)
+    void Update()
+    {
+        if (!locked && loadSceneTasks.Count > 0)
+        {
+            var task = loadSceneTasks.Peek();
+            if (task != null && LoadSceneImpl(task.scene, task.changeType))
+                loadSceneTasks.Dequeue();
+        }
+    }
+
+    public void LoadScene(IStage scene, SceneChangeType changeType = SceneChangeType.CHANGE_MOVE)
+    {
+        loadSceneTasks.Enqueue(new LoadSceneTask(scene, changeType));
+    }
+
+    bool LoadSceneImpl(IStage scene, SceneChangeType changeType)
     {
         switch (changeType)
         {
@@ -69,10 +97,10 @@ public class SceneSelector : MonoBehaviour
         if (cscene != null)
         {
             locked = true;
-            BaseDirector.Get()?.StageChangeEffect(true);
+            StageDirector.Get()?.StageChangeEffect(true);
             this.Delay(2, () =>
             {
-                BaseDirector.Get()?.StageChangeEffect(false);
+                StageDirector.Get()?.StageChangeEffect(false);
             });
             this.Delay(duration, sceneName =>
             {

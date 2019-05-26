@@ -30,14 +30,14 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
 
     public void StartGame(Stage stage)
     {
-        if (StageSelector.Get().LoadStage(stage))
-            SelectEffect(false);
+        StageSelector.Get().LoadStage(stage);
+        SelectEffect(false);
     }
 
     public void BackToTitle()
     {
-        if (SceneSelector.Get().LoadScene(new SceneStage("TitleScene")))
-            SelectEffect(false);
+        SceneSelector.Get().LoadScene(new SceneStage("TitleScene"));
+        SelectEffect(false);
     }
 
     void SelectEffect(bool starting)
@@ -54,7 +54,7 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     public void SetSelected(GameObject stage)
     {
         CameraController.Get()?.Targetter?.SetTarget(stage);
-        foreach (var obj in GetComponentsInChildren<Targetter>())
+        foreach (var obj in Object.FindObjectsOfType<Targetter>())
             obj.SetTarget(stage);
         selectedObj = stage;
     }

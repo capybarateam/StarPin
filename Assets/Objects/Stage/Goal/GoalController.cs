@@ -44,7 +44,7 @@ public class GoalController : MonoBehaviour
                 {
                     emitted = true;
 
-                    BaseDirector.Get()?.StageClearEffect(true);
+                    StageDirector.Get()?.StageClearEffect(true);
 
                     // エフェクトを出す
                     GetComponentInChildren<ParticleSystem>().Play();
@@ -58,14 +58,14 @@ public class GoalController : MonoBehaviour
                         if (achieved)
                             this.Delay(durationB, () =>
                             {
-                                BaseDirector.Get()?.StageAchieveEffect(true);
+                                StageDirector.Get()?.StageAchieveEffect(true);
                                 if (goalSprite)
                                     goalSprite.GetComponent<Animator>().SetBool("Enabled", true);
                             });
                         this.Delay(durationC + (achieved ? durationB : 0), () =>
                         {
-                            BaseDirector.Get()?.StageClearEffect(false);
-                            BaseDirector.Get()?.StageAchieveEffect(false);
+                            StageDirector.Get()?.StageClearEffect(false);
+                            StageDirector.Get()?.StageAchieveEffect(false);
                             GameDirector.Get(transform).EndGame();
                         });
                     });

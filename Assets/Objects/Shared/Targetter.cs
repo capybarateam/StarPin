@@ -37,7 +37,6 @@ public class Targetter : MonoBehaviour
         }
     }
 
-    [SerializeField]
     StarController target;
     public GameObject Target { get; private set; }
 
