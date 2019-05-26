@@ -57,10 +57,11 @@ public class SelectorGeneratorEditor : Editor
         obj.name = $"Stage {stage.stageName} ({count + 1})";
         obj.transform.position = pos;
 
-        var ctrl = obj.GetComponent<StageDisplay>();
+        var ctrl = obj.GetComponent<StageSelectable>();
         ctrl.stage = stage;
-        ctrl.stageTitle.GetComponent<TMP_Text>().text = stage.stageName;
-        var g = ctrl.stageDisplay.GetComponent<Renderer>();
+        var disp = obj.GetComponent<StageDisplay>();
+        disp.stageTitle.GetComponent<TMP_Text>().text = stage.stageName;
+        var g = disp.stageDisplay.GetComponent<Renderer>();
         var material = new Material(g.sharedMaterial);
         if (stage.thumbnail != null)
         {

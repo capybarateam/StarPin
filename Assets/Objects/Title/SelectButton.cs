@@ -7,7 +7,9 @@ public class SelectButton : MonoBehaviour
 {
     public void OnStartGame()
     {
-        SelectDirector.Get().StartGame();
+        var selected = SelectDirector.Get().GetSelected();
+        if (selected)
+            SelectDirector.Get().StartGame(selected);
     }
 
     public void OnBackToTitle()
