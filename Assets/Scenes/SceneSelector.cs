@@ -14,13 +14,19 @@ public class SceneSelector : MonoBehaviour
 
     public float duration = 3;
 
-    string currentScene;
+    public Stack<string> currentScene = new Stack<string>();
     public string CurrentScene
     {
         get
         {
-            return currentScene;
+            return currentScene.Peek();
         }
+    }
+
+    void Awake()
+    {
+        currentScene.Push(SceneManager.GetActiveScene().name);
+        PushScene();
     }
 
     bool locked;
@@ -35,7 +41,7 @@ public class SceneSelector : MonoBehaviour
         {
             case SceneChangeType.CHANGE_MOVE:
                 {
-                    if (currentScene != scene && !locked)
+                    if (currentScene.Peek() != scene && !locked)
                     {
                         MoveUpdate(scene);
                         return true;
@@ -45,7 +51,7 @@ public class SceneSelector : MonoBehaviour
 
             case SceneChangeType.CHANGE_FADE:
                 {
-                    if (currentScene != scene && !locked)
+                    if (currentScene.Peek() != scene && !locked)
                     {
                         StartCoroutine(FadeUpdate(scene));
                         return true;
@@ -59,15 +65,22 @@ public class SceneSelector : MonoBehaviour
     void MoveUpdate(string scene)
     {
         SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
-        if (currentScene != null)
+        var cscene = currentScene.Peek();
+        if (cscene != null)
         {
             locked = true;
+            BaseDirector.Get()?.StageChangeEffect(true);
+            this.Delay(2, () =>
+            {
+                BaseDirector.Get()?.StageChangeEffect(false);
+            });
             this.Delay(duration, sceneName =>
             {
-                SceneManager.UnloadSceneAsync(sceneName).completed += e => locked = false;
+                SceneManager.UnloadSceneAsync(cscene).completed += e => locked = false;
             }, currentScene);
         }
-        currentScene = scene;
+        currentScene.Pop();
+        currentScene.Push(scene);
     }
 
     IEnumerator FadeUpdate(string scene)
@@ -79,9 +92,10 @@ public class SceneSelector : MonoBehaviour
             fadeimage.alpha = alfa;
             yield return null;
         }
-        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.UnloadSceneAsync(currentScene.Peek());
         SceneManager.LoadScene(scene, LoadSceneMode.Additive);
-        currentScene = scene;
+        currentScene.Pop();
+        currentScene.Push(scene);
         for (float alfa = 1f; alfa >= 0f; alfa -= Time.deltaTime / (duration / 2))
         {
             fadeimage.alpha = alfa;
@@ -89,6 +103,18 @@ public class SceneSelector : MonoBehaviour
         }
         fadeimage.gameObject.SetActive(false);
         locked = false;
+    }
+
+    public void PushScene()
+    {
+        currentScene.Push(null);
+    }
+
+    public void PopScene()
+    {
+        var del = currentScene.Pop();
+        if (del != null)
+            SceneManager.UnloadSceneAsync(del);
     }
 
     public static SceneSelector Get()
