@@ -14,7 +14,8 @@ public class WarpSelectable : MonoBehaviour, ISelectHandler
             var stageSelectable = GetComponent<StageSelectable>();
             this.Delay(.5f, () =>
             {
-                StageAchievement.SetLastStage(stageSelectable.stage.sceneName, destinationStage);
+                if (stageSelectable != null && stageSelectable.stage != null)
+                    StageAchievement.SetLastStage(stageSelectable.stage.sceneName, destinationStage);
                 stageSelectable?.OnClick();
             });
         }

@@ -23,6 +23,7 @@ public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IC
 
     public void OnClick()
     {
-        SelectDirector.Get(transform).StartGame(stage);
+        if (stage != null)
+            SelectDirector.Get(transform).StartGame(stage);
     }
 }

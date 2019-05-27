@@ -49,6 +49,8 @@ public class SceneSelector : MonoBehaviour
 
     public void LoadScene(IStage scene, SceneChangeType changeType = SceneChangeType.CHANGE_MOVE)
     {
+        if (scene == null)
+            throw new Exception("Scene is Null");
         queue.Enqueue(() =>
         {
             switch (changeType)

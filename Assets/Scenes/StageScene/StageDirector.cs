@@ -10,6 +10,7 @@ public class StageDirector : MonoBehaviour
     public GameObject letterBox;
     public GameObject stageTitle;
     public GameObject stageClear;
+    public GameObject stageResult;
     public GameObject stageAchieve;
     public GameObject paper;
     public GameObject gauge;
@@ -36,10 +37,15 @@ public class StageDirector : MonoBehaviour
         }
     }
 
-    public void StageClearEffect(bool starting)
+    public void StageClearEffect(bool starting, int level)
     {
         if (stageClear)
             stageClear.GetComponent<Animator>().SetBool("Enabled", starting);
+        if (stageResult)
+        {
+            stageResult.GetComponent<LevelStar>().SetLevel(level);
+            stageResult.GetComponent<Animator>().SetBool("Enabled", starting);
+        }
     }
 
     public void StageAchieveEffect(bool starting)
