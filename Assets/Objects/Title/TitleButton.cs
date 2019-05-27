@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class TitleButton : MonoBehaviour
 {
-    public void OnStartGame()
+    public void OnStartStage()
     {
         TitleDirector.Get().StartGame();
     }
+    
 
     public void OnSelectStage()
     {
         TitleDirector.Get().SelectStage();
+        Debug.Log("切り替わる");
     }
 }

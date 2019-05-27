@@ -33,4 +33,6 @@ public class CameraController : MonoBehaviour
             cam = GameObject.Find("Camera");
         return cam.GetComponent<CameraController>();
     }
+
+
 }

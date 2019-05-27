@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class SelectButton : MonoBehaviour
 {
+
     public void OnStartGame()
     {
         SelectDirector.Get().StartGame();
