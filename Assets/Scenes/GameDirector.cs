@@ -6,12 +6,9 @@ public class GameDirector : MonoBehaviour
     public PointManager pointManager;
 
     [SerializeField]
-    private GameObject showTarget = null;
-
+    private float showWorldTime = 2.0f;
     [SerializeField]
-    private float showWorldTime = 1.0f;
-    [SerializeField]
-    private float showGoalTime = 1.0f;
+    private float showGoalTime = 2.0f;
 
     private enum CameraType
     {
@@ -30,7 +27,10 @@ public class GameDirector : MonoBehaviour
         pointManager = GetComponent<PointManager>();
         camType = CameraType.ShowWorld;
 
-        CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
+        this.Delay(.1f, () =>
+        {
+            CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
+        });
         StartGame();
     }
 

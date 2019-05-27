@@ -12,7 +12,7 @@ public class SignObserver : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        director = SelectDirector.Get();
+        director = SelectDirector.Get(transform);
     }
 
     // Update is called once per frame

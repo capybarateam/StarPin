@@ -91,6 +91,8 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
     [OptionsListAttribute(new[] { "デフォルトカラー", "カラーA (赤)", "カラーB (緑)", "カラーC (青)" }, "色")]
     public int colorIndex;
 
+    public bool rawTouched;
+
     public bool touched
     {
         get
@@ -228,6 +230,7 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
                 currentPoint -= transfer;
                 manager.health += transfer;
                 touched = currentPoint > 0;
+                rawTouched = true;
                 isSendMode = !isSendMode;
             }
 

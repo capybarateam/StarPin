@@ -44,7 +44,18 @@ public class GoalController : MonoBehaviour
                 {
                     emitted = true;
 
-                    BaseDirector.Get()?.StageClearEffect(true);
+                    var pointManager = GameDirector.Get(transform)?.pointManager;
+                    int level = 1;
+                    if (pointManager?.IsGotAllImportantPoints() ?? false)
+                    {
+                        level++;
+                        if (pointManager?.IsGotAllPoints() ?? false)
+                            level++;
+                    }
+                    if (SceneSelector.Get() != null)
+                        StageAchievement.SetCleared(SceneSelector.Get().CurrentScene, level);
+
+                    StageDirector.Get()?.StageClearEffect(true, level);
 
                     // エフェクトを出す
                     GetComponentInChildren<ParticleSystem>().Play();
@@ -54,18 +65,18 @@ public class GoalController : MonoBehaviour
                     {
                         CameraController.Get().Targetter.SetTarget(goalTarget);
 
-                        var achieved = GameDirector.Get(transform)?.pointManager.IsGotAllImportantPoints() ?? false;
+                        var achieved = pointManager?.IsGotAllImportantPoints() ?? false;
                         if (achieved)
                             this.Delay(durationB, () =>
                             {
-                                BaseDirector.Get()?.StageAchieveEffect(true);
+                                StageDirector.Get()?.StageAchieveEffect(true);
                                 if (goalSprite)
                                     goalSprite.GetComponent<Animator>().SetBool("Enabled", true);
                             });
                         this.Delay(durationC + (achieved ? durationB : 0), () =>
                         {
-                            BaseDirector.Get()?.StageClearEffect(false);
-                            BaseDirector.Get()?.StageAchieveEffect(false);
+                            StageDirector.Get()?.StageClearEffect(false, level);
+                            StageDirector.Get()?.StageAchieveEffect(false);
                             GameDirector.Get(transform).EndGame();
                         });
                     });
