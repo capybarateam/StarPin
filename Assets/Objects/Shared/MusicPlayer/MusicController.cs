@@ -6,23 +6,52 @@ using FMODUnity;
 [RequireComponent(typeof(StudioEventEmitter))]
 public class MusicController : MonoBehaviour
 {
-    StudioEventEmitter eventEmitter;
-    private void Awake()
+    public StudioEventEmitter TitleBGM;
+    public StudioEventEmitter PG1;
+    public StudioEventEmitter PG2;
+    public StudioEventEmitter PG3;
+    public StudioEventEmitter PG4;
+
+    StudioEventEmitter current;
+
+    void Start()
     {
-        eventEmitter = GetComponent<StudioEventEmitter>();
+        current = TitleBGM;
     }
 
-    public void ApplyParamater()
+    public void ChangeSound(StudioEventEmitter emit)
     {
-        var instance = eventEmitter.EventInstance;
-        foreach (var p in eventEmitter.Params)
+        if (current != emit)
         {
-            //instance.setParameterValue(p.Name, p.Value);
+            if (current != null)
+                current.Stop();
+            current = emit;
+            current.Play();
         }
     }
 
-    public void ChangeParameter(string paramName, float value)
+    public void ApplyParamater(string paramName, float value)
     {
-        //eventEmitter.SetParameter(paramName, value);
+        if (current != null)
+        {
+            var instance = current.EventInstance;
+            instance.getParameterByName(paramName, out float before);
+            StartCoroutine(SmoothParamater(paramName, value, before));
+        }
+    }
+
+    IEnumerator SmoothParamater(string paramName, float value, float before)
+    {
+        for (float i = 0f; i < 1f; i += .02f)
+        {
+            var instance = current.EventInstance;
+            instance.setParameterByName(paramName, Mathf.Lerp(before, value, i));
+            yield return null;
+        }
+    }
+
+    public static MusicController Get()
+    {
+        return GameObject.Find("MusicPlayer")?.GetComponent<MusicController>();
     }
 }
