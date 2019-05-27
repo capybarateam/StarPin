@@ -169,7 +169,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: dd3e8c56f1937984e9b7e738c0565552, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -0.68
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -431,16 +431,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 761593582950223878}
     m_Modifications:
-    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
-        type: 3}
-      propertyPath: m_Name
-      value: Point Light
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4521435289637527812, guid: 3ca23baaba36b594b9c23c323c61cf82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -496,6 +486,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
+        type: 3}
+      propertyPath: m_Name
+      value: Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521435289637527811, guid: 3ca23baaba36b594b9c23c323c61cf82,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca23baaba36b594b9c23c323c61cf82, type: 3}
 --- !u!4 &179860111565270139 stripped
@@ -511,14 +511,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 761593582950223878}
     m_Modifications:
-    - target: {fileID: 100000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
-      propertyPath: m_Name
-      value: star3
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -574,6 +566,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.558318
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
+      propertyPath: m_Name
+      value: star3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 66a33f25f6d63f04e8a0fdb304fc2558, type: 3}
       propertyPath: m_Materials.Array.data[0]
