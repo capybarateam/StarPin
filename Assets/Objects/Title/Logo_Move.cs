@@ -43,14 +43,15 @@ public class Logo_Move : MonoBehaviour
         if (!m_keyflag)
         {
             //右押したら左に動く
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(1))
             {
                 m_flag = true;
             }
             if (m_flag)
-            {
+            { 
                 m_position.x -= 10;
                 m_storyPosition.x -= 10;
+                
             }
 
             if(m_storyPosition.x<=17)
@@ -71,7 +72,7 @@ public class Logo_Move : MonoBehaviour
         if(m_keyflag)
         {
             //左キー押したら右に動く
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(1))
             {
                 m_flag2 = true;
 

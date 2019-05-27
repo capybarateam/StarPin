@@ -13,6 +13,5 @@ public class TitleButton : MonoBehaviour
     public void OnSelectStage()
     {
         TitleDirector.Get().SelectStage();
-        Debug.Log("切り替わる");
     }
 }
