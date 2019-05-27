@@ -14,6 +14,25 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneSelector.Get()?.CurrentScene?.SceneName?.Contains("World") ?? false)
+        {
+            var music = MusicController.Get();
+            if (music != null)
+            {
+                music.ChangeSound(music.TitleBGM);
+                music.ApplyParamater("Scene", 2f / 2);
+            }
+        }
+        else
+        {
+            var music = MusicController.Get();
+            if (music != null)
+            {
+                music.ChangeSound(music.TitleBGM);
+                music.ApplyParamater("Scene", 1f / 2);
+            }
+        }
+
         if (StageSelector.Get() != null && SceneSelector.Get() != null)
             StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
         SelectEffect(true);
