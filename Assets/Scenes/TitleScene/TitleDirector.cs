@@ -12,6 +12,12 @@ public class TitleDirector : MonoBehaviour
     void Start()
     {
         StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
+        var music = MusicController.Get();
+        if (music != null)
+        {
+            music.ChangeSound(music.TitleBGM);
+            music.ApplyParamater("Scene", 0f / 2);
+        }
 
         TitleEffect(true);
 
