@@ -14,7 +14,8 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     // Start is called before the first frame update
     void Start()
     {
-        StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
+        if (StageSelector.Get() != null && SceneSelector.Get() != null)
+            StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
         SelectEffect(true);
     }
 
@@ -81,8 +82,8 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
         });
     }
 
-    public static ISelectDirector Get()
+    public static ISelectDirector Get(Transform t)
     {
-        return GameObject.Find("GameSelect")?.GetComponent<ISelectDirector>();
+        return t.GetComponentInParent<ISelectDirector>();
     }
 }

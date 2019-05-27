@@ -38,6 +38,6 @@ public class StageSelector : MonoBehaviour
 
     public static StageSelector Get()
     {
-        return BaseDirector.Get().GetComponent<StageSelector>();
+        return BaseDirector.Get()?.GetComponent<StageSelector>();
     }
 }
