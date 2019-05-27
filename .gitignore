@@ -73,7 +73,8 @@ fmod.log
 fmod_editor.log
 
 # FMOD studio (In folder FMOD)
-/Resources/FMOD/**.user
-/Resources/FMOD/**.unsaved
-/Resources/FMOD/**.cache
-/Resources/FMOD/**.restore
+/Resources/FMOD/*/.user/*
+/Resources/FMOD/*/.unsaved/*
+/Resources/FMOD/*/.cache/*
+/Resources/FMOD/*/.restore/*
+!/Resources/FMOD/*/Build*
