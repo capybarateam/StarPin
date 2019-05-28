@@ -8,6 +8,8 @@ public class TitleDirector : MonoBehaviour
     public Stage firstStage;
     public Stage selectScene;
 
+    public GameObject fixedPin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class TitleDirector : MonoBehaviour
 
         TitleEffect(true);
 
-        CameraController.Get().Targetter.SetTarget(StarController.latestStar);
+        CameraController.Get().Targetter.SetTarget(fixedPin);
     }
 
     // Update is called once per frame
