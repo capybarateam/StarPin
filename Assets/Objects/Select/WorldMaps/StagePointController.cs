@@ -10,6 +10,8 @@ public class StagePointController : MonoBehaviour
 
     public GameObject[] visibleWhenCleared;
     public GameObject[] invisibleWhenCleared;
+    public GameObject[] stageNameWhenClearedA;
+    public GameObject[] stageNameWhenClearedB;
 
     public int clearLevel
     {
@@ -35,9 +37,13 @@ public class StagePointController : MonoBehaviour
         foreach (var star in GetComponentsInChildren<LevelStar>())
             star.SetLevel(clearLevel);
         foreach (var obj in visibleWhenCleared)
-            obj.SetActive(clearLevel > 0);
+            obj.SetActive(clearLevel >= 2);
         foreach (var obj in invisibleWhenCleared)
             obj.SetActive(clearLevel <= 0);
+        foreach (var obj in stageNameWhenClearedA)
+            obj.GetComponent<TMPro.TMP_Text>().text = clearLevel >= 2 ? (GetComponentInChildren<StageSelectable>()?.stage?.answer ?? "") : "???座";
+        foreach (var obj in stageNameWhenClearedB)
+            obj.GetComponent<TMPro.TMP_Text>().text = clearLevel >= 2 ? (GetComponentInChildren<StageSelectable>()?.stage?.answer ?? "") : "";
     }
 
     void SetLineCleared(StageSelectable selectable, int clearLevel)

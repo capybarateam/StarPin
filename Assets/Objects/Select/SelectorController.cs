@@ -42,6 +42,8 @@ public class SelectorController : MonoBehaviour
         });
     }
 
+    Selectable lastSelect;
+
     // Update is called once per frame
     void Update()
     {
@@ -72,17 +74,22 @@ public class SelectorController : MonoBehaviour
                 {
                     var selectable = stageSelector?.GetComponent<Selectable>();
                     var nav = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<Selectable>();
-                    if (nav == null ||
-                        (nav.FindSelectableOnLeft() == selectable ||
-                        nav.FindSelectableOnRight() == selectable ||
-                        nav.FindSelectableOnUp() == selectable ||
-                        nav.FindSelectableOnDown() == selectable))
-                    {
-                        selectable?.Select();
-                    }
-
                     if (Input.GetButtonDown("Click"))
-                        stageSelector.OnClick();
+                    {
+                        if (nav == null ||
+                            (nav.FindSelectableOnLeft() == selectable ||
+                            nav.FindSelectableOnRight() == selectable ||
+                            nav.FindSelectableOnUp() == selectable ||
+                            nav.FindSelectableOnDown() == selectable))
+                        {
+                            selectable?.Select();
+                            if (lastSelect == selectable)
+                            {
+                                stageSelector.OnClick();
+                            }
+                            lastSelect = selectable;
+                        }
+                    }
                 }
             }
         }

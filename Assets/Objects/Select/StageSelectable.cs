@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IConnectorPoint
 {
+    public static StageSelectable lastSelected;
+
     public Stage stage;
     public bool interactable;
 
