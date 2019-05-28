@@ -89,10 +89,10 @@ public class SceneSelector : MonoBehaviour
         if (cscene != null)
         {
             locked = true;
-            StageDirector.Get()?.StageChangeEffect(true);
+            StageDirector.Get()?.StageChangeEffect(true, scene);
             this.Delay(durationMoveEffect, () =>
             {
-                StageDirector.Get()?.StageChangeEffect(false);
+                StageDirector.Get()?.StageChangeEffect(false, scene);
             });
             this.Delay(durationMoveEnd, sceneName =>
             {
