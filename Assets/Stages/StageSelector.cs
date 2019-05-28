@@ -19,21 +19,21 @@ public class StageSelector : MonoBehaviour
         }
     }
 
-    public void LoadStage(Stage stage)
+    public void LoadStage(Stage stage, SceneSelector.SceneChangeType changeType = SceneSelector.SceneChangeType.CHANGE_FADE)
     {
         if (currentStage != stage)
         {
-            SceneSelector.Get().LoadScene(stage);
+            SceneSelector.Get().LoadScene(stage, changeType);
             currentStage = stage;
         }
     }
 
-    public void LoadNextStage()
+    public void LoadNextStage(SceneSelector.SceneChangeType changeType = SceneSelector.SceneChangeType.CHANGE_FADE)
     {
         //if (currentStage && currentStage.nextStage)
         //    LoadStage(currentStage.nextStage);
         //else
-        SceneSelector.Get().LoadScene(lastWorldMap != null ? lastWorldMap : selectScene);
+        SceneSelector.Get().LoadScene(lastWorldMap != null ? lastWorldMap : selectScene, changeType);
     }
 
     public static StageSelector Get()

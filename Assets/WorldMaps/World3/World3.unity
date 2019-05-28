@@ -380,12 +380,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 985d5628b26dd6947af7cf03d7b0581e,
-        type: 2}
     - target: {fileID: 5835611864757317081, guid: 8f8f7b7f961abe942a45b0fb665f158f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -416,6 +410,12 @@ PrefabInstance:
       propertyPath: m_inputSource
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 985d5628b26dd6947af7cf03d7b0581e,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f8f7b7f961abe942a45b0fb665f158f, type: 3}
 --- !u!4 &282841687 stripped
@@ -580,12 +580,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 759093215a3f8fc42ac2b3fda9ad3a20,
-        type: 2}
     - target: {fileID: 5835611864757317081, guid: 8f8f7b7f961abe942a45b0fb665f158f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -616,6 +610,12 @@ PrefabInstance:
       propertyPath: m_inputSource
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 759093215a3f8fc42ac2b3fda9ad3a20,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f8f7b7f961abe942a45b0fb665f158f, type: 3}
 --- !u!4 &295794741 stripped
@@ -879,32 +879,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1468113067}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 2109040202}
-    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 2ea5fe5106da51d43ab29ee4b7e96bd1,
-        type: 2}
-    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3943595673118332334, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -945,6 +919,32 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ea5fe5106da51d43ab29ee4b7e96bd1,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1468113067}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 2109040202}
     - target: {fileID: 6722426594645189961, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_Sprite
@@ -1373,32 +1373,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 1468113067}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1193840126}
-    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: c6354b2f5a7888148b2aabce058a1a14,
-        type: 2}
-    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3943595673118332334, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1419,6 +1393,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 20.05
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: c6354b2f5a7888148b2aabce058a1a14,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1468113067}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1193840126}
     - target: {fileID: 6722426594645189961, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_Sprite
@@ -1546,21 +1546,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 2109040202}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 1817846803}
     - target: {fileID: 3168528866259596026, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1616,17 +1601,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951896298156019500, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807673548467851082, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: b9722a62913427341bc0407b3be2115d,
-        type: 2}
     - target: {fileID: 3943595673118332334, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1642,6 +1616,32 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: b9722a62913427341bc0407b3be2115d,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 2109040202}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1817846803}
     - target: {fileID: 6722426594645189961, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_Sprite
@@ -1771,27 +1771,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 2109040202}
-    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 6cc79b127be4d6746ab900cb74aa173d,
-        type: 2}
-    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3943595673118332334, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1817,6 +1796,27 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 8.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cc79b127be4d6746ab900cb74aa173d,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 2109040202}
     - target: {fileID: 6722426594645189961, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_Sprite
@@ -1843,21 +1843,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1468113067}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 2109040202}
     - target: {fileID: 3168528866259596026, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1913,17 +1898,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951896298156019500, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807673548467851082, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: f84b08f59ef79464ebd0d90bd2d20184,
-        type: 2}
     - target: {fileID: 3943595673118332334, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1949,6 +1923,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 8.6
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: f84b08f59ef79464ebd0d90bd2d20184,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1468113067}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 2109040202}
     - target: {fileID: 6722426594645189961, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_Sprite
@@ -2327,7 +2327,11 @@ MonoBehaviour:
   speedRatio: 0.1
   range: 0.03
   zLock: 0
+  changeIfWorldMap: 0
   offset: {x: -0, y: -0, z: 0}
+  offsetWorldMap: {x: -0, y: -0, z: -10}
+  rotation: {x: 0, y: 0, z: 0}
+  rotationWorldMap: {x: 0, y: 0, z: 0}
 --- !u!4 &924192216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9119735561602839254, guid: 8725072d0718eab4b89db02a39bcdb9d,
@@ -2565,27 +2569,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1817846803}
-    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 41e5cdf49b176ef4eacb1b62efabb3cb,
-        type: 2}
-    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3943595673118332334, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2616,6 +2599,27 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 41e5cdf49b176ef4eacb1b62efabb3cb,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: c30bfeaf93b58d745b65442ebf1c0401,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1817846803}
     - target: {fileID: 6722426594645189961, guid: c30bfeaf93b58d745b65442ebf1c0401,
         type: 3}
       propertyPath: m_Sprite
@@ -2989,16 +2993,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageWarp
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 10652165}
     - target: {fileID: 3168528866259596026, guid: 7c6811c04ba7e9b4f99935b25126ef37,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3054,17 +3048,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8347368228609305422, guid: 7c6811c04ba7e9b4f99935b25126ef37,
-        type: 3}
-      propertyPath: destinationStage
-      value: 
-      objectReference: {fileID: 11400000, guid: d86d3849819bae2468fb58d9e49823fc,
-        type: 2}
     - target: {fileID: 2807673548467851082, guid: 7c6811c04ba7e9b4f99935b25126ef37,
         type: 3}
       propertyPath: stage
       value: 
       objectReference: {fileID: 11400000, guid: d7d8ebee2a6879c49b5e7363085e8d00,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 10652165}
+    - target: {fileID: 8347368228609305422, guid: 7c6811c04ba7e9b4f99935b25126ef37,
+        type: 3}
+      propertyPath: destinationStage
+      value: 
+      objectReference: {fileID: 11400000, guid: d86d3849819bae2468fb58d9e49823fc,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6811c04ba7e9b4f99935b25126ef37, type: 3}
@@ -3391,12 +3395,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: e841044892880724a9924f40ad544074,
-        type: 2}
     - target: {fileID: 5835611864757317081, guid: 8f8f7b7f961abe942a45b0fb665f158f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3427,6 +3425,12 @@ PrefabInstance:
       propertyPath: m_inputSource
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: e841044892880724a9924f40ad544074,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f8f7b7f961abe942a45b0fb665f158f, type: 3}
 --- !u!4 &1518033717 stripped
@@ -3584,7 +3588,7 @@ PrefabInstance:
     - target: {fileID: 8818330606202209020, guid: 35a49c79686123b4da588839bbd52cb6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnBackToTitle
+      value: OnBackToSelect
       objectReference: {fileID: 0}
     - target: {fileID: 8818330606202209020, guid: 35a49c79686123b4da588839bbd52cb6,
         type: 3}
@@ -5118,12 +5122,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 868d52c11e433b54a8cc14ee6244eb20,
-        type: 2}
     - target: {fileID: 5835611864757317081, guid: 8f8f7b7f961abe942a45b0fb665f158f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5154,6 +5152,12 @@ PrefabInstance:
       propertyPath: m_inputSource
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4784204663894211769, guid: 8f8f7b7f961abe942a45b0fb665f158f,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 868d52c11e433b54a8cc14ee6244eb20,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f8f7b7f961abe942a45b0fb665f158f, type: 3}
 --- !u!4 &1923777966 stripped
@@ -5180,21 +5184,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageBoss
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1817846803}
-    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnRight
-      value: 
-      objectReference: {fileID: 1321304272}
     - target: {fileID: 3168528866259596026, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5250,17 +5239,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4951896298156019500, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: defaultClearLevel
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807673548467851082, guid: 6dd386f840f00e241bb198f91e43fa5d,
-        type: 3}
-      propertyPath: stage
-      value: 
-      objectReference: {fileID: 11400000, guid: 3f1f5d72fc65adf4d9bfd069768361e2,
-        type: 2}
     - target: {fileID: 3943595673118332334, guid: 6dd386f840f00e241bb198f91e43fa5d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5286,6 +5264,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 18.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4951896298156019500, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: defaultClearLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807673548467851082, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f1f5d72fc65adf4d9bfd069768361e2,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1817846803}
+    - target: {fileID: 7990753175759183146, guid: 6dd386f840f00e241bb198f91e43fa5d,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 1321304272}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd386f840f00e241bb198f91e43fa5d, type: 3}
 --- !u!4 &1993283658 stripped
@@ -5508,16 +5512,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageWarp
       objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
-        type: 3}
-      propertyPath: m_Navigation.m_SelectOnLeft
-      value: 
-      objectReference: {fileID: 1787490905}
     - target: {fileID: 3168528866259596026, guid: 7c6811c04ba7e9b4f99935b25126ef37,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5573,17 +5567,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8347368228609305422, guid: 7c6811c04ba7e9b4f99935b25126ef37,
-        type: 3}
-      propertyPath: destinationStage
-      value: 
-      objectReference: {fileID: 11400000, guid: 53570423cc53d1f4e8f99e49b49a456c,
-        type: 2}
     - target: {fileID: 2807673548467851082, guid: 7c6811c04ba7e9b4f99935b25126ef37,
         type: 3}
       propertyPath: stage
       value: 
       objectReference: {fileID: 11400000, guid: 6fe8609ade631c1439cdc03a79888459,
+        type: 2}
+    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990753175759183146, guid: 7c6811c04ba7e9b4f99935b25126ef37,
+        type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1787490905}
+    - target: {fileID: 8347368228609305422, guid: 7c6811c04ba7e9b4f99935b25126ef37,
+        type: 3}
+      propertyPath: destinationStage
+      value: 
+      objectReference: {fileID: 11400000, guid: 53570423cc53d1f4e8f99e49b49a456c,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c6811c04ba7e9b4f99935b25126ef37, type: 3}
