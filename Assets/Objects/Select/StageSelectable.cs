@@ -10,8 +10,10 @@ public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IC
 
     public void OnSelect(BaseEventData eventData)
     {
-        SelectDirector.Get().SetSelected(stage);
-        SelectDirector.Get().SetSelected(gameObject);
+        if (stage != null)
+            StageAchievement.SetLastStage(SceneSelector.Get().CurrentScene.SceneName, stage);
+        SelectDirector.Get(transform).SetSelected(stage);
+        SelectDirector.Get(transform).SetSelected(gameObject);
     }
 
     public void OnSubmit(BaseEventData eventData)
@@ -21,6 +23,7 @@ public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IC
 
     public void OnClick()
     {
-        SelectDirector.Get().StartGame(stage);
+        if (stage != null)
+            SelectDirector.Get(transform).StartGame(stage);
     }
 }

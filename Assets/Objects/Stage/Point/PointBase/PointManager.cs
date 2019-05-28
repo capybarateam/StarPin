@@ -20,7 +20,7 @@ public class PointManager : MonoBehaviour
 
     public bool IsGotAllPoints()
     {
-        return allPoints.All(e => e.touched);
+        return allPoints.All(e => e.rawTouched);
     }
 
     public bool IsGotAllImportantPoints()
