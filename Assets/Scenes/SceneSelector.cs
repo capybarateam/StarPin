@@ -27,6 +27,12 @@ public class SceneSelector : MonoBehaviour
         }
     }
 
+    public static string GetCurrentSceneName()
+    {
+        var selector = SceneSelector.Get();
+        return selector != null ? selector.CurrentScene.SceneName : SceneManager.GetActiveScene().name;
+    }
+
     void Awake()
     {
         currentScene.Push(new SceneStage(SceneManager.GetActiveScene().name));

@@ -26,7 +26,7 @@ public class GameDirector : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        var name = SceneSelector.Get()?.CurrentScene?.SceneName;
+        var name = SceneSelector.GetCurrentSceneName();
         if (name != null)
         {
             var music = MusicController.Get();

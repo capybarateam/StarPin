@@ -36,7 +36,7 @@ public class StageAchievement
 
     public static string GetLastStageSceneName(string world)
     {
-        if (!PlayerPrefs.HasKey("stage.laststage"))
+        if (!PlayerPrefs.HasKey($"stage.laststage.{world}"))
             return null;
         return PlayerPrefs.GetString($"stage.laststage.{world}");
     }

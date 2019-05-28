@@ -12,8 +12,11 @@ public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IC
 
     public void OnSelect(BaseEventData eventData)
     {
-        if (stage != null)
-            StageAchievement.SetLastStage(SceneSelector.Get().CurrentScene.SceneName, stage);
+        var sname = SceneSelector.GetCurrentSceneName();
+        if (stage != null && !(sname.Contains("World") && stage.SceneName.Contains("World")))
+        {
+            StageAchievement.SetLastStage(sname, stage);
+        }
         SelectDirector.Get(transform).SetSelected(stage);
         SelectDirector.Get(transform).SetSelected(gameObject);
     }

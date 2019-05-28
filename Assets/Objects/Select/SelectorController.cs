@@ -23,27 +23,29 @@ public class SelectorController : MonoBehaviour
     {
         selectCurrent = GetComponent<SelectCurrent>();
 
-        this.Delay(.1f, () =>
-        {
-            if (SceneSelector.Get()?.CurrentScene != null)
-            {
-                var name = StageAchievement.GetLastStageSceneName(SceneSelector.Get().CurrentScene.SceneName);
-                if (name != null)
-                {
-                    foreach (Transform t in transform)
-                    {
-                        var c = t.GetComponentInChildren<StageSelectable>();
-                        if (c != null && c.stage != null)
-                        {
-                            c.GetComponent<Selectable>().Select();
-                            return;
-                        }
-                    }
-                }
-            }
-            if (transform.childCount > 0)
-                transform.GetChild(0).GetComponentInChildren<Selectable>().Select();
-        });
+        // SelectCurrentと重複
+        //this.Delay(.1f, () =>
+        //{
+        //    var sname = SceneSelector.GetCurrentSceneName();
+        //    if (sname != null)
+        //    {
+        //        var name = StageAchievement.GetLastStageSceneName(sname);
+        //        if (name != null)
+        //        {
+        //            foreach (Transform t in transform)
+        //            {
+        //                var c = t.GetComponentInChildren<StageSelectable>();
+        //                if (c != null && c.stage != null)
+        //                {
+        //                    c.GetComponent<Selectable>().Select();
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    if (transform.childCount > 0)
+        //        transform.GetChild(0).GetComponentInChildren<Selectable>().Select();
+        //});
     }
 
     Selectable lastSelect;
