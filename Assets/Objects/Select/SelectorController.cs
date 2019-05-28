@@ -16,9 +16,13 @@ public class SelectorController : MonoBehaviour
     public float hideTime = 4;
     public float moveEps = 1e-2f;
 
+    SelectCurrent selectCurrent;
+
     // Start is called before the first frame update
     void Start()
     {
+        selectCurrent = GetComponent<SelectCurrent>();
+
         this.Delay(.1f, () =>
         {
             if (SceneSelector.Get()?.CurrentScene != null)
@@ -73,7 +77,7 @@ public class SelectorController : MonoBehaviour
                 if (stageSelector != null && stageSelector.interactable)
                 {
                     var selectable = stageSelector?.GetComponent<Selectable>();
-                    var nav = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<Selectable>();
+                    var nav = selectCurrent?.current?.GetComponent<Selectable>();
                     if (Input.GetButtonDown("Click"))
                     {
                         if (nav == null ||
@@ -83,11 +87,10 @@ public class SelectorController : MonoBehaviour
                             nav.FindSelectableOnDown() == selectable))
                         {
                             selectable?.Select();
-                            if (lastSelect == selectable)
-                            {
-                                stageSelector.OnClick();
-                            }
-                            lastSelect = selectable;
+                        }
+                        if (nav == selectable)
+                        {
+                            stageSelector.OnClick();
                         }
                     }
                 }

@@ -1961,6 +1961,7 @@ GameObject:
   - component: {fileID: 1753681971}
   - component: {fileID: 1753681972}
   - component: {fileID: 1753681973}
+  - component: {fileID: 1753681975}
   - component: {fileID: 1753681974}
   m_Layer: 0
   m_Name: Stages
@@ -2036,6 +2037,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1753681975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753681970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad6db19065e0af4a9e108841fed7874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current: {fileID: 0}
 --- !u!1 &1883098382
 GameObject:
   m_ObjectHideFlags: 0

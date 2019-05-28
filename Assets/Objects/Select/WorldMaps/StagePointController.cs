@@ -13,6 +13,8 @@ public class StagePointController : MonoBehaviour
     public GameObject[] stageNameWhenClearedA;
     public GameObject[] stageNameWhenClearedB;
 
+    public HashSet<StagePointController> connection;
+
     public int clearLevel
     {
         get
@@ -64,12 +66,37 @@ public class StagePointController : MonoBehaviour
         }
     }
 
+    void Handshake()
+    {
+        foreach (var line in GetComponentsInChildren<ConnectorBase>())
+        {
+            if (line.connectionB != null)
+            {
+                var linesel = line.connectionB.GetComponentInParent<StageSelectable>();
+                if (linesel != null)
+                {
+                    if (linesel.interactable && linesel.stage != null)
+                    {
+                        var ptctrl = linesel.GetComponentInParent<StagePointController>();
+                        if (ptctrl != null)
+                        {
+                            connection.Add(ptctrl);
+                            ptctrl.connection.Add(this);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         var stageSelectable = GetComponentInChildren<StageSelectable>();
         if (stageSelectable != null)
         {
+            Handshake();
+
             if (stageSelectable.stage != null)
                 clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevels);
             else if (stageSelectable.GetComponentInParent<StagePointController>()?.defaultClearLevels > 0)

@@ -87,7 +87,7 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     public void SetSelected(GameObject stage)
     {
         CameraController.Get()?.Targetter?.SetTarget(stage);
-        foreach (var obj in Object.FindObjectsOfType<Targetter>())
+        foreach (var obj in GetComponentsInChildren<Targetter>())
             obj.SetTarget(stage);
         selectedObj = stage;
     }
