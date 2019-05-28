@@ -16,9 +16,9 @@ public class GoalController : MonoBehaviour
     bool emitted = false;
 
     AudioSource audioSource;
-    public float durationA = 2;
-    public float durationB = 1;
-    public float durationC = 3;
+    float durationA = .5f;
+    float durationB = 1;
+    float durationC = 5;
 
     // Start is called before the first frame update
     void Start()

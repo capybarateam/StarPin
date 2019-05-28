@@ -7,7 +7,7 @@ public class GameDirector : MonoBehaviour
 {
     public PointManager pointManager;
 
-    private float showWorldTime = 4.0f;
+    private float showWorldTime = 3.0f;
     private float showGoalTime = 2.0f;
 
     private enum CameraType

@@ -5,6 +5,7 @@ using UnityEngine;
 public interface ISelectDirector
 {
     void BackToTitle();
+    void BackToSelect();
     Stage GetSelected();
     bool IsSelected(GameObject stage);
     void SetSelected(Stage stage);

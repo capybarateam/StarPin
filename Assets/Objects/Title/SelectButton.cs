@@ -16,4 +16,9 @@ public class SelectButton : MonoBehaviour
     {
         SelectDirector.Get(transform).BackToTitle();
     }
+
+    public void OnBackToSelect()
+    {
+        SelectDirector.Get(transform).BackToSelect();
+    }
 }

@@ -25,13 +25,11 @@ public class StageDirector : MonoBehaviour
     void Update()
     {
         bool isStage = GameObject.Find("GameStage") != null;
+
         if (isStage && Input.GetButtonDown("Cancel"))
         {
-            bool next = true;
-            if (menu)
-                next = !menu.GetComponent<Animator>().GetBool("Enabled");
-
-            MenuEffect(next);
+            bool? menuEnabled = !menu?.GetComponent<Animator>().GetBool("Enabled");
+            MenuEffect(menuEnabled ?? true);
         }
 
         gauge.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;
@@ -71,6 +69,10 @@ public class StageDirector : MonoBehaviour
 
     public void MenuEffect(bool starting)
     {
+        if (starting)
+            CameraController.Get().Targetter.SetTarget(GameObject.Find("GameStage").GetComponentInChildren<GoalController>().goalTarget);
+        else
+            CameraController.Get().Targetter.SetTarget(StarController.latestStar);
         if (menu)
             menu.GetComponent<Animator>().SetBool("Enabled", starting);
     }
