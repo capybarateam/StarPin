@@ -125,6 +125,7 @@ public class StageDirector : MonoBehaviour
         var sel = SceneSelector.Get();
         if (sel != null)
             sel.LoadScene(sel.CurrentScene, SceneSelector.SceneChangeType.CHANGE_FADE);
+        MenuEffect(false);
     }
 
     public void MenuWorld()
@@ -133,6 +134,7 @@ public class StageDirector : MonoBehaviour
         var sta = StageSelector.Get();
         if (sel != null && sta != null)
             sel.LoadScene(sta.lastWorldMap, SceneSelector.SceneChangeType.CHANGE_FADE);
+        MenuEffect(false);
     }
 
     public void MenuTitle()
@@ -140,6 +142,7 @@ public class StageDirector : MonoBehaviour
         var sel = SceneSelector.Get();
         if (sel != null)
             sel.LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_FADE);
+        MenuEffect(false);
     }
 
     public static StageDirector Get()
