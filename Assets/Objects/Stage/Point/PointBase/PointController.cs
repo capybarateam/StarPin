@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointController : MonoBehaviour, IAttachable
+public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
 {
     [Header("ピン設定")]
     [LabelOverride("星座の要素である")]
@@ -90,6 +90,8 @@ public class PointController : MonoBehaviour, IAttachable
 
     [OptionsListAttribute(new[] { "デフォルトカラー", "カラーA (赤)", "カラーB (緑)", "カラーC (青)" }, "色")]
     public int colorIndex;
+
+    public bool rawTouched;
 
     public bool touched
     {
@@ -228,6 +230,7 @@ public class PointController : MonoBehaviour, IAttachable
                 currentPoint -= transfer;
                 manager.health += transfer;
                 touched = currentPoint > 0;
+                rawTouched = true;
                 isSendMode = !isSendMode;
             }
 

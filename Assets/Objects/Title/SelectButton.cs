@@ -8,11 +8,13 @@ public class SelectButton : MonoBehaviour
 
     public void OnStartGame()
     {
-        SelectDirector.Get().StartGame();
+        var selected = SelectDirector.Get(transform).GetSelected();
+        if (selected)
+            SelectDirector.Get(transform).StartGame(selected);
     }
 
     public void OnBackToTitle()
     {
-        SelectDirector.Get().BackToTitle();
+        SelectDirector.Get(transform).BackToTitle();
     }
 }

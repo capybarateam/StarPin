@@ -7,23 +7,23 @@ public class MessageController : MonoBehaviour
     [TextArea(10, 30)]
     public string message;
 
-    BaseDirector baseDirector;
+    StageDirector stageDirector;
 
     float lastTime;
 
     private void Start()
     {
-        baseDirector = BaseDirector.Get();
+        stageDirector = StageDirector.Get();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        baseDirector?.SetPaper(message);
-        baseDirector?.ShowSignal();
+        stageDirector?.SetPaper(message);
+        stageDirector?.ShowSignal();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        baseDirector?.ShowSignal();
+        stageDirector?.ShowSignal();
     }
 }
