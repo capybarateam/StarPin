@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StagePointController : MonoBehaviour
 {
-    public int defaultClearLevel;
+    public int defaultClearLevels;
     int? _clearLevel;
 
     public GameObject[] visibleWhenCleared;
@@ -65,8 +65,8 @@ public class StagePointController : MonoBehaviour
         if (stageSelectable != null)
         {
             if (stageSelectable.stage != null)
-                clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevel);
-            else if (stageSelectable.GetComponentInParent<StagePointController>()?.defaultClearLevel > 0)
+                clearLevel = StageAchievement.GetCleared(stageSelectable.stage, defaultClearLevels);
+            else if (stageSelectable.GetComponentInParent<StagePointController>()?.defaultClearLevels > 0)
                 SetLineCleared(stageSelectable, 3);
         }
     }

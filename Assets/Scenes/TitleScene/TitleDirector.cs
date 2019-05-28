@@ -37,7 +37,7 @@ public class TitleDirector : MonoBehaviour
 
     public void SelectStage()
     {
-        SceneSelector.Get().LoadScene(selectScene);
+        SceneSelector.Get().LoadScene(selectScene, SceneSelector.SceneChangeType.CHANGE_MOVE);
         TitleEffect(false);
     }
 

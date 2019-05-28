@@ -14,10 +14,31 @@ public class StageDirector : MonoBehaviour
     public GameObject stageAchieve;
     public GameObject paper;
     public GameObject gauge;
+    public GameObject menu;
+    public GameObject menuIcon;
 
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    void Update()
+    {
+        bool isStage = GameObject.Find("GameStage") != null;
+        if (isStage && Input.GetButtonDown("Cancel"))
+        {
+            bool next = true;
+            if (menu)
+                next = !menu.GetComponent<Animator>().GetBool("Enabled");
+
+            MenuEffect(next);
+        }
+
+        gauge.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;
+        menuIcon.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;
+
+        var anim = paper.GetComponent<Animator>();
+        anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
     }
 
     public void StageChangeEffect(bool starting)
@@ -46,6 +67,12 @@ public class StageDirector : MonoBehaviour
             stageResult.GetComponent<LevelStar>().SetLevel(level);
             stageResult.GetComponent<Animator>().SetBool("Enabled", starting);
         }
+    }
+
+    public void MenuEffect(bool starting)
+    {
+        if (menu)
+            menu.GetComponent<Animator>().SetBool("Enabled", starting);
     }
 
     public void StageAchieveEffect(bool starting)
@@ -91,11 +118,26 @@ public class StageDirector : MonoBehaviour
         gauge.transform.Find("Gauge").GetComponent<Image>().fillAmount = hp;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MenuRestart()
     {
-        var anim = paper.GetComponent<Animator>();
-        anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
+        var sel = SceneSelector.Get();
+        if (sel != null)
+            sel.LoadScene(sel.CurrentScene, SceneSelector.SceneChangeType.CHANGE_FADE);
+    }
+
+    public void MenuWorld()
+    {
+        var sel = SceneSelector.Get();
+        var sta = StageSelector.Get();
+        if (sel != null && sta != null)
+            sel.LoadScene(sta.lastWorldMap, SceneSelector.SceneChangeType.CHANGE_FADE);
+    }
+
+    public void MenuTitle()
+    {
+        var sel = SceneSelector.Get();
+        if (sel != null)
+            sel.LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_FADE);
     }
 
     public static StageDirector Get()
