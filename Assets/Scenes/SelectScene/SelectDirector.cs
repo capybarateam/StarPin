@@ -51,13 +51,25 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
 
     public void StartGame(Stage stage)
     {
-        StageSelector.Get().LoadStage(stage);
+        if (SceneSelector.Get()?.CurrentScene?.SceneName?.Contains("World") ?? false)
+            StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_FADE);
+        else
+            StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_MOVE);
         SelectEffect(false);
     }
 
     public void BackToTitle()
     {
-        SceneSelector.Get().LoadScene(new SceneStage("TitleScene"));
+        if (SceneSelector.Get()?.CurrentScene?.SceneName?.Contains("World") ?? false)
+            SceneSelector.Get().LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_FADE);
+        else
+            SceneSelector.Get().LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_MOVE);
+        SelectEffect(false);
+    }
+
+    public void BackToSelect()
+    {
+        SceneSelector.Get().LoadScene(new SceneStage("SelectScene"), SceneSelector.SceneChangeType.CHANGE_MOVE);
         SelectEffect(false);
     }
 

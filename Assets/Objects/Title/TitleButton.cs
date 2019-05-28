@@ -6,7 +6,7 @@ public class TitleButton : MonoBehaviour
 {
     public void OnStartGame()
     {
-        TitleDirector.Get().StartGame();
+        TitleDirector.Get().StartGameCustom();
     }
 
     public void OnSelectStage()
