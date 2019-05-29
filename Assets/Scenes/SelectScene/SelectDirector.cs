@@ -14,7 +14,7 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneSelector.Get()?.CurrentScene?.SceneName?.Contains("World") ?? false)
+        if (SceneSelector.GetCurrentSceneName().Contains("World"))
         {
             var music = MusicController.Get();
             if (music != null)
@@ -51,13 +51,25 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
 
     public void StartGame(Stage stage)
     {
-        StageSelector.Get().LoadStage(stage);
+        if (SceneSelector.GetCurrentSceneName().Contains("World"))
+            StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_FADE);
+        else
+            StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_MOVE);
         SelectEffect(false);
     }
 
     public void BackToTitle()
     {
-        SceneSelector.Get().LoadScene(new SceneStage("TitleScene"));
+        if (SceneSelector.GetCurrentSceneName().Contains("World"))
+            SceneSelector.Get().LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_FADE);
+        else
+            SceneSelector.Get().LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_MOVE);
+        SelectEffect(false);
+    }
+
+    public void BackToSelect()
+    {
+        SceneSelector.Get().LoadScene(new SceneStage("SelectScene"), SceneSelector.SceneChangeType.CHANGE_MOVE);
         SelectEffect(false);
     }
 
@@ -75,7 +87,7 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     public void SetSelected(GameObject stage)
     {
         CameraController.Get()?.Targetter?.SetTarget(stage);
-        foreach (var obj in Object.FindObjectsOfType<Targetter>())
+        foreach (var obj in GetComponentsInChildren<Targetter>())
             obj.SetTarget(stage);
         selectedObj = stage;
     }

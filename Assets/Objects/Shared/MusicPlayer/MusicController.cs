@@ -17,6 +17,9 @@ public class MusicController : MonoBehaviour
     void Start()
     {
         current = TitleBGM;
+
+        var masterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        masterBus.setVolume(.5f);
     }
 
     public void ChangeSound(StudioEventEmitter emit)

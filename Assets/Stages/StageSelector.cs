@@ -6,34 +6,16 @@ using UnityEngine.SceneManagement;
 public class StageSelector : MonoBehaviour
 {
     public IStage lastWorldMap;
-
     public Stage selectScene;
 
-    Stage currentStage;
-
-    public Stage Current
+    public void LoadStage(Stage stage, SceneSelector.SceneChangeType changeType = SceneSelector.SceneChangeType.CHANGE_FADE)
     {
-        get
-        {
-            return currentStage;
-        }
+        SceneSelector.Get().LoadScene(stage, changeType);
     }
 
-    public void LoadStage(Stage stage)
+    public void LoadNextStage(SceneSelector.SceneChangeType changeType = SceneSelector.SceneChangeType.CHANGE_FADE)
     {
-        if (currentStage != stage)
-        {
-            SceneSelector.Get().LoadScene(stage);
-            currentStage = stage;
-        }
-    }
-
-    public void LoadNextStage()
-    {
-        //if (currentStage && currentStage.nextStage)
-        //    LoadStage(currentStage.nextStage);
-        //else
-        SceneSelector.Get().LoadScene(lastWorldMap != null ? lastWorldMap : selectScene);
+        SceneSelector.Get().LoadScene(lastWorldMap != null ? lastWorldMap : selectScene, changeType);
     }
 
     public static StageSelector Get()

@@ -8,10 +8,15 @@ public class TitleDirector : MonoBehaviour
     public Stage firstStage;
     public Stage selectScene;
 
+    public GameObject fixedPin;
+
     // Start is called before the first frame update
     void Start()
     {
-        StageSelector.Get().lastWorldMap = SceneSelector.Get().CurrentScene;
+        var sel = SceneSelector.Get();
+        var sta = StageSelector.Get();
+        if (sel != null && sta != null)
+            sta.lastWorldMap = sel.CurrentScene;
         var music = MusicController.Get();
         if (music != null)
         {
@@ -21,7 +26,7 @@ public class TitleDirector : MonoBehaviour
 
         TitleEffect(true);
 
-        CameraController.Get().Targetter.SetTarget(StarController.latestStar);
+        CameraController.Get().Targetter.SetTarget(fixedPin);
     }
 
     // Update is called once per frame
@@ -29,16 +34,41 @@ public class TitleDirector : MonoBehaviour
     {
     }
 
-    public void StartGame()
+    public void StartGameStory()
     {
-        StageSelector.Get().LoadStage(firstStage);
+        StageAchievement.isCreativeMode = false;
+        if (!StageAchievement.IsCleared(firstStage, 0))
+        {
+            StageSelector.Get().LoadStage(firstStage);
+            StageSelector.Get().lastWorldMap = new SceneStage("World1");
+        }
+        else
+        {
+            StageSelector.Get().LoadStage(selectScene, SceneSelector.SceneChangeType.CHANGE_MOVE);
+        }
+        TitleEffect(false);
+    }
+
+    public void StartGameCustom()
+    {
+        StageAchievement.isCreativeMode = true;
+        StageSelector.Get().LoadStage(selectScene, SceneSelector.SceneChangeType.CHANGE_MOVE);
         TitleEffect(false);
     }
 
     public void SelectStage()
     {
-        SceneSelector.Get().LoadScene(selectScene);
+        SceneSelector.Get().LoadScene(selectScene, SceneSelector.SceneChangeType.CHANGE_MOVE);
         TitleEffect(false);
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+        UnityEngine.Application.Quit();
+#endif
     }
 
     public void TitleEffect(bool starting)

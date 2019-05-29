@@ -32,8 +32,7 @@ public class Targetter : MonoBehaviour
         {
             if (!changeIfWorldMap)
                 return false;
-            var selector = SceneSelector.Get();
-            return selector != null ? selector.CurrentScene.SceneName.Contains("World") : SceneManager.GetActiveScene().path.Contains("WorldMaps/");
+            return SceneSelector.GetCurrentSceneName().Contains("World");
         }
     }
 

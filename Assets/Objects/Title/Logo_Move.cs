@@ -9,11 +9,11 @@ public class Logo_Move : MonoBehaviour
 
     //タイトルロゴ
     RectTransform m_logo_rect;
-    Vector3 m_position = new Vector3(0, 100, 0);
+    Vector3 m_position = new Vector3(0, 200, 0);
 
     //ストーリー
     RectTransform m_story_rect;
-    Vector3 m_storyPosition = new Vector3(840, 120, 0);
+    Vector3 m_storyPosition = new Vector3(840, 180, 0);
 
     //動かないようにする
     bool m_keyflag = false;
@@ -27,7 +27,7 @@ public class Logo_Move : MonoBehaviour
     void Start()
     {
         //タイトルロゴを見つける
-        m_logo_rect = GameObject.Find("Title_Logo").GetComponent<RectTransform>();
+        m_logo_rect = GameObject.Find("TheTitle").GetComponent<RectTransform>();
         //ストーリーテクスチャを見つける
         m_story_rect = GameObject.Find("Custom").GetComponent<RectTransform>();
     }
