@@ -16,15 +16,39 @@ public class SelectorController : MonoBehaviour
     public float hideTime = 4;
     public float moveEps = 1e-2f;
 
+    SelectCurrent selectCurrent;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.Delay(.1f, () =>
-        {
-            if (transform.childCount > 0)
-                transform.GetChild(0).GetComponentInChildren<Selectable>().Select();
-        });
+        selectCurrent = GetComponent<SelectCurrent>();
+
+        // SelectCurrentと重複
+        //this.Delay(.1f, () =>
+        //{
+        //    var sname = SceneSelector.GetCurrentSceneName();
+        //    if (sname != null)
+        //    {
+        //        var name = StageAchievement.GetLastStageSceneName(sname);
+        //        if (name != null)
+        //        {
+        //            foreach (Transform t in transform)
+        //            {
+        //                var c = t.GetComponentInChildren<StageSelectable>();
+        //                if (c != null && c.stage != null)
+        //                {
+        //                    c.GetComponent<Selectable>().Select();
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    if (transform.childCount > 0)
+        //        transform.GetChild(0).GetComponentInChildren<Selectable>().Select();
+        //});
     }
+
+    Selectable lastSelect;
 
     // Update is called once per frame
     void Update()
@@ -55,18 +79,22 @@ public class SelectorController : MonoBehaviour
                 if (stageSelector != null && stageSelector.interactable)
                 {
                     var selectable = stageSelector?.GetComponent<Selectable>();
-                    var nav = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<Selectable>();
-                    if (nav == null ||
-                        (nav.FindSelectableOnLeft() == selectable ||
-                        nav.FindSelectableOnRight() == selectable ||
-                        nav.FindSelectableOnUp() == selectable ||
-                        nav.FindSelectableOnDown() == selectable))
-                    {
-                        selectable?.Select();
-                    }
-
+                    var nav = selectCurrent?.current?.GetComponent<Selectable>();
                     if (Input.GetButtonDown("Click"))
-                        stageSelector.OnClick();
+                    {
+                        if (nav == null ||
+                            (nav.FindSelectableOnLeft() == selectable ||
+                            nav.FindSelectableOnRight() == selectable ||
+                            nav.FindSelectableOnUp() == selectable ||
+                            nav.FindSelectableOnDown() == selectable))
+                        {
+                            selectable?.Select();
+                        }
+                        if (nav == selectable)
+                        {
+                            stageSelector.OnClick();
+                        }
+                    }
                 }
             }
         }

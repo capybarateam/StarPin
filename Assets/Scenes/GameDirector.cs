@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Linq;
 
 public class GameDirector : MonoBehaviour
 {
     public PointManager pointManager;
 
-    [SerializeField]
-    private GameObject showTarget = null;
-
-    [SerializeField]
-    private float showWorldTime = 1.0f;
-    [SerializeField]
-    private float showGoalTime = 1.0f;
+    private float showWorldTime = 3.0f;
+    private float showGoalTime = 2.0f;
 
     private enum CameraType
     {
@@ -24,20 +21,51 @@ public class GameDirector : MonoBehaviour
 
     private float countTime = 0.0f;
 
+    bool achieveImportant;
+
     // Start is called before the first frame update
     private void Start()
     {
+        var name = SceneSelector.GetCurrentSceneName();
+        if (name != null)
+        {
+            var music = MusicController.Get();
+            if (music != null)
+            {
+                FMODUnity.StudioEventEmitter[] emits = new FMODUnity.StudioEventEmitter[]
+                {
+                    music.PG1,
+                    music.PG2,
+                    music.PG3,
+                    music.PG4,
+                };
+                music.ChangeSound(emits[name.GetHashCode() % 4]);
+            }
+        }
+
         pointManager = GetComponent<PointManager>();
         camType = CameraType.ShowWorld;
 
-        CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
+        this.Delay(.1f, () =>
+        {
+            CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
+        });
         StartGame();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(camType.Equals(CameraType.ShowWorld))
+        float per = (float)pointManager.allPoints.Count(e => e.rawTouched) / pointManager.allPoints.Count;
+        MusicController.Get()?.ApplyParamater("Scene", per);
+
+        if (!achieveImportant && pointManager.IsGotAllImportantPoints())
+        {
+            achieveImportant = true;
+            StartCoroutine(AchieveEffect());
+        }
+
+        if (camType.Equals(CameraType.ShowWorld))
         {
             countTime += Time.deltaTime;
             if (countTime >= showWorldTime)
@@ -47,7 +75,7 @@ public class GameDirector : MonoBehaviour
                 countTime = 0.0f;
             }
         }
-        else if(camType.Equals(CameraType.ShowGoal))
+        else if (camType.Equals(CameraType.ShowGoal))
         {
             countTime += Time.deltaTime;
             if (countTime >= showGoalTime)
@@ -57,6 +85,20 @@ public class GameDirector : MonoBehaviour
                 countTime = 0.0f;
             }
         }
+    }
+
+    IEnumerator AchieveEffect()
+    {
+        CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
+        yield return new WaitForSeconds(showWorldTime / 2);
+        var prefabEffect = GetComponentInChildren<GoalController>().GetComponentInChildren<ParticleSystem>();
+        foreach (var point in pointManager.allImportantPoints)
+        {
+            var p = Instantiate(prefabEffect, point.transform);
+            p.Play();
+        }
+        yield return new WaitForSeconds(showWorldTime);
+        CameraController.Get().Targetter.SetTarget(StarController.latestStar);
     }
 
     public void StartGame()

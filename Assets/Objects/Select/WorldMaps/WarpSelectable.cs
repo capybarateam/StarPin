@@ -9,12 +9,15 @@ public class WarpSelectable : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        if (GetComponentInParent<SelectCurrent>()?.current == GetComponent<StageSelectable>())
+        var stageCurrent = GetComponentInParent<SelectCurrent>()?.current;
+        var sta = GetComponent<StageSelectable>();
+        //if (stageCurrent == sta)
         {
             var stageSelectable = GetComponent<StageSelectable>();
             this.Delay(.5f, () =>
             {
-                StageAchievement.SetLastStage(stageSelectable.stage.sceneName, destinationStage);
+                if (stageSelectable != null && stageSelectable.stage != null)
+                    StageAchievement.SetLastStage(stageSelectable.stage.sceneName, destinationStage);
                 stageSelectable?.OnClick();
             });
         }

@@ -16,12 +16,12 @@ PlayerSettings:
   productName: StarPin
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0.5, y: 0.5}
-  m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
-  m_SplashScreenLogoStyle: 1
+  m_SplashScreenLogoStyle: 0
   m_SplashScreenDrawMode: 0
   m_SplashScreenBackgroundAnimationZoom: 1
   m_SplashScreenLogoAnimationZoom: 1
@@ -40,7 +40,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 2d2bcc68057974246b89b9be954e5692, type: 3}
+  - logo: {fileID: 21300000, guid: 82fb5eff2ccd62e4ebb80f5003617f0c, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -260,13 +260,13 @@ PlayerSettings:
     height: 180
     banner: {fileID: 2800000, guid: 382cd6989a44bb243a5a1f1045cf7cbb, type: 3}
   androidGamepadSupportLevel: 0
-  resolutionDialogBanner: {fileID: 2800000, guid: 382cd6989a44bb243a5a1f1045cf7cbb,
+  resolutionDialogBanner: {fileID: 2800000, guid: 45469165cddb1c94baa18d5ed2b724b5,
     type: 3}
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 5cb0560b0ba25ef46bf1d4cd1f5c2f96, type: 3}
+      m_Icon: {fileID: 2800002, guid: 2bba5629119ac0e4a88da9581c50cb24, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -745,10 +745,8 @@ PlayerSettings:
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules: []
   monoEnv: 
-  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: e6492ab288524054d93c208e7b64041e,
-    type: 3}
-  splashScreenBackgroundSourcePortrait: {fileID: 21300000, guid: 5cb0560b0ba25ef46bf1d4cd1f5c2f96,
-    type: 3}
+  splashScreenBackgroundSourceLandscape: {fileID: 0}
+  splashScreenBackgroundSourcePortrait: {fileID: 0}
   spritePackerPolicy: 
   webGLMemorySize: 256
   webGLExceptionSupport: 1

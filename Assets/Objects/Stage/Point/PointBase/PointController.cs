@@ -91,6 +91,8 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
     [OptionsListAttribute(new[] { "デフォルトカラー", "カラーA (赤)", "カラーB (緑)", "カラーC (青)" }, "色")]
     public int colorIndex;
 
+    public bool rawTouched;
+
     public bool touched
     {
         get
@@ -191,6 +193,8 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
         {
+            rawTouched = true;
+
             bool condition = CheckCondition(out bool isSend);
             if (condition)
             {
@@ -247,5 +251,7 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
     void Start()
     {
         GameDirector.Get(transform)?.pointManager.RegisterPoint(this, important);
+        if (touched)
+            rawTouched = true;
     }
 }

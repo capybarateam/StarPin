@@ -65,3 +65,17 @@ Assets/StreamingAssets/crashlytics-build.properties
 
 
 # End of https://www.gitignore.io/api/git,unity
+
+# FMOD
+/Assets/Plugins/FMOD/Resources/FMODStudioCache.asset
+/Assets/Plugins/FMOD/Resources/FMODStudioCache.asset.meta
+fmod.log
+fmod_editor.log
+
+# FMOD studio (In folder FMOD)
+/Resources/FMOD/*/.user/*
+/Resources/FMOD/*/.unsaved/*
+/Resources/FMOD/*/.cache/*
+/Resources/FMOD/*/.restore/*
+!/Resources/FMOD/*/Build*
+

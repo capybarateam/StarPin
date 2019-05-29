@@ -10,7 +10,7 @@ public class ButtonManager : MonoBehaviour
         this.Delay(.1f, () =>
         {
             if (transform.childCount > 0)
-                transform.GetChild(0).GetComponentInChildren<Selectable>().Select();
+                transform.GetChild(0).GetComponentInChildren<Selectable>()?.Select();
         });
     }
 

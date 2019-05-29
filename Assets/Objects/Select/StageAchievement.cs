@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class StageAchievement
 {
-    public static void SetCleared(Stage stage, int clearLevel)
+    public static bool isCreativeMode;
+
+    public static void SetCleared(IStage stage, int clearLevel, bool force = false)
     {
-        PlayerPrefs.SetInt($"stage.cleared.{stage.sceneName}", clearLevel);
+        if (isCreativeMode)
+            return;
+        if (!force)
+            clearLevel = Mathf.Max(clearLevel, GetCleared(stage, 0));
+        PlayerPrefs.SetInt($"stage.cleared.{stage.SceneName}", clearLevel);
     }
 
-    public static bool IsCleared(Stage stage, int defaultClearLeve)
+    public static bool IsCleared(IStage stage, int defaultClearLeve)
     {
+        if (isCreativeMode)
+            return true;
         return GetCleared(stage, defaultClearLeve) != 0;
     }
 
-    public static int GetCleared(Stage stage, int defaultClearLevel)
+    public static int GetCleared(IStage stage, int defaultClearLevel)
     {
-        return PlayerPrefs.GetInt($"stage.cleared.{stage.sceneName}", defaultClearLevel);
+        if (isCreativeMode)
+            return 3;
+        return PlayerPrefs.GetInt($"stage.cleared.{stage.SceneName}", defaultClearLevel);
     }
 
-    public static void SetLastStage(string world, Stage lastStage)
+    public static void SetLastStage(string world, IStage lastStage)
     {
-        PlayerPrefs.SetString($"stage.laststage.{world}", lastStage.sceneName);
+        PlayerPrefs.SetString($"stage.laststage.{world}", lastStage.SceneName);
     }
 
     public static string GetLastStageSceneName(string world)
     {
-        if (!PlayerPrefs.HasKey("stage.laststage"))
+        if (!PlayerPrefs.HasKey($"stage.laststage.{world}"))
             return null;
         return PlayerPrefs.GetString($"stage.laststage.{world}");
     }
