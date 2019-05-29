@@ -13,18 +13,33 @@ public class SelectCurrent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var laststage = StageAchievement.GetLastStageSceneName(SceneManager.GetActiveScene().name);
-        foreach (Transform worldstage in transform)
+        var sname = SceneSelector.GetCurrentSceneName();
+        if (sname != null)
         {
-            var stageSelectable = worldstage.GetComponentInChildren<StageSelectable>();
-            var stage = stageSelectable?.stage;
-            if (stage != null)
+            var laststage = StageAchievement.GetLastStageSceneName(sname);
             {
-                if (laststage == null || laststage == stage.sceneName)
+                if (laststage != null)
                 {
+                    foreach (Transform worldstage in transform)
+                    {
+                        var stageSelectable = worldstage.GetComponentInChildren<StageSelectable>();
+                        var stage = stageSelectable?.stage;
+                        if (stage != null)
+                        {
+                            if (laststage == stage.sceneName)
+                            {
+                                current = stageSelectable;
+                                current?.GetComponent<Selectable>()?.Select();
+                                return;
+                            }
+                        }
+                    }
+                }
+                if (transform.childCount > 0)
+                {
+                    var stageSelectable = transform.GetChild(0).GetComponentInChildren<StageSelectable>();
                     current = stageSelectable;
                     current?.GetComponent<Selectable>()?.Select();
-                    break;
                 }
             }
         }
@@ -34,6 +49,8 @@ public class SelectCurrent : MonoBehaviour
     void Update()
     {
         var selectedObject = EventSystem.current.currentSelectedGameObject;
+        if (selectedObject.GetComponentInParent<SelectCurrent>() != this)
+            return;
         bool changed = lastSelectable != selectedObject;
         lastSelectable = selectedObject;
 

@@ -39,19 +39,24 @@ public class StageDirector : MonoBehaviour
         anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
     }
 
-    public void StageChangeEffect(bool starting)
+    public void StageChangeEffect(bool starting, IStage scene)
     {
 
         if (letterBox)
             letterBox.GetComponent<Animator>().SetBool("Enabled", starting);
         if (stageTitle)
         {
-            stageTitle.GetComponent<Animator>().SetBool("Enabled", starting);
-            if (starting)
+            var sel = scene;
+            if (sel is Stage)
             {
-                var title = stageTitle.GetComponentInChildren<TMP_Text>();
-                if (title)
-                    title.text = StageSelector.Get()?.Current?.stageName ?? "";
+                var sname = ((Stage)sel).stageName ?? "";
+                stageTitle.GetComponent<Animator>().SetBool("Enabled", starting && sname != "");
+                if (starting)
+                {
+                    var title = stageTitle.GetComponentInChildren<TMP_Text>();
+                    if (title)
+                        title.text = sname;
+                }
             }
         }
     }
@@ -81,7 +86,8 @@ public class StageDirector : MonoBehaviour
     {
         if (stageAchieve)
         {
-            var text = StageSelector.Get()?.Current?.answer ?? "";
+            var sel = SceneSelector.Get()?.CurrentScene;
+            var text = sel is Stage ? ((Stage)sel).answer : "";
             stageAchieve.GetComponent<Animator>().SetBool("Enabled", starting && text != "");
             if (starting)
             {

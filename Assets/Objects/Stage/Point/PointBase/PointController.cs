@@ -193,6 +193,8 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
         var manager = GameDirector.Get(transform)?.pointManager;
         if (manager != null)
         {
+            rawTouched = true;
+
             bool condition = CheckCondition(out bool isSend);
             if (condition)
             {
@@ -230,7 +232,6 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
                 currentPoint -= transfer;
                 manager.health += transfer;
                 touched = currentPoint > 0;
-                rawTouched = true;
                 isSendMode = !isSendMode;
             }
 
@@ -250,5 +251,7 @@ public class PointController : MonoBehaviour, IAttachable, IConnectorPoint
     void Start()
     {
         GameDirector.Get(transform)?.pointManager.RegisterPoint(this, important);
+        if (touched)
+            rawTouched = true;
     }
 }
