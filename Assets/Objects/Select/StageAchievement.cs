@@ -6,10 +6,12 @@ public class StageAchievement
 {
     public static bool isCreativeMode;
 
-    public static void SetCleared(IStage stage, int clearLevel)
+    public static void SetCleared(IStage stage, int clearLevel, bool force = false)
     {
         if (isCreativeMode)
             return;
+        if (!force)
+            clearLevel = Mathf.Max(clearLevel, GetCleared(stage, 0));
         PlayerPrefs.SetInt($"stage.cleared.{stage.SceneName}", clearLevel);
     }
 
@@ -34,7 +36,7 @@ public class StageAchievement
 
     public static string GetLastStageSceneName(string world)
     {
-        if (!PlayerPrefs.HasKey("stage.laststage"))
+        if (!PlayerPrefs.HasKey($"stage.laststage.{world}"))
             return null;
         return PlayerPrefs.GetString($"stage.laststage.{world}");
     }

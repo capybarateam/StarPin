@@ -5,13 +5,18 @@ using UnityEngine.EventSystems;
 
 public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IConnectorPoint
 {
+    public static StageSelectable lastSelected;
+
     public Stage stage;
     public bool interactable;
 
     public void OnSelect(BaseEventData eventData)
     {
-        if (stage != null)
-            StageAchievement.SetLastStage(SceneSelector.Get().CurrentScene.SceneName, stage);
+        var sname = SceneSelector.GetCurrentSceneName();
+        if (stage != null && !(sname.Contains("World") && stage.SceneName.Contains("World")))
+        {
+            StageAchievement.SetLastStage(sname, stage);
+        }
         SelectDirector.Get(transform).SetSelected(stage);
         SelectDirector.Get(transform).SetSelected(gameObject);
     }

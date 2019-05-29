@@ -14,25 +14,49 @@ public class StageDirector : MonoBehaviour
     public GameObject stageAchieve;
     public GameObject paper;
     public GameObject gauge;
+    public GameObject menu;
+    public GameObject menuIcon;
 
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    public void StageChangeEffect(bool starting)
+    void Update()
+    {
+        bool isStage = GameObject.Find("GameStage") != null;
+
+        if (isStage && Input.GetButtonDown("Cancel"))
+        {
+            bool? menuEnabled = !menu?.GetComponent<Animator>().GetBool("Enabled");
+            MenuEffect(menuEnabled ?? true);
+        }
+
+        gauge.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;
+        menuIcon.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;
+
+        var anim = paper.GetComponent<Animator>();
+        anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
+    }
+
+    public void StageChangeEffect(bool starting, IStage scene)
     {
 
         if (letterBox)
             letterBox.GetComponent<Animator>().SetBool("Enabled", starting);
         if (stageTitle)
         {
-            stageTitle.GetComponent<Animator>().SetBool("Enabled", starting);
-            if (starting)
+            var sel = scene;
+            if (sel is Stage)
             {
-                var title = stageTitle.GetComponentInChildren<TMP_Text>();
-                if (title)
-                    title.text = StageSelector.Get()?.Current?.stageName ?? "";
+                var sname = ((Stage)sel).stageName ?? "";
+                stageTitle.GetComponent<Animator>().SetBool("Enabled", starting && sname != "");
+                if (starting)
+                {
+                    var title = stageTitle.GetComponentInChildren<TMP_Text>();
+                    if (title)
+                        title.text = sname;
+                }
             }
         }
     }
@@ -48,11 +72,22 @@ public class StageDirector : MonoBehaviour
         }
     }
 
+    public void MenuEffect(bool starting)
+    {
+        if (starting)
+            CameraController.Get().Targetter.SetTarget(GameObject.Find("GameStage").GetComponentInChildren<GoalController>().goalTarget);
+        else
+            CameraController.Get().Targetter.SetTarget(StarController.latestStar);
+        if (menu)
+            menu.GetComponent<Animator>().SetBool("Enabled", starting);
+    }
+
     public void StageAchieveEffect(bool starting)
     {
         if (stageAchieve)
         {
-            var text = StageSelector.Get()?.Current?.answer ?? "";
+            var sel = SceneSelector.Get()?.CurrentScene;
+            var text = sel is Stage ? ((Stage)sel).answer : "";
             stageAchieve.GetComponent<Animator>().SetBool("Enabled", starting && text != "");
             if (starting)
             {
@@ -91,11 +126,29 @@ public class StageDirector : MonoBehaviour
         gauge.transform.Find("Gauge").GetComponent<Image>().fillAmount = hp;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MenuRestart()
     {
-        var anim = paper.GetComponent<Animator>();
-        anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
+        var sel = SceneSelector.Get();
+        if (sel != null)
+            sel.LoadScene(sel.CurrentScene, SceneSelector.SceneChangeType.CHANGE_FADE);
+        MenuEffect(false);
+    }
+
+    public void MenuWorld()
+    {
+        var sel = SceneSelector.Get();
+        var sta = StageSelector.Get();
+        if (sel != null && sta != null)
+            sel.LoadScene(sta.lastWorldMap, SceneSelector.SceneChangeType.CHANGE_FADE);
+        MenuEffect(false);
+    }
+
+    public void MenuTitle()
+    {
+        var sel = SceneSelector.Get();
+        if (sel != null)
+            sel.LoadScene(new SceneStage("TitleScene"), SceneSelector.SceneChangeType.CHANGE_FADE);
+        MenuEffect(false);
     }
 
     public static StageDirector Get()
