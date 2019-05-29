@@ -32,14 +32,16 @@ public class GameDirector : MonoBehaviour
             var music = MusicController.Get();
             if (music != null)
             {
-                FMODUnity.StudioEventEmitter[] emits = new FMODUnity.StudioEventEmitter[]
+                int bgmId = name.GetHashCode() % music.PG.Length;
+                var selector = SceneSelector.Get();
+                if (selector != null && selector.CurrentScene is Stage)
                 {
-                    music.PG1,
-                    music.PG2,
-                    music.PG3,
-                    music.PG4,
+                    var id = ((Stage)selector.CurrentScene).bgmId;
+                    if (id >= 0)
+                        bgmId = id;
                 };
-                music.ChangeSound(emits[name.GetHashCode() % 4]);
+
+                music.ChangeSound(music.PG[bgmId]);
             }
         }
 

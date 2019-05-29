@@ -7,10 +7,7 @@ using FMODUnity;
 public class MusicController : MonoBehaviour
 {
     public StudioEventEmitter TitleBGM;
-    public StudioEventEmitter PG1;
-    public StudioEventEmitter PG2;
-    public StudioEventEmitter PG3;
-    public StudioEventEmitter PG4;
+    public StudioEventEmitter[] PG;
 
     StudioEventEmitter current;
 
