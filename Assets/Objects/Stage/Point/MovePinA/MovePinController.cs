@@ -15,6 +15,9 @@ public class MovePinController : MonoBehaviour
     {
         posA = transform.position;
         posB = target.transform.position;
+
+        GetComponent<LineRenderer>().SetPosition(0, posA);
+        GetComponent<LineRenderer>().SetPosition(1, posB);
     }
 
     // Update is called once per frame
