@@ -27,6 +27,7 @@ public class Stage : ScriptableObject, IStage
     [TextArea(10, 30)]
     public string description;
     public string answer;
+    public int bgmId = -1;
 
     public string SceneName
     {

@@ -13,7 +13,7 @@ public class StagePointController : MonoBehaviour
     public GameObject[] stageNameWhenClearedA;
     public GameObject[] stageNameWhenClearedB;
 
-    public HashSet<StagePointController> connection;
+    public HashSet<StagePointController> connection = new HashSet<StagePointController>();
 
     public int clearLevel
     {
