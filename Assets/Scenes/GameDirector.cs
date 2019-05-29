@@ -32,7 +32,7 @@ public class GameDirector : MonoBehaviour
             var music = MusicController.Get();
             if (music != null)
             {
-                int bgmId = name.GetHashCode() % music.PG.Length;
+                int bgmId = name.GetHashCode();
                 var selector = SceneSelector.Get();
                 if (selector != null && selector.CurrentScene is Stage)
                 {
@@ -41,7 +41,7 @@ public class GameDirector : MonoBehaviour
                         bgmId = id;
                 };
 
-                music.ChangeSound(music.PG[bgmId]);
+                music.ChangeSound(music.PG[(bgmId % music.PG.Length + music.PG.Length) % music.PG.Length]);
             }
         }
 
