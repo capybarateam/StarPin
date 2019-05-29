@@ -28,6 +28,8 @@ public class Stage : ScriptableObject, IStage
     public string description;
     public string answer;
     public int bgmId = -1;
+    public Stage story;
+    public Stage afterStory;
 
     public string SceneName
     {

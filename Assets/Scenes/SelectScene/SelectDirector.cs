@@ -54,7 +54,12 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
         if (SceneSelector.GetCurrentSceneName().Contains("World"))
             StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_FADE);
         else
-            StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_MOVE);
+        {
+            if (stage.story != null/* && !StageAchievement.isCreativeMode*/)
+                StageSelector.Get().LoadStage(stage.story, SceneSelector.SceneChangeType.CHANGE_FADE);
+            else
+                StageSelector.Get().LoadStage(stage, SceneSelector.SceneChangeType.CHANGE_MOVE);
+        }
         SelectEffect(false);
     }
 
