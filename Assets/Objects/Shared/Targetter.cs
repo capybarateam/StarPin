@@ -38,6 +38,7 @@ public class Targetter : MonoBehaviour
 
     StarController target;
     public GameObject Target { get; private set; }
+    public StarController TargetStar { get { return target; } }
 
     public void SetTarget(GameObject obj)
     {
