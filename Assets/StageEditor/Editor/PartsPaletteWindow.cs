@@ -38,6 +38,8 @@ public class PartsPaletteWindow : EditorWindow
     Vector2 lastMousePos;
     float currentScale;
     Vector3 lastScale;
+    float currentPosZ;
+    float lastPosZ;
 
     Transform parentTo;
 
@@ -319,6 +321,7 @@ public class PartsPaletteWindow : EditorWindow
                     dragMode = true;
 
                     lastScale = placingObj.transform.localScale;
+                    lastPosZ = placingObj.transform.localPosition.z;
                 }
                 break;
             case EventType.MouseDrag:
@@ -329,7 +332,11 @@ public class PartsPaletteWindow : EditorWindow
                     if (scaleMode)
                     {
                         currentScale = Mathf.Pow(2f, -(mousePos - lastMousePos).y / 40f);
+                        currentPosZ = (mousePos - lastMousePos).x / 40f;
                         placingObj.transform.localScale = lastScale * currentScale;
+                        var pos = placingObj.transform.position;
+                        pos.z = lastPosZ + currentPosZ;
+                        placingObj.transform.position = pos;
                     }
                 }
                 break;
@@ -392,12 +399,12 @@ public class PartsPaletteWindow : EditorWindow
 
         var ray = HandleUtility.GUIPointToWorldRay(mousePos);
 
-        float myZ = (parentTo?.position.z).GetValueOrDefault(0);
+        float myZ = parentTo != null ? parentTo.position.z : 0;
         Vector3 myForward = Vector3.forward;
         Vector3 myUp = Vector3.up;
         if (stageType == PrefabPalette.StageType.WORLD_MAP)
         {
-            myZ = (-parentTo?.position.y).GetValueOrDefault(0);
+            myZ = parentTo != null ? -parentTo.position.y : 0;
             myForward = Vector3.down;
             myUp = Vector3.forward;
         }
