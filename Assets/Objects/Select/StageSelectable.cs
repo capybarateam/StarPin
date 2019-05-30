@@ -9,6 +9,7 @@ public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IC
 
     public Stage stage;
     public bool interactable;
+    public bool clickable = true;
 
     public void OnSelect(BaseEventData eventData)
     {
@@ -28,7 +29,7 @@ public class StageSelectable : MonoBehaviour, ISelectHandler, ISubmitHandler, IC
 
     public void OnClick()
     {
-        if (stage != null)
+        if (stage != null && clickable)
             SelectDirector.Get(transform).StartGame(stage);
     }
 }

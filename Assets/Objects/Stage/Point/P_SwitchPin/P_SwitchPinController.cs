@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class P_SwitchPinController : MonoBehaviour
 {
@@ -19,10 +20,19 @@ public class P_SwitchPinController : MonoBehaviour
     // 時間
     float time = 0;
 
+    public GameObject onModel;
+    public GameObject offModel;
+
     // Start is called before the first frame update
     void Start()
     {
         starController = GameObject.Find("Player").GetComponentInChildren<StarController>();
+
+        var prefabEffect = GetComponentInChildren<ParticleSystem>();
+        foreach (GameObject obj in PinList)
+        {
+            Instantiate(prefabEffect, obj.transform);
+        }
     }
 
     // Update is called once per frame
@@ -32,6 +42,10 @@ public class P_SwitchPinController : MonoBehaviour
         {
             foreach (GameObject obj in PinList)
             {
+                var p = obj.GetComponentInChildren<ParticleSystem>();
+                if (p != null && !p.isPlaying)
+                    p.Play();
+
                 // 透明化をなくす
                 GameObject pin = obj.transform.GetChild(0).gameObject;
                 foreach (Renderer render in pin.GetComponentsInChildren<Renderer>())
@@ -41,11 +55,19 @@ public class P_SwitchPinController : MonoBehaviour
                 // 当たり判定を戻す
                 obj.GetComponentInChildren<CircleCollider2D>().enabled = true;
             }
+
+            foreach (var obj in offModel.GetComponentsInChildren<MeshRenderer>())
+                obj.enabled = false;
+            foreach (var obj in onModel.GetComponentsInChildren<MeshRenderer>())
+                obj.enabled = true;
         }
         else
         {
             foreach (GameObject obj in PinList)
             {
+                var p = obj.GetComponentInChildren<ParticleSystem>();
+                p?.Stop();
+
                 // 触れていたら何もしない
                 if (obj.GetComponentInChildren<PointController>().touched) continue;
 
@@ -59,6 +81,11 @@ public class P_SwitchPinController : MonoBehaviour
                 // 当たり判定をなくす
                 obj.GetComponentInChildren<CircleCollider2D>().enabled = false;
             }
+
+            foreach (var obj in offModel.GetComponentsInChildren<MeshRenderer>())
+                obj.enabled = true;
+            foreach (var obj in onModel.GetComponentsInChildren<MeshRenderer>())
+                obj.enabled = false;
         }
 
         // PSwichを起動

@@ -32,14 +32,16 @@ public class GameDirector : MonoBehaviour
             var music = MusicController.Get();
             if (music != null)
             {
-                FMODUnity.StudioEventEmitter[] emits = new FMODUnity.StudioEventEmitter[]
+                int bgmId = name.GetHashCode();
+                var selector = SceneSelector.Get();
+                if (selector != null && selector.CurrentScene is Stage)
                 {
-                    music.PG1,
-                    music.PG2,
-                    music.PG3,
-                    music.PG4,
+                    var id = ((Stage)selector.CurrentScene).bgmId;
+                    if (id >= 0)
+                        bgmId = id;
                 };
-                music.ChangeSound(emits[name.GetHashCode() % 4]);
+
+                music.ChangeSound(music.PG[(bgmId % music.PG.Length + music.PG.Length) % music.PG.Length]);
             }
         }
 
@@ -91,7 +93,7 @@ public class GameDirector : MonoBehaviour
     {
         CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
         yield return new WaitForSeconds(showWorldTime / 2);
-        var prefabEffect = GetComponentInChildren<GoalController>().GetComponentInChildren<ParticleSystem>();
+        var prefabEffect = GameObject.Find("Shared").transform.Find("AchieveStarEffect").GetComponentInChildren<ParticleSystem>();
         foreach (var point in pointManager.allImportantPoints)
         {
             var p = Instantiate(prefabEffect, point.transform);

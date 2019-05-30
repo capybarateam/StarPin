@@ -25,6 +25,14 @@ public class GoalController : MonoBehaviour
     {
         latestGoal = gameObject;
 
+        if (goalSprite)
+        {
+            var sp = goalSprite.GetComponent<SpriteRenderer>();
+            var color = sp.color;
+            color.a = 0;
+            sp.color = color;
+        }
+
         audioSource = GetComponent<AudioSource>();
     }
 

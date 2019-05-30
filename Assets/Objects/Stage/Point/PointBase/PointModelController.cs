@@ -35,18 +35,21 @@ public class PointModelController : MonoBehaviour
     {
         if (point.touched != _lightenabled || point.colorIndex != _colorIndex)
         {
-            var render = GetComponentInChildren<Renderer>();
+            var renders = GetComponentsInChildren<Renderer>();
 
-            render.material = point.touched ? vibrantMaterial : normalMaterial;
-
-            if (point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
+            foreach (var render in renders)
             {
-                render.material.color = colorPalette.colors[point.colorIndex];
-                render.material.SetColor("_EmissionColor", colorPalette.colors[point.colorIndex] * 4f);
-            }
+                render.material = point.touched ? vibrantMaterial : normalMaterial;
 
-            render.UpdateGIMaterials();
-            //DynamicGI.SetEmissive(render, (value ? vibrantMaterial : normalMaterial).GetColor("_EmissionColor"));
+                if (point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
+                {
+                    render.material.color = colorPalette.colors[point.colorIndex];
+                    render.material.SetColor("_EmissionColor", colorPalette.colors[point.colorIndex] * 4f);
+                }
+
+                render.UpdateGIMaterials();
+                //DynamicGI.SetEmissive(render, (value ? vibrantMaterial : normalMaterial).GetColor("_EmissionColor"));
+            }
 
             _lightenabled = point.touched;
             _colorIndex = point.colorIndex;
@@ -81,7 +84,7 @@ public class PointModelController : MonoBehaviour
             return;
 
         var point = GetComponentInParent<PointController>();
-        if (0 < point.colorIndex && point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
+        if (point != null && 0 < point.colorIndex && point.colorIndex < colorPalette.colors.Count && colorPalette.colors[point.colorIndex] != null)
         {
             int control = GUIUtility.GetControlID(FocusType.Passive);
             Handles.color = colorPalette.colors[point.colorIndex];

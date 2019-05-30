@@ -49,7 +49,7 @@ public class SelectCurrent : MonoBehaviour
     void Update()
     {
         var selectedObject = EventSystem.current.currentSelectedGameObject;
-        if (selectedObject.GetComponentInParent<SelectCurrent>() != this)
+        if (selectedObject?.GetComponentInParent<SelectCurrent>() != this)
             return;
         bool changed = lastSelectable != selectedObject;
         lastSelectable = selectedObject;
