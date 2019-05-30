@@ -35,9 +35,12 @@ public class PartsPaletteWindow : EditorWindow
 
     bool dragMode = false;
     bool scaleMode = false;
+    bool posZMode = false;
     Vector2 lastMousePos;
     float currentScale;
     Vector3 lastScale;
+    float currentPosZ;
+    float lastPosZ;
 
     Transform parentTo;
 
@@ -316,20 +319,31 @@ public class PartsPaletteWindow : EditorWindow
                     lastMousePos = mousePos;
                     currentScale = 1f;
                     scaleMode = false;
+                    posZMode = false;
                     dragMode = true;
 
                     lastScale = placingObj.transform.localScale;
+                    lastPosZ = placingObj.transform.localPosition.z;
                 }
                 break;
             case EventType.MouseDrag:
                 if (ev.button == 0)
                 {
-                    if ((mousePos - lastMousePos).magnitude > .2f)
+                    if (Mathf.Abs((mousePos - lastMousePos).y) > 10f)
                         scaleMode = true;
+                    if (Mathf.Abs((mousePos - lastMousePos).x) > 10f)
+                        posZMode = true;
                     if (scaleMode)
                     {
                         currentScale = Mathf.Pow(2f, -(mousePos - lastMousePos).y / 40f);
                         placingObj.transform.localScale = lastScale * currentScale;
+                    }
+                    if (posZMode)
+                    {
+                        currentPosZ = (mousePos - lastMousePos).x / 40f;
+                        var pos = placingObj.transform.position;
+                        pos.z = lastPosZ + currentPosZ;
+                        placingObj.transform.position = pos;
                     }
                 }
                 break;
@@ -392,12 +406,12 @@ public class PartsPaletteWindow : EditorWindow
 
         var ray = HandleUtility.GUIPointToWorldRay(mousePos);
 
-        float myZ = (parentTo?.position.z).GetValueOrDefault(0);
+        float myZ = parentTo != null ? parentTo.position.z : 0;
         Vector3 myForward = Vector3.forward;
         Vector3 myUp = Vector3.up;
         if (stageType == PrefabPalette.StageType.WORLD_MAP)
         {
-            myZ = (-parentTo?.position.y).GetValueOrDefault(0);
+            myZ = parentTo != null ? -parentTo.position.y : 0;
             myForward = Vector3.down;
             myUp = Vector3.forward;
         }
