@@ -35,6 +35,7 @@ public class PartsPaletteWindow : EditorWindow
 
     bool dragMode = false;
     bool scaleMode = false;
+    bool posZMode = false;
     Vector2 lastMousePos;
     float currentScale;
     Vector3 lastScale;
@@ -318,6 +319,7 @@ public class PartsPaletteWindow : EditorWindow
                     lastMousePos = mousePos;
                     currentScale = 1f;
                     scaleMode = false;
+                    posZMode = false;
                     dragMode = true;
 
                     lastScale = placingObj.transform.localScale;
@@ -327,13 +329,18 @@ public class PartsPaletteWindow : EditorWindow
             case EventType.MouseDrag:
                 if (ev.button == 0)
                 {
-                    if ((mousePos - lastMousePos).magnitude > .2f)
+                    if (Mathf.Abs((mousePos - lastMousePos).y) > 10f)
                         scaleMode = true;
+                    if (Mathf.Abs((mousePos - lastMousePos).x) > 10f)
+                        posZMode = true;
                     if (scaleMode)
                     {
                         currentScale = Mathf.Pow(2f, -(mousePos - lastMousePos).y / 40f);
-                        currentPosZ = (mousePos - lastMousePos).x / 40f;
                         placingObj.transform.localScale = lastScale * currentScale;
+                    }
+                    if (posZMode)
+                    {
+                        currentPosZ = (mousePos - lastMousePos).x / 40f;
                         var pos = placingObj.transform.position;
                         pos.z = lastPosZ + currentPosZ;
                         placingObj.transform.position = pos;
