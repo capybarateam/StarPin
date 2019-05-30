@@ -20,7 +20,7 @@ public class PointManager : MonoBehaviour
 
     public bool IsGotAllPoints()
     {
-        return allPoints.All(e => e.rawTouched);
+        return allPoints.All(e => e.transferType == PointController.TransferType.RecieveOnly ? e.rawTouched : e.touched);
     }
 
     public bool IsGotAllImportantPoints()
