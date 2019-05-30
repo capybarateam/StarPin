@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 114451029256149076}
-  - {fileID: 114521549907878066}
+  - {fileID: 114532979820117550}
+  - {fileID: 114485749911037232}
   EditorEvents:
   - {fileID: 114585849528379164}
   - {fileID: 114155716490257196}
@@ -32,10 +32,10 @@ MonoBehaviour:
   - {fileID: 114643309284116720}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   StringsBanks:
-  - {fileID: 114451029256149076}
-  stringsBankWriteTime: 636947571488992527
+  - {fileID: 114532979820117550}
+  stringsBankWriteTime: 636948383466331928
   cacheVersion: 3
 --- !u!114 &114002266979627476
 MonoBehaviour:
@@ -154,12 +154,12 @@ MonoBehaviour:
   Path: event:/PG3-4
   guid: 9f58a8dc5421774cbcf82210439e0e40
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114367333729244844}
+  - {fileID: 114195089014357046}
   MinDistance: 0
   MaxDistance: 0
   Length: 8135
@@ -248,23 +248,6 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
---- !u!114 &114109101342195578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/PG4-3/Scene
-  m_EditorClassIdentifier: 
-  Name: Scene
-  Min: 0
-  Max: 1
-  Default: 0
-  Exists: 1
 --- !u!114 &114109115485628516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,12 +422,12 @@ MonoBehaviour:
   Path: event:/PG4-3
   guid: 19749a8fa3b70f4b824bf8c0fb308af3
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114109101342195578}
+  - {fileID: 114753922071840026}
   MinDistance: 0
   MaxDistance: 0
   Length: 23945
@@ -486,6 +469,57 @@ MonoBehaviour:
   - Name: Desktop
     Value: 940
   Exists: 0
+--- !u!114 &114169987079730648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG4-2/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114185257717161882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG3-3/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114195089014357046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG3-4/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &114203671899332960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,12 +555,12 @@ MonoBehaviour:
   Path: event:/PG1-1
   guid: 705262571286f2449945951c7da30d06
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114893459019163268}
+  - {fileID: 114575980326265844}
   MinDistance: 0
   MaxDistance: 0
   Length: 12203
@@ -573,6 +607,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 9152
+--- !u!114 &114242160826430996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG2-1/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &114247780782748558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +652,40 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/PG3/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114275592745943670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG2-3/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114283013652550896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG3-1/Scene
   m_EditorClassIdentifier: 
   Name: Scene
   Min: 0
@@ -656,12 +741,12 @@ MonoBehaviour:
   Path: event:/PG3-2
   guid: 9ee2bb40d9c25d4e9a2e070b28d7a9c2
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114844509540468388}
+  - {fileID: 114525401577542822}
   MinDistance: 0
   MaxDistance: 0
   Length: 9152
@@ -758,12 +843,12 @@ MonoBehaviour:
   Path: event:/PG3-3
   guid: 6e1ac561c134ba45b815da3088fc306a
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114122634354935616}
+  - {fileID: 114185257717161882}
   MinDistance: 0
   MaxDistance: 0
   Length: 8135
@@ -892,12 +977,12 @@ MonoBehaviour:
   Path: event:/PG4-1
   guid: 3d39aa987674744b80c52ff45822be36
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114657379449694536}
+  - {fileID: 114835231445604942}
   MinDistance: 0
   MaxDistance: 0
   Length: 23945
@@ -950,12 +1035,12 @@ MonoBehaviour:
   Path: event:/PG2-1
   guid: c411409846a66c468677657267ecd38f
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114787403225991070}
+  - {fileID: 114242160826430996}
   MinDistance: 0
   MaxDistance: 0
   Length: 16271
@@ -1221,7 +1306,7 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
---- !u!114 &114517021084383174
+--- !u!114 &114485749911037232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1230,13 +1315,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/PG1-2/Scene
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
   m_EditorClassIdentifier: 
-  Name: Scene
-  Min: 0
-  Max: 1
-  Default: 0
+  Path: C:\Users\s172179\Documents\git\StarPin\Resources\FMOD\StarAudio\Build\Desktop\Master
+    Bank.bank
+  SubDir: 
+  lastModified: 636948383467020139
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1937440
   Exists: 1
 --- !u!114 &114517219363937592
 MonoBehaviour:
@@ -1258,7 +1347,24 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1933824
   Exists: 1
---- !u!114 &114521549907878066
+--- !u!114 &114525401577542822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG3-2/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114532979820117550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1268,15 +1374,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
+  m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
-  Path: C:\softdata\Unity\Star\Resources\FMOD\StarAudio\Build\Desktop\Master Bank.bank
+  Path: C:\Users\s172179\Documents\git\StarPin\Resources\FMOD\StarAudio\Build\Desktop\Master
+    Bank.strings.bank
   SubDir: 
-  lastModified: 636947571488548532
+  lastModified: 636948383466331928
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1937440
+    Value: 1284
   Exists: 1
 --- !u!114 &114533841735248098
 MonoBehaviour:
@@ -1355,6 +1462,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
+--- !u!114 &114575980326265844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG1-1/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &114577196730018522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,12 +1545,12 @@ MonoBehaviour:
   Path: event:/TitleBGM
   guid: 574b96ba0bd4614a83162ab8e70912f1
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114429405357350046}
+  - {fileID: 114999815219712350}
   MinDistance: 0
   MaxDistance: 0
   Length: 32542
@@ -1489,7 +1613,7 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
---- !u!114 &114606805870356306
+--- !u!114 &114607630415958236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1499,7 +1623,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/PG2-3/Scene
+  m_Name: parameter:/PG1-2/Scene
   m_EditorClassIdentifier: 
   Name: Scene
   Min: 0
@@ -1692,12 +1816,12 @@ MonoBehaviour:
   Path: event:/PG2-2
   guid: c412705ab4eab746a2a804120d0fae11
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114454578660169834}
+  - {fileID: 114835934965575486}
   MinDistance: 0
   MaxDistance: 0
   Length: 8135
@@ -1716,12 +1840,12 @@ MonoBehaviour:
   Path: event:/PG3-1
   guid: 625ff404c8fbbf4882e82e4ff98f4c40
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114961008771705798}
+  - {fileID: 114283013652550896}
   MinDistance: 0
   MaxDistance: 0
   Length: 8135
@@ -1791,12 +1915,12 @@ MonoBehaviour:
   Path: event:/PG1-2
   guid: 581b783e5efdd24985465100fc5d0f2a
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114517021084383174}
+  - {fileID: 114607630415958236}
   MinDistance: 0
   MaxDistance: 0
   Length: 12203
@@ -1970,6 +2094,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &114753922071840026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG4-3/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &114770920648972922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,12 +2177,12 @@ MonoBehaviour:
   Path: event:/PG4-2
   guid: 60545984c9ac15459262c8ee412997ff
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114021000611718548}
+  - {fileID: 114169987079730648}
   MinDistance: 0
   MaxDistance: 0
   Length: 23945
@@ -2079,6 +2220,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &114807125862002994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG4-4/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &114828303304662410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2096,6 +2254,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &114835231445604942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG4-1/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &114835934965575486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PG2-2/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &114837198337532824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,23 +2394,6 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 1
---- !u!114 &114893459019163268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/PG1-1/Scene
-  m_EditorClassIdentifier: 
-  Name: Scene
-  Min: 0
-  Max: 1
-  Default: 0
-  Exists: 1
 --- !u!114 &114896914154659696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2268,12 +2443,12 @@ MonoBehaviour:
   Path: event:/PG4-4
   guid: 8e5fa126724a394698803fd1df09a30e
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114802226002462618}
+  - {fileID: 114807125862002994}
   MinDistance: 0
   MaxDistance: 0
   Length: 23945
@@ -2292,12 +2467,12 @@ MonoBehaviour:
   Path: event:/PG2-3
   guid: 3b1896b694057d4d9e5daef290d18463
   Banks:
-  - {fileID: 114521549907878066}
+  - {fileID: 114485749911037232}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114606805870356306}
+  - {fileID: 114275592745943670}
   MinDistance: 0
   MaxDistance: 0
   Length: 8135
@@ -2374,3 +2549,20 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &114999815219712350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TitleBGM/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
