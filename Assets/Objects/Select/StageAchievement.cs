@@ -31,13 +31,13 @@ public class StageAchievement
 
     public static void SetLastStage(string world, IStage lastStage)
     {
-        PlayerPrefs.SetString($"stage.laststage.{world}", lastStage.SceneName);
+        PlayerPrefs.SetString($"stage.laststage.{(isCreativeMode ? "custom" : "story")}.{world}", lastStage.SceneName);
     }
 
     public static string GetLastStageSceneName(string world)
     {
-        if (!PlayerPrefs.HasKey($"stage.laststage.{world}"))
+        if (!PlayerPrefs.HasKey($"stage.laststage.{(isCreativeMode ? "custom" : "story")}.{world}"))
             return null;
-        return PlayerPrefs.GetString($"stage.laststage.{world}");
+        return PlayerPrefs.GetString($"stage.laststage.{(isCreativeMode ? "creative" : "story")}.{world}");
     }
 }
