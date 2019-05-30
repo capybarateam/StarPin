@@ -11,7 +11,7 @@ public class SelectLock : MonoBehaviour
     void Start()
     {
         bool cleared = StageAchievement.IsCleared(requiredAchievement, 0);
-        GetComponent<StageSelectable>().interactable = cleared;
+        GetComponent<StageSelectable>().clickable = cleared;
         lockObject.SetActive(!cleared);
     }
 }
