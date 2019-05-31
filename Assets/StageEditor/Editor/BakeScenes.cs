@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BakeScenes : EditorWindow
 {
@@ -47,6 +48,11 @@ public class BakeScenes : EditorWindow
 
         EditorGUILayout.PropertyField(scenesProperty, true); // True means show children
         so.ApplyModifiedProperties(); // Remember to apply modified properties
+
+        if (GUILayout.Button("Add All")) // Button to start bake process
+        {
+            scenes = EditorBuildSettings.scenes.Select(s => AssetDatabase.LoadAssetAtPath<SceneAsset>(s.path)).ToArray();
+        }
 
         if (GUILayout.Button(bakeButton)) // Button to start bake process
         {
