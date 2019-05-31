@@ -2028,6 +2028,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4344209752617857565, guid: 9e1d19e68228062419bca0bab80e3be9,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2058,25 +2068,15 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: -1.2377963
       objectReference: {fileID: 0}
-    - target: {fileID: 5634520631079185938, guid: 9e1d19e68228062419bca0bab80e3be9,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 1.4551163
-      objectReference: {fileID: 0}
-    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4344209751769089028, guid: 9e1d19e68228062419bca0bab80e3be9,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 1.5300002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634520631079185938, guid: 9e1d19e68228062419bca0bab80e3be9,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 1.4551163
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e1d19e68228062419bca0bab80e3be9, type: 3}
@@ -4415,7 +4415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPoints: []
   allImportantPoints: []
-  maxHealth: 8
+  maxHealth: 5
   health: 0
   colorIndex: 0
 --- !u!1001 &1063001123
@@ -5396,16 +5396,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2635062459440122311, guid: 31b63f9ecc310204d8e68325b4c39075,
-        type: 3}
-      propertyPath: connectionB
-      value: 
-      objectReference: {fileID: 555018626}
     - target: {fileID: 8910853519989032679, guid: 31b63f9ecc310204d8e68325b4c39075,
         type: 3}
       propertyPath: important
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2635062459440122311, guid: 31b63f9ecc310204d8e68325b4c39075,
+        type: 3}
+      propertyPath: connectionB
+      value: 
+      objectReference: {fileID: 555018626}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31b63f9ecc310204d8e68325b4c39075, type: 3}
 --- !u!4 &1343531754 stripped
