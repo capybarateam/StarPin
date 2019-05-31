@@ -470,22 +470,22 @@ PrefabInstance:
     - target: {fileID: 2416405748164630453, guid: 94eaaf4ff92f3a9439857b89b762aacc,
         type: 3}
       propertyPath: m_text
-      value: "\u5F7C\u306F\u3072\u3068\u308A\u3060\u3063\u305F\u3002\u3055\u307F\u3057\u3044\u3002\u305D\u3093\u306A\u5F7C\u306E\u4EF2\u9593\u306F\u3069\u3053\u304B\u306E\u661F\u5EA7\u306E\u306A\u304B\u306B\u3044\u308B\u3089\u3057\u3044\u3002\u5F7C\u306F\u65C5\u306B\u51FA\u305F\u3002"
+      value: "\u5F7C\u306F\u3044\u3064\u3082\u3072\u3068\u308A\u3060\u3063\u305F\u3002\u62FE\u3044\u5B87\u5B99\u306B\u4EF2\u9593\u306F\u3044\u308B\u306E\u3060\u308D\u3046\u304B\u3002\u5F7C\u306E\u4EF2\u9593\u306F\u3069\u3053\u304B\u306E\u9280\u6CB3\u306B\u304D\u3063\u3068\u3044\u308B\u306F\u305A\u3060\uFF01\u4ECA\u3001\u5F7C\u306F\u4EF2\u9593\u3092\u63A2\u3059\u65C5\u306B\u51FA\u308B\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 2416405748164630453, guid: 94eaaf4ff92f3a9439857b89b762aacc,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 45
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 2416405748164630453, guid: 94eaaf4ff92f3a9439857b89b762aacc,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2416405748164630453, guid: 94eaaf4ff92f3a9439857b89b762aacc,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2416405748164630453, guid: 94eaaf4ff92f3a9439857b89b762aacc,
         type: 3}
@@ -501,6 +501,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416405748164630453, guid: 94eaaf4ff92f3a9439857b89b762aacc,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94eaaf4ff92f3a9439857b89b762aacc, type: 3}
@@ -823,8 +828,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u30AF\u30EA\u30C3\u30AF\u3067\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1c11ed7fe72a1074ea99234f7e90a90a, type: 2}
-  m_sharedMaterial: {fileID: 21598157048464922, guid: 1c11ed7fe72a1074ea99234f7e90a90a,
+  m_fontAsset: {fileID: 11400000, guid: 6ceb5faf92bcb074db1f2eb6754a339b, type: 2}
+  m_sharedMaterial: {fileID: 21451244811207700, guid: 6ceb5faf92bcb074db1f2eb6754a339b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -899,7 +904,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
