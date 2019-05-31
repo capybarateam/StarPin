@@ -36,8 +36,16 @@ public class StarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Grip") || currentJoint == null)
+        if (currentJoint == null)
             AttachToNearestJoint();
+        else if (Input.GetButtonDown("Grip"))
+        {
+            var cam = CameraController.Get();
+            if (cam == null || cam.Targetter.TargetStar == this || GameDirector.Get(transform)?.GetComponentInChildren<GoalController>() == null)
+            {
+                AttachToNearestJoint();
+            }
+        }
 
         rigid.angularVelocity = vel * speed;
         timer += Time.deltaTime;
@@ -47,7 +55,7 @@ public class StarController : MonoBehaviour
         {
             hp = Mathf.Clamp((float)manager.health / manager.maxHealth, 0, 1);
 
-            if(colorIndex != manager.colorIndex)
+            if (colorIndex != manager.colorIndex)
             {
                 GetComponents<AudioSource>()[1].Play();
             }

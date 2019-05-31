@@ -9,6 +9,7 @@ public class GameDirector : MonoBehaviour
 
     private float showWorldTime = 3.0f;
     private float showGoalTime = 2.0f;
+    private float showAchieveTime = 2.0f;
 
     private enum CameraType
     {
@@ -99,7 +100,7 @@ public class GameDirector : MonoBehaviour
             var p = Instantiate(prefabEffect, point.transform);
             p.Play();
         }
-        yield return new WaitForSeconds(showWorldTime);
+        yield return new WaitForSeconds(showAchieveTime);
         CameraController.Get().Targetter.SetTarget(StarController.latestStar);
     }
 

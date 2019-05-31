@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 156563584}
   - component: {fileID: 156563586}
   - component: {fileID: 156563587}
+  - component: {fileID: 156563588}
   m_Layer: 0
   m_Name: GameBase
   m_TagString: Untagged
@@ -293,6 +294,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeimage: {fileID: 868408639}
+--- !u!114 &156563588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156563583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e9119e9bfcb01429b2c4e762dd6f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!225 &868408639 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 7934144550419760330, guid: 174fbb6c8c4f7064d98df756ff94700b,
