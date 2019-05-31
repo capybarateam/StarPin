@@ -13,6 +13,7 @@ public class GoalController : MonoBehaviour
     public float speedRatio = 0.1f;
     public float range = 1f;
     StarController target;
+    public StarController Target { get { return target; } }
     bool emitted = false;
 
     AudioSource audioSource;

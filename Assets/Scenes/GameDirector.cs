@@ -92,7 +92,7 @@ public class GameDirector : MonoBehaviour
 
     IEnumerator AchieveEffect()
     {
-        CameraController.Get().Targetter.SetTarget(GetComponentInChildren<GoalController>().goalTarget);
+        CameraController.Get()?.Targetter?.SetTarget(GetComponentInChildren<GoalController>()?.goalTarget);
         yield return new WaitForSeconds(showWorldTime / 2);
         var prefabEffect = GameObject.Find("Shared").transform.Find("AchieveStarEffect").GetComponentInChildren<ParticleSystem>();
         foreach (var point in pointManager.allImportantPoints)
