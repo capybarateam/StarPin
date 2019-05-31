@@ -8,6 +8,8 @@ using System.Linq;
 public class BakeScenes : EditorWindow
 {
     // Array to store an Object array of the scenes
+    public Object[] scenesCandidate;
+    public int remove;
     public Object[] scenes;
 
     // Lists and string array for easier management
@@ -44,14 +46,25 @@ public class BakeScenes : EditorWindow
         // (could be EditorWindow, MonoBehaviour, etc)
         ScriptableObject target = this;
         SerializedObject so = new SerializedObject(target);
+        SerializedProperty scenesCandidateProperty = so.FindProperty("scenesCandidate");
         SerializedProperty scenesProperty = so.FindProperty("scenes");
+        SerializedProperty removeProperty = so.FindProperty("remove");
 
         EditorGUILayout.PropertyField(scenesProperty, true); // True means show children
         so.ApplyModifiedProperties(); // Remember to apply modified properties
 
         if (GUILayout.Button("Add All")) // Button to start bake process
         {
-            scenes = EditorBuildSettings.scenes.Select(s => AssetDatabase.LoadAssetAtPath<SceneAsset>(s.path)).ToArray();
+            scenesCandidate = EditorBuildSettings.scenes.Select(s => AssetDatabase.LoadAssetAtPath<SceneAsset>(s.path)).ToArray();
+        }
+
+        EditorGUILayout.PropertyField(scenesCandidateProperty, true); // True means show children
+        EditorGUILayout.PropertyField(removeProperty, true); // True means show children
+        so.ApplyModifiedProperties(); // Remember to apply modified properties
+
+        if (GUILayout.Button("Add Range")) // Button to start bake process
+        {
+            scenes = scenesCandidate.Skip(remove).ToArray();
         }
 
         if (GUILayout.Button(bakeButton)) // Button to start bake process
@@ -114,6 +127,8 @@ public class BakeScenes : EditorWindow
         if (sceneIndex < scenes.Length)
         {
             EditorSceneManager.OpenScene(scenePath[sceneIndex]);
+            EditorUtility.UnloadUnusedAssetsImmediate();
+            System.GC.Collect();
             timeStamp = System.DateTime.Now;
             Lightmapping.BakeAsync();
             UpdateBakeProgress();
