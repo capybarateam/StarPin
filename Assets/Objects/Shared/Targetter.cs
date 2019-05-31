@@ -36,9 +36,8 @@ public class Targetter : MonoBehaviour
         }
     }
 
-    StarController target;
     public GameObject Target { get; private set; }
-    public StarController TargetStar { get { return target; } }
+    public StarController TargetStar { get; private set; }
 
     public void SetTarget(GameObject obj)
     {
@@ -46,7 +45,7 @@ public class Targetter : MonoBehaviour
         {
             bool noTarget = Target == null;
             Target = obj;
-            target = obj?.GetComponent<StarController>() ?? null;
+            TargetStar = obj?.GetComponent<StarController>() ?? null;
             if (noTarget)
                 MoveImmediately();
         }
@@ -54,8 +53,8 @@ public class Targetter : MonoBehaviour
 
     public Vector3? GetTargetPosition()
     {
-        if (target)
-            return target.currentJoint != null ? target.currentJoint.transform.position : target.transform.position;
+        if (TargetStar)
+            return TargetStar.currentJoint != null ? TargetStar.currentJoint.transform.position : TargetStar.transform.position;
         else if (Target)
             return Target.transform.position;
         else

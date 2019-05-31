@@ -28,13 +28,7 @@ public class StageDirector : MonoBehaviour
 
         if (isStage && Input.GetButtonDown("Cancel"))
         {
-            bool menuEnabled = false;
-            var cam = CameraController.Get();
-            if (cam == null || StarController.latestStar == null ||
-                cam.Targetter.TargetStar == StarController.latestStar?.GetComponent<StarController>())
-            {
-                menuEnabled = !(menu != null ? menu.GetComponent<Animator>().GetBool("Enabled") : false);
-            }
+            bool menuEnabled = (menu != null ? !menu.GetComponent<Animator>().GetBool("Enabled") : false);
             MenuEffect(menuEnabled);
         }
 
@@ -80,12 +74,15 @@ public class StageDirector : MonoBehaviour
 
     public void MenuEffect(bool starting)
     {
-        if (starting)
-            CameraController.Get().Targetter.SetTarget(GameObject.Find("GameStage").GetComponentInChildren<GoalController>().goalTarget);
-        else
-            CameraController.Get().Targetter.SetTarget(StarController.latestStar);
-        if (menu)
-            menu.GetComponent<Animator>().SetBool("Enabled", starting);
+        if (GameObject.Find("GameStage")?.GetComponentInChildren<GoalController>()?.Target == null)
+        {
+            if (starting)
+                CameraController.Get().Targetter.SetTarget(GameObject.Find("GameStage").GetComponentInChildren<GoalController>().goalTarget);
+            else
+                CameraController.Get().Targetter.SetTarget(StarController.latestStar);
+            if (menu)
+                menu.GetComponent<Animator>().SetBool("Enabled", starting);
+        }
     }
 
     public void StageAchieveEffect(bool starting)
