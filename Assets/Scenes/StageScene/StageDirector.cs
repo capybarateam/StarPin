@@ -28,8 +28,14 @@ public class StageDirector : MonoBehaviour
 
         if (isStage && Input.GetButtonDown("Cancel"))
         {
-            bool? menuEnabled = !menu?.GetComponent<Animator>().GetBool("Enabled");
-            MenuEffect(menuEnabled ?? true);
+            bool menuEnabled = false;
+            var cam = CameraController.Get();
+            if (cam == null || StarController.latestStar == null ||
+                cam.Targetter.TargetStar == StarController.latestStar?.GetComponent<StarController>())
+            {
+                menuEnabled = !(menu != null ? menu.GetComponent<Animator>().GetBool("Enabled") : false);
+            }
+            MenuEffect(menuEnabled);
         }
 
         gauge.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;

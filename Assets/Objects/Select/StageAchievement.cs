@@ -38,6 +38,6 @@ public class StageAchievement
     {
         if (!PlayerPrefs.HasKey($"stage.laststage.{(isCreativeMode ? "custom" : "story")}.{world}"))
             return null;
-        return PlayerPrefs.GetString($"stage.laststage.{(isCreativeMode ? "creative" : "story")}.{world}");
+        return PlayerPrefs.GetString($"stage.laststage.{(isCreativeMode ? "custom" : "story")}.{world}");
     }
 }

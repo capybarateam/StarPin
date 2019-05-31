@@ -41,7 +41,11 @@ public class SelectDirector : MonoBehaviour, ISelectDirector
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Cancel"))
+            if (SceneSelector.GetCurrentSceneName().Contains("World"))
+                BackToSelect();
+            else
+                BackToTitle();
     }
 
     public Stage GetSelected()
