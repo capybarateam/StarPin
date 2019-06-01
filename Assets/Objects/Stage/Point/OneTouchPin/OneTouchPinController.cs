@@ -14,7 +14,7 @@ public class OneTouchPinController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        starController = GameObject.Find("Player").GetComponentInChildren<StarController>();
+        starController = StarController.latestStar == null ? null : StarController.latestStar.GetComponentInChildren<StarController>();
         foreach (Renderer render in this.GetComponentsInChildren<Renderer>())
         {
             Rigidbody2D rigid = render.gameObject.GetComponent<Rigidbody2D>();
@@ -30,7 +30,7 @@ public class OneTouchPinController : MonoBehaviour
     void Update()
     {
         // 触れていてスターが離れた場合
-        if (this.gameObject != starController.currentJoint && this.GetComponentInChildren<PointController>().touched)
+        if (this.gameObject != starController?.currentJoint && (this.GetComponentInChildren<PointController>()?.touched ?? false))
         {
             if (flag)
             {
