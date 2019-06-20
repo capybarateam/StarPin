@@ -36,7 +36,7 @@ public class StageDirector : MonoBehaviour
         menuIcon.GetComponent<CanvasGroup>().alpha = isStage ? 1 : 0;
 
         var anim = paper.GetComponent<Animator>();
-        anim.SetBool("Enabled", Time.time - lastSignal < 2 && Time.time - lastPaper >= .5f);
+        anim.SetBool("Enabled", Time.time - lastSignal < 2 || Time.time - lastPaper < .5f);
     }
 
     public void StageChangeEffect(bool starting, IStage scene)
@@ -114,14 +114,16 @@ public class StageDirector : MonoBehaviour
     {
         if (lastMessage != text)
         {
-            this.Delay(.25f, () =>
+            var anim = paper.GetComponent<Animator>();
+            //anim.SetTrigger("Change");
+            this.Delay(.15f, () =>
             {
                 var papertext = paper.GetComponentInChildren<TMP_Text>();
                 papertext.text = text;
             });
-            lastPaper = Time.time;
             lastMessage = text;
         }
+        lastPaper = Time.time;
     }
 
     public void SetHp(float hp)
