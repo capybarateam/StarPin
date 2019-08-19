@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class StarController : MonoBehaviour
 {
@@ -36,6 +37,14 @@ public class StarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Reset"))
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            Debug.Log("セーブデータを全削除しました。");
+            SceneManager.LoadScene("BaseScene");
+        }
+
         if (currentJoint == null)
             AttachToNearestJoint();
         else if (Input.GetButtonDown("Grip"))

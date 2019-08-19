@@ -28,7 +28,7 @@ public class P_SwitchPinController : MonoBehaviour
     {
         starController = GameObject.Find("Player").GetComponentInChildren<StarController>();
 
-        var prefabEffect = GetComponentInChildren<ParticleSystem>();
+        var prefabEffect = GetComponentInChildren<ParticleSystem>().transform.parent;
         foreach (GameObject obj in PinList)
         {
             Instantiate(prefabEffect, obj.transform);
@@ -45,12 +45,16 @@ public class P_SwitchPinController : MonoBehaviour
                 var p = obj.GetComponentInChildren<ParticleSystem>();
                 if (p != null && !p.isPlaying)
                     p.Play();
+                var p2 = obj.GetComponentInChildren<SpriteRenderer>();
+                if (p2 != null)
+                    p2.enabled = false;
 
                 // 透明化をなくす
                 GameObject pin = obj.transform.GetChild(0).gameObject;
                 foreach (Renderer render in pin.GetComponentsInChildren<Renderer>())
                 {
-                    AnTransparent(render.materials);
+                    render.enabled = true;
+                    //AnTransparent(render.materials);
                 }
                 // 当たり判定を戻す
                 obj.GetComponentInChildren<CircleCollider2D>().enabled = true;
@@ -67,6 +71,9 @@ public class P_SwitchPinController : MonoBehaviour
             {
                 var p = obj.GetComponentInChildren<ParticleSystem>();
                 p?.Stop();
+                var p2 = obj.GetComponentInChildren<SpriteRenderer>();
+                if (p2 != null)
+                    p2.enabled = true;
 
                 // 触れていたら何もしない
                 if (obj.GetComponentInChildren<PointController>().touched) continue;
@@ -76,7 +83,8 @@ public class P_SwitchPinController : MonoBehaviour
 
                 foreach (Renderer render in pin.GetComponentsInChildren<Renderer>())
                 {
-                    Transparent(render.materials);
+                    render.enabled = false;
+                    //Transparent(render.materials);
                 }
                 // 当たり判定をなくす
                 obj.GetComponentInChildren<CircleCollider2D>().enabled = false;
@@ -106,6 +114,7 @@ public class P_SwitchPinController : MonoBehaviour
         }
     }
 
+    /*
     // マテリアルを透明化
     void Transparent(Material[] materials)
     {
@@ -134,4 +143,5 @@ public class P_SwitchPinController : MonoBehaviour
             material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
         }
     }
+    */
 }
