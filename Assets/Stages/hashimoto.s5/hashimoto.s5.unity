@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.062469326, g: 0.19519052, b: 0.3044434, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1746,6 +1746,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PointLightA
       objectReference: {fileID: 0}
+    - target: {fileID: 3517962486146040520, guid: bdb288efb3a198345b911dfe2c845417,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4521435289637527812, guid: 3ca23baaba36b594b9c23c323c61cf82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1800,11 +1805,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3517962486146040520, guid: bdb288efb3a198345b911dfe2c845417,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4521435289637527813, guid: 3ca23baaba36b594b9c23c323c61cf82,
         type: 3}
@@ -2255,16 +2255,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4344209752617857565, guid: 9e1d19e68228062419bca0bab80e3be9,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2295,11 +2285,6 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: -1.2377968
       objectReference: {fileID: 0}
-    - target: {fileID: 4344209751769089028, guid: 9e1d19e68228062419bca0bab80e3be9,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 1.5299997
-      objectReference: {fileID: 0}
     - target: {fileID: 5634520631079185938, guid: 9e1d19e68228062419bca0bab80e3be9,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2309,6 +2294,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.4727955
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148868313991526433, guid: 9e1d19e68228062419bca0bab80e3be9,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344209751769089028, guid: 9e1d19e68228062419bca0bab80e3be9,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.5299997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e1d19e68228062419bca0bab80e3be9, type: 3}
@@ -6322,7 +6322,7 @@ PrefabInstance:
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
       propertyPath: important
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
@@ -8966,7 +8966,7 @@ PrefabInstance:
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
       propertyPath: important
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
@@ -8981,7 +8981,7 @@ PrefabInstance:
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
       propertyPath: currentPoint
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8725072d0718eab4b89db02a39bcdb9d, type: 3}

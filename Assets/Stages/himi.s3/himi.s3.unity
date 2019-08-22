@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.062469326, g: 0.19519052, b: 0.3044434, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -274,7 +274,7 @@ PrefabInstance:
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
       propertyPath: important
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8725072d0718eab4b89db02a39bcdb9d, type: 3}
@@ -3009,11 +3009,6 @@ PrefabInstance:
       propertyPath: connectionB
       value: 
       objectReference: {fileID: 273836880}
-    - target: {fileID: 2397901164635908593, guid: d9744c428e3852242a3a6374a3b4ac59,
-        type: 3}
-      propertyPath: MinDistance
-      value: 0.7379494
-      objectReference: {fileID: 0}
     - target: {fileID: 1297050411309948556, guid: d9744c428e3852242a3a6374a3b4ac59,
         type: 3}
       propertyPath: m_Asset
@@ -3023,6 +3018,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397901164635908593, guid: d9744c428e3852242a3a6374a3b4ac59,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.7379494
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9744c428e3852242a3a6374a3b4ac59, type: 3}
@@ -7277,6 +7277,11 @@ PrefabInstance:
     - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
         type: 3}
       propertyPath: important
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861279424795852975, guid: 8725072d0718eab4b89db02a39bcdb9d,
+        type: 3}
+      propertyPath: currentPoint
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8306,15 +8311,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1631525902}
     m_Modifications:
-    - target: {fileID: 9119735561602839254, guid: 8725072d0718eab4b89db02a39bcdb9d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
     - target: {fileID: 722239913883780296, guid: e1e25bc833d6fe440a55a4262aed5db0,
         type: 3}
       propertyPath: m_Name
       value: "\u4F3D\u7F85"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119735561602839254, guid: 8725072d0718eab4b89db02a39bcdb9d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 3944323436173190750, guid: e1e25bc833d6fe440a55a4262aed5db0,
         type: 3}
